@@ -42,7 +42,7 @@ export default function Game() {
           state.justAdvancedStage ? 'block' : 'hidden'
         } bg-white flex flex-col gap-12 justify-center items-center fixed z-10 inset-0 overflow-y-auto`}
       >
-        <h1 className="text-black text-xl">Parabens, voce passou de fase!</h1>
+        <h1 className="text-black text-xl">Parabéns! você passou de estágio!</h1>
         <button
           type="button"
           className="w-24 h-24 bg-white border border-black hover:bg-gray-100 text-black rounded-full"
@@ -53,17 +53,17 @@ export default function Game() {
           }
           aria-label="Move to next stage"
         >
-          Next Stage
+          Próximo Estágio
         </button>
       </div>
-      <section className="py-16 bg-[#69C0C9] w-[30%] h-full flex flex-col items-center justify-between gap-y-16">
-        <div className="flex flex-col gap-1">
-          <h3 className="text-black text-sm">Stage: {currentStageNum + 1}</h3>
-          <h3 className="text-black text-sm">Level: {currentLevelNum + 1}</h3>
+      <section className="flex flex-col items-center justify-between py-16 bg-[#69C0C9] w-[30%] h-full gap-y-16">
+        <div className="flex flex-row gap-2">
+          <h3 className="text-black text-sm">Estágio: {currentStageNum + 1}</h3>
+          <h3 className="text-black text-sm">Nível: {currentLevelNum + 1}</h3>
         </div>
         <button
           type="button"
-          className="w-20 h-20 bg-white hover:bg-gray-100 text-black rounded-full"
+          className="w-28 h-28 bg-white hover:bg-gray-100 text-black rounded-full"
           onClick={() =>
             dispatch({
               type: 'DIVIDE_SQUARE',
@@ -77,15 +77,15 @@ export default function Game() {
         <div className="flex gap-4">
           <button
             type="button"
-            className="w-12 h-12 bg-white hover:bg-gray-100 text-black text-xs rounded-full"
+            className="w-16 h-16 bg-white hover:bg-gray-100 text-black text-xs rounded-full"
             onClick={() => dispatch({ type: 'PREV_LEVEL' })}
             aria-label="Previous Level"
           >
-            Back
+            Voltar
           </button>
           <button
             type="button"
-            className="w-12 h-12 bg-white hover:bg-gray-100 text-black text-xs rounded-full"
+            className="w-16 h-16 bg-white hover:bg-gray-100 text-black text-xs rounded-full"
             onClick={() =>
               dispatch({
                 type: 'NEXT_LEVEL',
@@ -97,24 +97,24 @@ export default function Game() {
             }
             aria-label="Next Level"
           >
-            Next
+            Continuar
           </button>
         </div>
-        <h3 className="text-black text-xl">Clicks:</h3>
+        <h3 className="text-black text-xl">Cliques:</h3>
       </section>
 
       <section className="py-16 bg-[#F76C4B] w-[40%] h-full flex flex-col items-center justify-between">
         <img className="w-24 h-24" src={imageUrl} alt="challenge" />
 
         <Grid state={state} dispatch={dispatch} />
-        <h3 className="text-black text-xl">Pintando Fracoes:</h3>
+        <h3 className="text-black text-xl">Pintando Frações</h3>
       </section>
 
       <section className="py-16 bg-[#69C0C9] w-[30%] h-full flex flex-col items-center justify-between gap-y-16">
-        <h3 className="text-black text-xl">Timer:</h3>
+        <h3 className="text-black text-xl">Tempo:</h3>
         <button
           type="button"
-          className="w-20 h-20 bg-white hover:bg-gray-100 text-black rounded-full"
+          className="w-28 h-28 bg-white hover:bg-gray-100 text-black rounded-full"
           onClick={() =>
             dispatch({
               type: 'DIVIDE_SQUARE',
@@ -127,23 +127,23 @@ export default function Game() {
         </button>
         <div className="flex gap-4">
           <button
-            className="w-12 h-12 bg-white hover:bg-gray-100 text-black text-xs rounded-full"
+            className="w-16 h-16 bg-white hover:bg-gray-100 text-black text-xs rounded-full"
             type="button"
             onClick={handleResetSquare}
             aria-label="Reset Square"
           >
-            Reset Square
+            Resetar Nível
           </button>
           <button
-            className="w-12 h-12 bg-white hover:bg-gray-100 text-black text-xs rounded-full"
+            className="w-16 h-16 bg-white hover:bg-gray-100 text-black text-xs rounded-full"
             type="button"
             onClick={handleResetGame}
             aria-label="Reset Game"
           >
-            Reset Game
+            Reiniciar Jogo
           </button>
         </div>
-        <h3 className="text-black text-xl">Stars:</h3>
+        <h3 className="text-black text-xl">Pontos:</h3>
       </section>
     </div>
   );
