@@ -3,13 +3,13 @@ import genStageTwo from './stages/stageTwo';
 import genStageThree from './stages/stageThree';
 import genStageFour from './stages/stageFour';
 import genStageFive from './stages/stageFive';
-// import genStageSix from './stages/stageSix';
+import genStageSix from './stages/stageSix';
 import genStageSeven from './stages/stageSeven';
 import genStageEight from './stages/stageEight';
-// import genStageNine from './stages/stageNine';
+import genStageNine from './stages/stageNine';
 import genStageTen from './stages/stageTen';
 import genStageEleven from './stages/stageEleven';
-// import genStageTwelve from './stages/stageTwelve';
+import genStageTwelve from './stages/stageTwelve';
 
 import { GameState } from './types';
 
@@ -24,13 +24,13 @@ const genInitialState = (): GameState => ({
     genStageThree(),
     genStageFour(),
     genStageFive(),
-    // genStageSix(),
+    // genStageSix(),    60% done
     genStageSeven(),
     genStageEight(),
-    // genStageNine(),
+    // genStageNine(),    to do
     genStageTen(),
     genStageEleven(),
-    // genStageTwelve(),
+    // genStageTwelve(),    to do
   ],
 });
 

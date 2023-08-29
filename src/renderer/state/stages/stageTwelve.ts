@@ -12,37 +12,37 @@ import {
 const genStageSix = (): Stage => {
   return {
     levels: initializeLevels(
-
       genRandomChallengeCanvases({
         numCellsFilter: [3],
-        difficultyFilter: ['easy'],
-        toggleRatio: 0.6,
-        numberofChallenges: 10,
+        difficultyFilter: ['easy', 'medium'],
+        toggleRatio: 0.3,
+        numberofChallenges: 3,
       }),
 
       concatArrays<GameCanvas>([
         initializeLevelChallenges(
           getRandomOptions(
-            filterChallenges({
-              numCellsFilter: [2],
-              difficultyFilter: ['easy'],
-            }).map((challengeId) => ({
-              challengeId,
-            })),
-            6
+            { challengeId: 'Square6a' },
+            { challengeId: 'Square6b' },
+            { challengeId: 'Square4c' },
           )
         ),
-        initializeLevelChallenges([
-          { challengeId: 'Square4c' },
-          { challengeId: 'Square4c' },
-          { challengeId: 'Square4c' },
-          { challengeId: 'Square4c' },
-        ]),
       ])
-
     ),
     metadata: initialStageMetadata(),
   };
 };
 
 export default genStageSix;
+
+
+/*
+
+        initializeLevelChallenges([
+          { challengeId: 'Square4c' },
+          { challengeId: 'Square4c' },
+          { challengeId: 'Square4c' },
+          { challengeId: 'Square4c' },
+        ]),
+
+*/
