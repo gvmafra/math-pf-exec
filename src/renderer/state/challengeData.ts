@@ -167,6 +167,7 @@ export const challenges: challengeDetailsMap = {
     numCells: 6,
     paths: [
       'M63.3,10.1H90v40H63.3V10.1z',
+      'M36.7,10h26.7v40H36.7V10z',
       'M10.1,10h26.7v40H10.1V10z',
       'M63.3,50H90v40H63.3V50z',
       'M36.7,50h26.7v40H36.7V50z',

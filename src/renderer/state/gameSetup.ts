@@ -2,6 +2,7 @@ import genStageOne from './stages/stageOne';
 import genStageTwo from './stages/stageTwo';
 import genStageThree from './stages/stageThree';
 import genStageFour from './stages/stageFour';
+import genStageFive from './stages/stageFive';
 import { GameState } from './types';
 
 // initializeLevelGrids([
@@ -17,7 +18,7 @@ const genInitialState = (): GameState => ({
   currentStage: 0,
   justAdvancedStage: false,
   finishedGame: false,
-  stages: [genStageOne(), genStageTwo(), genStageThree(), genStageFour()],
+  stages: [genStageOne(), genStageTwo(), genStageThree(), genStageFour(), genStageFive()],
 });
 
 export default genInitialState;
