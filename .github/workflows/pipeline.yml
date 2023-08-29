@@ -1,0 +1,37 @@
+name: Build
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    build:
+        # build on ubuntu and windows
+        strategy:
+            matrix:
+                os: [windows-latest, ubuntu-latest]
+
+        runs-on: ${{ matrix.os }}
+
+        concurrency:
+            group: ${{ matrix.os }}
+            cancel-in-progress: true
+
+
+        steps:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: 20
+                  cache: "npm"
+            - name: Install dependencies
+              run: npm install
+            - name: Package
+              run: npm run package
+            - name: Upload Artifacts
+              uses: actions/upload-artifact@v3
+              with:
+                  name: release-${{ matrix.os }}
+                  path: release
+                  retention-days: 30
