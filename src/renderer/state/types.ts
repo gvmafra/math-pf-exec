@@ -81,7 +81,7 @@ export type ShapeIds =
   | 'Triangle8d'
   | 'Triangle8e'
   | 'Triangle9c';
-
+  
 // Enum litrals, used for indexing
 export type Shape = 'square' | 'diamond' | 'triangle' | 'circle';
 export type NumCells = 2 | 3 | 4 | 6 | 8 | 9;

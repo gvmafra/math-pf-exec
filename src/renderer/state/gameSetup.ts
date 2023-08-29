@@ -3,7 +3,24 @@ import genStageTwo from './stages/stageTwo';
 import genStageThree from './stages/stageThree';
 import genStageFour from './stages/stageFour';
 import genStageFive from './stages/stageFive';
+import genStageSix from './stages/stageSix';
+import genStageSeven from './stages/stageSeven';
+import genStageEight from './stages/stageEight';
+// import genStageNine from './stages/stageNine';
+// import genStageTen from './stages/stageTen';
+// import genStageEleven from './stages/stageEleven';
+// import genStageTwelve from './stages/stageTwelve';
 import { GameState } from './types';
+
+// Generate a new initialState
+const genInitialState = (): GameState => ({
+  currentStage: 0,
+  justAdvancedStage: false,
+  finishedGame: false,
+  stages: [genStageEight()],
+});
+
+export default genInitialState;
 
 // initializeLevelGrids([
 //   { current: { rows: 2, columns: 1 }, max: { rows: 2, columns: 1 } },
@@ -12,16 +29,6 @@ import { GameState } from './types';
 //   { current: { rows: 2, columns: 2 }, max: { rows: 4, columns: 4 } },
 //   { current: { rows: 2, columns: 2 }, max: { rows: 4, columns: 4 } },
 // ])
-
-// Generate a new initialState
-const genInitialState = (): GameState => ({
-  currentStage: 0,
-  justAdvancedStage: false,
-  finishedGame: false,
-  stages: [genStageOne(), genStageTwo(), genStageThree(), genStageFour(), genStageFive()],
-});
-
-export default genInitialState;
 
 // export function initializeStage({
 //   numberOfLevels,
