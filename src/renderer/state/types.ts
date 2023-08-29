@@ -45,6 +45,8 @@ export type ShapeIds =
   | 'Diamond2b'
   | 'Diamond2c'
   | 'Diamond4b'
+  | 'Diamond9c'
+  | 'Diamond8j'
   | 'Diamond8i'
   | 'Diamond8h'
   | 'Diamond8g'
