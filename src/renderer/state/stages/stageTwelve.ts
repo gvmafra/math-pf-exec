@@ -1,4 +1,4 @@
-import { GameCanvas, Stage } from '../types';
+import { ChallengeCanvas, GameCanvas, Stage } from '../types';
 import {
   initializeLevels,
   initializeLevelChallenges,
@@ -12,37 +12,48 @@ import {
 const genStageSix = (): Stage => {
   return {
     levels: initializeLevels(
-      genRandomChallengeCanvases({
-        numCellsFilter: [3],
-        difficultyFilter: ['easy', 'medium'],
-        toggleRatio: 0.3,
-        numberofChallenges: 3,
-      }),
 
+      // array containing the challenges above
+      concatArrays<ChallengeCanvas>([
+        genRandomChallengeCanvases({
+          numCellsFilter: [3, 6, 9],
+          difficultyFilter: ['easy', 'medium', 'hard'],
+          toggleRatio: .5,
+          numberofChallenges: 5,
+        }),
+        genRandomChallengeCanvases({
+          numCellsFilter: [3, 6, 9],
+          difficultyFilter: ['easy', 'medium', 'hard'],
+          toggleRatio: .5,
+          numberofChallenges: 5,
+        }),
+      ]),
+      
+
+      // array containing the canvas below
       concatArrays<GameCanvas>([
         initializeLevelChallenges(
           getRandomOptions(
-            { challengeId: 'Square6a' },
-            { challengeId: 'Square6b' },
-            { challengeId: 'Square4c' },
+            filterChallenges({
+              numCellsFilter: [3, 6, 2],
+              difficultyFilter: ['easy'],
+            }).map((challengeId) => ({
+              challengeId,
+            })),
+            6
           )
         ),
+        initializeLevelChallenges([
+          { challengeId: 'Square3b' },
+          { challengeId: 'Square3b' },
+          { challengeId: 'Square3b' },
+          { challengeId: 'Square3b' },
+        ]),
       ])
+
     ),
     metadata: initialStageMetadata(),
   };
 };
 
 export default genStageSix;
-
-
-/*
-
-        initializeLevelChallenges([
-          { challengeId: 'Square4c' },
-          { challengeId: 'Square4c' },
-          { challengeId: 'Square4c' },
-          { challengeId: 'Square4c' },
-        ]),
-
-*/

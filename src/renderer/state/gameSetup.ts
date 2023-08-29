@@ -24,13 +24,13 @@ const genInitialState = (): GameState => ({
     genStageThree(),
     genStageFour(),
     genStageFive(),
-    // genStageSix(),    60% done
+    genStageSix(),
     genStageSeven(),
     genStageEight(),
-    // genStageNine(),    to do
+    genStageNine(),
     genStageTen(),
     genStageEleven(),
-    // genStageTwelve(),    to do
+    genStageTwelve(),
   ],
 });
 

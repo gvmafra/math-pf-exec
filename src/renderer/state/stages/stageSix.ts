@@ -13,18 +13,20 @@ const genStageSix = (): Stage => {
   return {
     levels: initializeLevels(
 
+      // array containing the challenges above
       genRandomChallengeCanvases({
         numCellsFilter: [3],
-        difficultyFilter: ['easy'],
-        toggleRatio: 0.6,
+        difficultyFilter: ['easy', 'medium'],
+        toggleRatio: 1,
         numberofChallenges: 10,
       }),
 
+      // array containing the canvas below
       concatArrays<GameCanvas>([
         initializeLevelChallenges(
           getRandomOptions(
             filterChallenges({
-              numCellsFilter: [2],
+              numCellsFilter: [3, 6, 2],
               difficultyFilter: ['easy'],
             }).map((challengeId) => ({
               challengeId,
@@ -33,10 +35,10 @@ const genStageSix = (): Stage => {
           )
         ),
         initializeLevelChallenges([
-          { challengeId: 'Square4c' },
-          { challengeId: 'Square4c' },
-          { challengeId: 'Square4c' },
-          { challengeId: 'Square4c' },
+          { challengeId: 'Square3b' },
+          { challengeId: 'Square3b' },
+          { challengeId: 'Square3b' },
+          { challengeId: 'Square3b' },
         ]),
       ])
 
