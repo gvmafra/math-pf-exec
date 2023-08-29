@@ -3,13 +3,14 @@ import genStageTwo from './stages/stageTwo';
 import genStageThree from './stages/stageThree';
 import genStageFour from './stages/stageFour';
 import genStageFive from './stages/stageFive';
-import genStageSix from './stages/stageSix';
+// import genStageSix from './stages/stageSix';
 import genStageSeven from './stages/stageSeven';
 import genStageEight from './stages/stageEight';
 // import genStageNine from './stages/stageNine';
-// import genStageTen from './stages/stageTen';
+import genStageTen from './stages/stageTen';
 // import genStageEleven from './stages/stageEleven';
 // import genStageTwelve from './stages/stageTwelve';
+
 import { GameState } from './types';
 
 // Generate a new initialState
@@ -17,7 +18,7 @@ const genInitialState = (): GameState => ({
   currentStage: 0,
   justAdvancedStage: false,
   finishedGame: false,
-  stages: [genStageEight()],
+  stages: [genStageTen()],
 });
 
 export default genInitialState;
