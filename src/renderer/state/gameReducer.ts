@@ -1,28 +1,28 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
-// gameReducer.ts
-import cloneDeep from 'lodash/cloneDeep';
+import { produce } from 'immer';
+import type { Draft } from 'immer';
+
 import { useReducer } from 'react';
-import { initialState } from 'renderer/state/constants';
+
 import { GameState } from 'renderer/state/types';
-import {
-  updateCell,
-  getChallengeRatio,
-  getCanvasRatio,
-  updateCurrentLevel,
-  revertLevel,
-  updateGameCanvas,
-  getRatio,
-  incrementLevelNum,
-} from 'renderer/state/helpers';
+import { getToggledRatio } from './utils';
+import genInitialState from './gameSetup';
+
+export type Direction = 'horizontal' | 'vertical';
 
 export type Action =
   | {
       type: 'TOGGLE_CELL';
-      payload: { stageIndex: number; levelIndex: number; cellIndex: number };
+      payload: {
+        stageIndex: number;
+        levelIndex: number;
+        cellIndex: number;
+      };
     }
   | { type: 'NEXT_LEVEL'; payload: { stageIndex: number; levelIndex: number } }
   | { type: 'PREV_LEVEL'; payload?: undefined }
-  | { type: 'DIVIDE_SQUARE'; payload: { direction: 'horizontal' | 'vertical' } }
+  | { type: 'DIVIDE_SQUARE'; payload: { direction: Direction } }
   | {
       type: 'RESET_SQUARE';
       payload: { stageIndex: number; levelIndex: number };
@@ -30,181 +30,150 @@ export type Action =
   | { type: 'RESET_GAME'; payload?: undefined }
   | { type: 'CLEAR_JUST_ADVANCED_STAGE'; payload?: undefined };
 
-export default function gameStateReducer(state: GameState, action: Action) {
-  switch (action.type) {
-    case 'TOGGLE_CELL': {
-      const { stageIndex, levelIndex, cellIndex } = action.payload;
+export default function gameStateReducer(
+  state: GameState,
+  action: Action
+): GameState {
+  return produce(state, (draft: Draft<GameState>) => {
+    switch (action.type) {
+      case 'TOGGLE_CELL': {
+        const { stageIndex, levelIndex, cellIndex } = action.payload;
 
-      // Get current cell
-      const currentCell =
-        state.stages[stageIndex].levels[levelIndex].gameCanvas.cells.cells[
-          cellIndex
-        ];
-
-      // Toggle cell selection
-      const newCell = { ...currentCell, selected: !currentCell.selected };
-
-      // Update state using helper function
-      return updateCell(state, stageIndex, levelIndex, cellIndex, newCell);
-    }
-    case 'CLEAR_JUST_ADVANCED_STAGE': {
-      return {
-        ...state,
-        justAdvancedStage: false,
-      } as GameState;
-    }
-
-    case 'NEXT_LEVEL': {
-      const { stageIndex: currentStage, levelIndex: currentLevel } =
-        action.payload;
-
-      const currentLevelRef = state.stages[currentStage].levels[currentLevel];
-
-      const challengeRatio = getChallengeRatio(currentLevelRef);
-      const canvasRatio = getCanvasRatio(currentLevelRef);
-
-      if (challengeRatio === canvasRatio) {
-        console.log('Level completed');
-
-        const newState = incrementLevelNum(state, currentStage, currentLevel);
-        return newState;
+        const currentCells =
+          draft.stages[stageIndex].levels[levelIndex].canvas.toggled;
+        currentCells[cellIndex] = !currentCells[cellIndex];
+        break;
       }
-      return state;
-    }
+      case 'DIVIDE_SQUARE': {
+        const { direction } = action.payload;
+        const { currentStage } = draft;
+        const { currentLevel } = draft.stages[currentStage].metadata;
+        const gameCanvasDraft =
+          draft.stages[currentStage].levels[currentLevel].canvas;
 
-    case 'PREV_LEVEL': {
-      const { currentStage } = state;
-      const { currentLevel } = state.stages[currentStage].metadata;
-      // if level one do nothing
-      if (currentLevel === 0) {
-        return state;
+        if (gameCanvasDraft.type !== 'grid') {
+          console.log('Cannot divide a non-grid canvas');
+          return;
+        }
+
+        const {
+          max: { rows: maxRows, columns: maxColumns },
+          current: { rows: oldNumRows, columns: oldNumColumns },
+        } = gameCanvasDraft.grid;
+
+        let numRows = oldNumRows;
+        let numColumns = oldNumColumns;
+
+        if (direction === 'horizontal') {
+          if (oldNumRows === maxRows) return;
+          numRows += 1;
+        } else if (direction === 'vertical') {
+          if (oldNumColumns === maxColumns) return;
+          numColumns += 1;
+        }
+
+        gameCanvasDraft.grid.current = { rows: numRows, columns: numColumns };
+        gameCanvasDraft.toggled = new Array(numRows * numColumns).fill(false);
+        break;
+      }
+      case 'CLEAR_JUST_ADVANCED_STAGE': {
+        draft.justAdvancedStage = false;
+        break;
       }
 
-      let updatedState = state;
-      // revert current level to its initial state
-      updatedState = revertLevel(updatedState, currentStage, currentLevel);
-      // set previous level as the current level
-      updatedState = updateCurrentLevel(
-        updatedState,
-        currentStage,
-        currentLevel - 1
-      );
+      case 'PREV_LEVEL': {
+        const { currentStage } = draft;
+        const { currentLevel } = draft.stages[currentStage].metadata;
 
-      return updatedState;
-    }
+        if (currentLevel === 0) {
+          return;
+        }
 
-    case 'DIVIDE_SQUARE': {
-      const { direction } = action.payload;
+        draft.stages[currentStage].metadata.currentLevel -= 1;
+        break;
+      }
 
-      const { currentStage } = state;
-      const { currentLevel } = state.stages[currentStage].metadata;
+      case 'NEXT_LEVEL': {
+        const { stageIndex: currentStageIndex, levelIndex: currentLevelIndex } =
+          action.payload;
 
-      return {
-        ...state,
-        stages: state.stages.map((stage, stageIndex) => {
-          if (stageIndex !== currentStage) {
-            return stage;
+        const stageLastIndex = draft.stages.length - 1;
+        const levelLastIndex =
+          draft.stages[currentStageIndex].levels.length - 1;
+
+        if (
+          currentStageIndex < 0 ||
+          currentStageIndex > stageLastIndex ||
+          currentLevelIndex < 0 ||
+          currentLevelIndex > levelLastIndex
+        ) {
+          return;
+        }
+
+        const currentLevel =
+          draft.stages[currentStageIndex].levels[currentLevelIndex];
+
+        const challengeRatio = getToggledRatio(currentLevel.challenge);
+        const canvasRatio = getToggledRatio(currentLevel.canvas);
+
+        if (challengeRatio !== canvasRatio) {
+          return;
+        }
+
+        draft.stages[currentStageIndex].levels[
+          currentLevelIndex
+        ].metadata.completed = true;
+
+        if (currentLevelIndex + 1 > levelLastIndex) {
+          if (currentStageIndex + 1 > stageLastIndex) {
+            draft.stages[currentStageIndex].metadata.completed = true;
+            draft.finishedGame = true;
+            return;
           }
+          draft.stages[currentStageIndex].metadata.completed = true;
+          draft.currentStage = currentStageIndex + 1;
+          draft.justAdvancedStage = true;
+        } else {
+          draft.stages[currentStageIndex].metadata.currentLevel += 1;
+          draft.stages[currentStageIndex].levels[
+            currentLevelIndex + 1
+          ].metadata.completed = false;
+          draft.stages[currentStageIndex].levels[
+            currentLevelIndex
+          ].metadata.clickCount = 0;
+        }
+        break;
+      }
 
-          return {
-            ...stage,
-            levels: stage.levels.map((level, levelIndex) => {
-              if (levelIndex !== currentLevel) {
-                return level;
-              }
+      case 'RESET_SQUARE': {
+        const { stageIndex, levelIndex } = action.payload;
+        const gameCanvasDraft =
+          draft.stages[stageIndex].levels[levelIndex].canvas;
 
-              const { gameCanvas } = level;
+        if (gameCanvasDraft.type !== 'grid') {
+          console.log('Cannot reset a non-grid canvas');
+          return;
+        }
 
-              if (gameCanvas.type !== 'grid') {
-                console.log('Cannot divide a non-grid canvas');
-                return level;
-              }
+        gameCanvasDraft.toggled = new Array(
+          gameCanvasDraft.grid.current.rows *
+            gameCanvasDraft.grid.current.columns
+        ).fill(false);
+        break;
+      }
 
-              const {
-                max: { rows: maxRows, columns: maxColumns },
-                min: { rows: minRows, columns: minColumns },
-                current: { rows: oldNumRows, columns: oldNumColumns },
-              } = gameCanvas.grid;
+      case 'RESET_GAME': {
+        // eslint-disable-next-line consistent-return
+        return genInitialState();
+      }
 
-              let numRows = oldNumRows;
-              let numColumns = oldNumColumns;
-
-              if (
-                direction === 'horizontal' &&
-                (numRows <= (maxRows || 4) || numRows >= (minRows || 1))
-              ) {
-                numRows += 1;
-              } else if (
-                direction === 'vertical' &&
-                (numColumns <= (maxColumns || 4) ||
-                  numColumns >= (minColumns || 1))
-              ) {
-                numColumns += 1;
-              } else {
-                // Reached the maximum limit for this direction
-                return level;
-              }
-
-              const newCells = Array(numRows * numColumns).fill({
-                selected: false,
-              });
-
-              for (let i = 0; i < oldNumRows; i += 1) {
-                for (let j = 0; j < oldNumColumns; j += 1) {
-                  const oldCellIndex = i * oldNumColumns + j;
-                  if (gameCanvas.cells.cells[oldCellIndex]) {
-                    newCells[i * numColumns + j] =
-                      gameCanvas.cells.cells[oldCellIndex];
-                  }
-                }
-              }
-
-              return {
-                ...level,
-                gameCanvas: {
-                  ...gameCanvas,
-                  grid: {
-                    ...gameCanvas.grid,
-                    current: {
-                      rows: numRows,
-                      columns: numColumns,
-                    },
-                  },
-                  cells: {
-                    cells: newCells,
-                    ratio: getRatio(newCells),
-                  },
-                },
-              };
-            }),
-          };
-        }),
-      } as GameState;
+      default: {
+        break;
+      }
     }
-
-    case 'RESET_SQUARE': {
-      const { stageIndex, levelIndex } = action.payload;
-
-      // Use initial canvas to reset the square
-      const { gameCanvas: initialCanvas } =
-        initialState.stages[stageIndex].levels[levelIndex];
-
-      return updateGameCanvas(
-        state,
-        stageIndex,
-        levelIndex,
-        initialCanvas
-      ) as GameState;
-    }
-
-    case 'RESET_GAME': {
-      return cloneDeep(initialState);
-    }
-    default:
-      return state;
-  }
+  });
 }
 
 export function useGameState() {
-  return useReducer(gameStateReducer, cloneDeep(initialState));
+  return useReducer(gameStateReducer, genInitialState());
 }
