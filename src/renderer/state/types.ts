@@ -102,18 +102,18 @@ export type ChallengeCanvas = {
   toggled: boolean[];
 };
 
+export type GridCanvas = {
+  type: 'grid';
+  grid: gridSpecs;
+  toggled: boolean[];
+};
+
 export type gridSpecs = {
   current: { rows: number; columns: number };
   max: {
     rows?: number;
     columns?: number;
   };
-};
-
-export type GridCanvas = {
-  type: 'grid';
-  grid: gridSpecs;
-  toggled: boolean[];
 };
 
 export type GameCanvas = GridCanvas | ChallengeCanvas;
