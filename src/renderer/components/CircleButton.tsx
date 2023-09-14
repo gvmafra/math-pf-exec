@@ -4,6 +4,7 @@ interface CircleButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick: () => void;
   ariaLabel: string;
   size?: 'small' | 'large';
+  image?: SVGAElement;
 }
 function CircleButton({
   onClick,

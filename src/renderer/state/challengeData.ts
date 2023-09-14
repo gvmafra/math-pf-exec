@@ -54,6 +54,16 @@ export const challenges: challengeDetailsMap = {
       'M90 90L40.9 90L59.1 63.3L40.9 36.7L59.1 10L90 10L90 90z',
     ],
   },
+  Square2g: {
+    shape: 'square',
+    letter: 'g',
+    difficulty: 'medium',
+    numCells: 2,
+    paths: [
+      'M36.67 90L36.67 50L63.33 50L63.33 10L90 10L90 90L36.67 90z',
+      'M63.33 10L63.33 50L36.67 50L36.67 90L10 90L10 10L63.33 10z',
+    ],
+  },
   Square3a: {
     shape: 'square',
     letter: 'a',
@@ -166,12 +176,12 @@ export const challenges: challengeDetailsMap = {
     difficulty: 'easy',
     numCells: 6,
     paths: [
-      'M63.3,10.1H90v40H63.3V10.1z',
-      'M36.7,10h26.7v40H36.7V10z',
       'M10.1,10h26.7v40H10.1V10z',
-      'M63.3,50H90v40H63.3V50z',
-      'M36.7,50h26.7v40H36.7V50z',
+      'M36.7,10h26.7v40H36.7V10z',
+      'M63.3,10.1H90v40H63.3V10.1z',
       'M10,50h26.7v40H10V50z',
+      'M36.7,50h26.7v40H36.7V50z',
+      'M63.3,50H90v40H63.3V50z',
     ],
   },
   Square6b: {
@@ -194,14 +204,14 @@ export const challenges: challengeDetailsMap = {
     difficulty: 'easy',
     numCells: 8,
     paths: [
-      'M10,30h40v20H10V30z',
       'M10,10h40v20H10V10z',
-      'M10,70h40v20H10V70z',
+      'M10,30h40v20H10V30z',
       'M10,50h40v20H10V50z',
-      'M50,30h40v20H50V30z',
+      'M10,70h40v20H10V70z',
       'M50,10h40v20H50V10z',
-      'M50,70h40v20H50V70z',
+      'M50,30h40v20H50V30z',
       'M50,50h40v20H50V50z',
+      'M50,70h40v20H50V70z',
     ],
   },
   Square8b: {
@@ -210,14 +220,14 @@ export const challenges: challengeDetailsMap = {
     difficulty: 'easy',
     numCells: 8,
     paths: [
-      'M50,10h20v40H50V10z',
-      'M70,10h20v40H70V10z',
       'M10,10h20v40H10V10z',
       'M30,10h20v40H30V10z',
-      'M50,50h20v40H50V50z',
-      'M70,50h20v40H70V50z',
+      'M50,10h20v40H50V10z',
+      'M70,10h20v40H70V10z',
       'M10,50h20v40H10V50z',
       'M30,50h20v40H30V50z',
+      'M50,50h20v40H50V50z',
+      'M70,50h20v40H70V50z',
     ],
   },
   Square8c: {
@@ -226,14 +236,14 @@ export const challenges: challengeDetailsMap = {
     difficulty: 'easy',
     numCells: 8,
     paths: [
-      'M10,10l40,40V10H10z',
-      'M90,10L50,50V10H90z',
-      'M10,90l40-40v40H10z',
-      'M90,90L50,50v40H90z',
-      'M90,10L50,50h40V10z',
-      'M90,90L50,50h40V90z',
-      'M10,10l40,40H10V10z',
-      'M10,90l40-40H10V90z',
+      'M90,10L50,50V10h40Z',
+      'M90,50H50L90,10V50Z',
+      'M50,90V50l40,40H50Z',
+      'M90,90L50,50h40v40Z',
+      'M50,10V50L10,10H50Z',
+      'M10,10L50,50H10V10Z',
+      'M10,90L50,50v40H10Z',
+      'M10,50H50L10,90V50Z',
     ],
   },
   Square8e: {
@@ -244,12 +254,12 @@ export const challenges: challengeDetailsMap = {
     paths: [
       'M10,10h40L10,50V10z',
       'M50,50H10l40-40V50z',
+      'M50,50V10l40,40H50z',
+      'M90,10v40L50,10H90z',
       'M10,90V50l40,40H10z',
       'M50,50v40L10,50H50z',
       'M50,50h40L50,90V50z',
       'M90,90H50l40-40V90z',
-      'M50,50V10l40,40H50z',
-      'M90,10v40L50,10H90z',
     ],
   },
   Square8g: {
@@ -274,10 +284,10 @@ export const challenges: challengeDetailsMap = {
     difficulty: 'hard',
     numCells: 8,
     paths: [
-      'M89.9,10l-20,40l20,40V10z',
-      'M50.1,10H90L70.1,50L50.1,10z',
       'M10,10h39.9L30,50L10,10z',
       'M10,10l20,40L10,89.9V10z',
+      'M89.9,10l-20,40l20,40V10z',
+      'M50.1,10H90L70.1,50L50.1,10z',
       'M50,10L30,50l20,40V10z',
       'M50,10l20,40L50,90V10z',
       'M10,90h39.9L30,50L10,90z',
@@ -497,14 +507,14 @@ export const challenges: challengeDetailsMap = {
     difficulty: 'medium',
     numCells: 8,
     paths: [
-      'M50,7c-11.4,0-22.4,4.5-30.4,12.6l30.4,30.4V7h0Z',
-      'M19.6,19.6c-8.1,8.1-12.6,19-12.6,30.4H50L19.6,19.6h0Z',
-      'M50,93c-11.4,0-22.4-4.5-30.4-12.6l30.4-30.4v42.9h0Z',
-      'M19.6,80.4c-8.1-8.1-12.6-19-12.6-30.4H50l-30.5,30.4h0Z',
-      'M50,7c11.4,0,22.4,4.5,30.4,12.6l-30.4,30.4V7q0,0,0,0Z',
-      'M80.4,19.6c8.1,8.1,12.6,19,12.6,30.4H50l30.5-30.4h0Z',
-      'M50,93c11.4,0,22.4-4.5,30.4-12.6l-30.4-30.4v42.9q0,0,0,0Z',
-      'M80.4,80.4c8.1-8.1,12.6-19,12.6-30.4H50l30.5,30.4h0Z',
+      'M50,7c11.4,0,22.4,4.5,30.4,12.6l-30.4,30.4V7q0,0,0,0Z',//
+      'M80.4,19.6c8.1,8.1,12.6,19,12.6,30.4H50l30.5-30.4h0Z',//
+      'M80.4,80.4c8.1-8.1,12.6-19,12.6-30.4H50l30.5,30.4h0Z',//
+      'M50,93c11.4,0,22.4-4.5,30.4-12.6l-30.4-30.4v42.9q0,0,0,0Z',//
+      'M50,93c-11.4,0-22.4-4.5-30.4-12.6l30.4-30.4v42.9h0Z',//
+      'M19.6,80.4c-8.1-8.1-12.6-19-12.6-30.4H50l-30.5,30.4h0Z',//
+      'M19.6,19.6c-8.1,8.1-12.6,19-12.6,30.4H50L19.6,19.6h0Z',//
+      'M50,7c-11.4,0-22.4,4.5-30.4,12.6l30.4,30.4V7h0Z',//
     ],
   },
   Circle9g: {
@@ -892,9 +902,9 @@ export const challenges: challengeDetailsMap = {
     difficulty: 'medium',
     numCells: 3,
     paths: [
-      'M50,7.5V64l42.4,28.5L50,7.5Z',
-      'M49.9,7.5V64L7.5,92.5,49.9,7.5Z',
-      'M7.8,92.3l42.2-28.3,42.5,28.3H7.8Z',
+      'M49.97,13.18V62.11l42.42,24.71L49.97,13.18Z',
+      'M49.92,13.18V62.11L7.5,86.82,49.92,13.18Z',
+      'M7.77,86.61l42.21-24.49,42.53,24.55-84.73-.05Z',
     ],
   },
   Triangle3d: {

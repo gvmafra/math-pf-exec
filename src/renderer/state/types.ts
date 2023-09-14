@@ -5,6 +5,7 @@ export type ShapeIds =
   | 'Square2d'
   | 'Square2e'
   | 'Square2f'
+  | 'Square2g'
   | 'Square3a'
   | 'Square3b'
   | 'Square4a'

@@ -9,43 +9,6 @@ import {
   getRandomOptions,
 } from './utils';
 
-// const genStageSix = (): Stage => {
-//   return {
-//     levels: initializeLevels(
-//       genRandomChallengeCanvases({
-//         numCellsFilter: [2],
-//         difficultyFilter: ['easy'],
-//         toggleRatio: .5,
-//         numberofChallenges: 10,
-//       }),
-
-//       concatArrays<GameCanvas>([
-//         initializeLevelChallenges(
-//           getRandomOptions(
-//             filterChallenges({
-//               numCellsFilter: [2],
-//               difficultyFilter: ['easy'],
-//             }).map((challengeId) => ({
-//               challengeId,
-//             })),
-//             6
-//           )
-//         ),
-
-//         initializeLevelChallenges([
-//           { challengeId: 'Square4c' },
-//           { challengeId: 'Square4c' },
-//           { challengeId: 'Square4c' },
-//           { challengeId: 'Square4c' },
-//         ]),
-//       ])
-//     ),
-//     metadata: initialStageMetadata(),
-//   };
-// };
-
-// export default genStageSix;
-
 const genStageSix = (): Stage => {
   const initialLevels = initializeLevels(
     genRandomChallengeCanvases({
@@ -98,8 +61,6 @@ const genStageSix = (): Stage => {
 };
 
 export default genStageSix;
-
-
 
 /* 
 * stageSix.ts consists of the following:
