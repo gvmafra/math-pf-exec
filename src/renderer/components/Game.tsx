@@ -139,3 +139,4 @@ export default function Game({ state, dispatch }: GameProps) {
     </div>
   );
 }
+

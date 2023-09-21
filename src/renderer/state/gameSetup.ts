@@ -36,7 +36,6 @@ const genInitialState = (): GameState => ({
 
 export default genInitialState;
 
-
 /*
 ERR sept. 6 2023
 
