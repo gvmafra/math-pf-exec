@@ -19,46 +19,47 @@ const genInitialState = (): GameState => ({
   justAdvancedStage: false,
   finishedGame: false,
   stages: [
-    genStageOne(),
-    genStageTwo(),
-    genStageThree(),
-    genStageFour(),
-    genStageFive(),
-    genStageSix(),
-    genStageSeven(),
-    genStageEight(),
-    genStageNine(),
-    genStageTen(),
-    genStageEleven(),
-    genStageTwelve(),
+    // genStageOne(),
+    // genStageTwo(),
+    // genStageThree(),
+    // genStageFour(),
+    // genStageFive(),
+    genStageSix(), // -- problema no 6, equivalência de desafios
+    // genStageSeven(),
+    // genStageEight(),
+    genStageNine(), // -- possível problema no 9
+    // genStageTen(),
+    // genStageEleven(),
+    genStageTwelve(), // -- probema no 12, back-end
   ],
 });
 
 export default genInitialState;
 
+
 /*
-ERR sept. 6 2023
+
+ERR sept. 21 2023
 
 TypeError
 Cannot read properties of undefined (reading 'challengeId')
 Call Stack
  undefined
-  renderer.dev.js:51369:101
+  renderer.dev.js:51768:101
  initializeLevelChallenges
-  renderer.dev.js:51368:20
+  renderer.dev.js:51767:20
  genRandomChallengeCanvases
-  renderer.dev.js:51454:12
+  renderer.dev.js:51853:12
  undefined
-  renderer.dev.js:51224:154
+  renderer.dev.js:51623:154
  genStageTwelve
-  renderer.dev.js:51223:12
+  renderer.dev.js:51622:12
  genInitialState
-  renderer.dev.js:50890:72
+  renderer.dev.js:50906:72
  useGameState
-  renderer.dev.js:50815:134
+  renderer.dev.js:50825:134
  App
   renderer.dev.js:48771:95
 × Close
-going through stageNine.ts
 
 */
