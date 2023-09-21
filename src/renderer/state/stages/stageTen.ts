@@ -7,48 +7,50 @@ import {
   genGridCanvas,
 } from './utils';
 
+// ------------- NIVEL DEZ PRONTO ------------- //
+
 const genStageTen = (): Stage => ({
   levels: initializeLevels(
     initializeLevelChallenges([
       {
-        challengeId: 'Square9a', // challenge 1
+        challengeId: 'Square9a', // challenge 1 --
         toggles: [true, false, false, false, false, false, false, false, false],
       },
       {
-        challengeId: 'Diamond9c', // challenge 2
+        challengeId: 'Diamond9c', // challenge 2 --
         toggles: [true, true, true, false, false, false, false, false, false],
       },
       {
-        challengeId: 'Circle9g', // challenge 3
-        toggles: [true, true, true, true, false, false, false, false, false],
+        challengeId: 'Circle9g', // challenge 3 --
+        toggles: [false, false, false, false, false, true, true, true, true],
       },
       {
-        challengeId: 'Triangle9c', // challenge 4
-        toggles: [true, true, true, true, true, false, false, false, false],
+        challengeId: 'Triangle9c', // challenge 4 --
+        toggles: [true, true, true, true, false, false, true, false, false],
       },
       {
-        challengeId: 'Square9a', // challenge 5
+        challengeId: 'Square9a', // challenge 5 --
         toggles: [true, false, false, true, false, false, true, false, false],
       },
       {
-        challengeId: 'Square9a', // challenge 6
+        challengeId: 'Square9a', // challenge 6 --
         toggles: [true, false, false, true, false, false, true, false, false],
       },
       {
-        challengeId: 'Square9a', // challenge 7
+        challengeId: 'Square9a', // challenge 7 --
         toggles: [true, false, false, false, true, false, false, false, true],
       },
       {
-        challengeId: 'Circle9g', // challenge 8
-        toggles: [true, true, true, false, false, false, false, false, false],
+        challengeId: 'Circle9g', // challenge 8 --
+        toggles: [false, false, false, false, false, false, true, true, true],
       },
       {
-        challengeId: 'Square3a', // challenge 9
+        challengeId: 'Square3a', // challenge 9 --
         toggles: [true, false, false],
       },
       {
-        challengeId: 'Circle3c', // challenge 10
-        toggles: [true, false, false],
+        challengeId: 'Circle3c', // challenge 10 --
+        toggles: [true, true, false],
       },
     ]),
 

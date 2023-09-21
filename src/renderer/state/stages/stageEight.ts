@@ -7,47 +7,49 @@ import {
   genGridCanvas,
 } from './utils';
 
+// ------------- NIVEL OITO PRONTO ------------- //
+
 const genStageEight = (): Stage => ({
   levels: initializeLevels(
     initializeLevelChallenges([
       {
-        challengeId: 'Square2b', // challenge 1
+        challengeId: 'Square2b', // challenge 1 --
         toggles: [true, false],
       },
       {
-        challengeId: 'Circle2d', // challenge 2
-        toggles: [true, false],
-      },
-      {
-        challengeId: 'Square2e', // challenge 3
-        toggles: [true, false],
-      },
-      {
-        challengeId: 'Triangle2c', // challenge 4
+        challengeId: 'Circle2d', // challenge 2 --
         toggles: [false, true],
       },
       {
-        challengeId: 'Diamond8d', // challenge 5
-        toggles: [true, true, false, false, false, false, false, false],
+        challengeId: 'Square2e', // challenge 3 --
+        toggles: [true, false],
       },
       {
-        challengeId: 'Diamond8e', // challenge 6
-        toggles: [false, true, false, true, true, false, true, false],
+        challengeId: 'Triangle2c', // challenge 4 --
+        toggles: [false, true],
       },
       {
-        challengeId: 'Circle8c', // challenge 7
-        toggles: [false, true, false, true, true, false, true, false],
+        challengeId: 'Diamond8d', // challenge 5 --
+        toggles: [false, false, true, true, false, false, false, false],
       },
       {
-        challengeId: 'Square4e', // challenge 8
-        toggles: [false, true, false, true],
+        challengeId: 'Diamond8e', // challenge 6 --
+        toggles: [false, true, true, true, false, true, true, true],
       },
       {
-        challengeId: 'Square4h', // challenge 9
-        toggles: [false, true, false, true],
+        challengeId: 'Circle8c', // challenge 7 --
+        toggles: [true, true,false, false, true, true, true, true],
       },
       {
-        challengeId: 'Square4c', // challenge 10
+        challengeId: 'Square4e', // challenge 8 --
+        toggles: [true, false, false, true],
+      },
+      {
+        challengeId: 'Square4h', // challenge 9 --
+        toggles: [true, true, true, false],
+      },
+      {
+        challengeId: 'Square4c', // challenge 10 --
         toggles: [true, false, false, false],
       },
     ]),
@@ -58,8 +60,8 @@ const genStageEight = (): Stage => ({
         genGridCanvas({ rows: 1, columns: 4 }, { rows: 2, columns: 4 }), // challenge canvas 2
       ],
       initializeLevelChallenges([
-        { challengeId: 'Square4h' }, // challenge canvas 3
-        { challengeId: 'Square8h' }, // challenge canvas 4
+        { challengeId: 'Square8h' }, // challenge canvas 3
+        { challengeId: 'Triangle8e' }, // challenge canvas 4
       ]),
       [
         genGridCanvas({ rows: 1, columns: 1 }, { rows: 2, columns: 2 }), // challenge canvas 5
