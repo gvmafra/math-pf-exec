@@ -24,18 +24,17 @@ const genInitialState = (): GameState => ({
     // genStageThree(),
     // genStageFour(),
     // genStageFive(),
-    genStageSix(), // -- problema no 6, equivalência de desafios
+    // genStageSix(),
     // genStageSeven(),
     // genStageEight(),
     genStageNine(), // -- possível problema no 9
     // genStageTen(),
     // genStageEleven(),
-    genStageTwelve(), // -- probema no 12, back-end
+    // genStageTwelve(), // -- probema no 12, back-end
   ],
 });
 
 export default genInitialState;
-
 
 /*
 
