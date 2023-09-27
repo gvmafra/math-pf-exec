@@ -9,8 +9,12 @@ import {
   getRandomOptions,
 } from './utils';
 
+// ------------- NIVEL NOVE PRONTO  ------------- //
+
 const genStageNine = (): Stage => {
-  // first two challenges are eighths
+
+  // challenges
+  // first 2 challenges are eighths, with 1/4, 2/4, 3/4
   let challengesEighthsFirst = genRandomChallengeCanvases({
     numCellsFilter: [8],
     difficultyFilter: ['easy', 'medium', 'hard'],
@@ -23,9 +27,7 @@ const genStageNine = (): Stage => {
       difficultyFilter: ['easy', 'medium', 'hard'],
       toggleRatio: 2 / 4,
       numberofChallenges: 2,
-    })
-  );
-  challengesEighthsFirst = challengesEighthsFirst.concat(
+    }),
     genRandomChallengeCanvases({
       numCellsFilter: [8],
       difficultyFilter: ['easy', 'medium', 'hard'],
@@ -33,40 +35,21 @@ const genStageNine = (): Stage => {
       numberofChallenges: 2,
     })
   );
-
-  // Next two challenges are eighths
+  // next 2 challenges are eighths, but with only 1/2
   let challengesEighthsSecond = genRandomChallengeCanvases({
     numCellsFilter: [8],
     difficultyFilter: ['easy', 'medium', 'hard'],
-    toggleRatio: 1 / 4,
+    toggleRatio: 1 / 2,
     numberofChallenges: 2,
   });
-  challengesEighthsSecond = challengesEighthsSecond.concat(
-    genRandomChallengeCanvases({
-      numCellsFilter: [8],
-      difficultyFilter: ['easy', 'medium', 'hard'],
-      toggleRatio: 2 / 4,
-      numberofChallenges: 2,
-    })
-  );
-  challengesEighthsSecond = challengesEighthsSecond.concat(
-    genRandomChallengeCanvases({
-      numCellsFilter: [8],
-      difficultyFilter: ['easy', 'medium', 'hard'],
-      toggleRatio: 3 / 4,
-      numberofChallenges: 2,
-    })
-  );
-
-  // next two challenges are halves
+  // next 2 challenges are halves, only 1/2
   let challengesHalvesFirst = genRandomChallengeCanvases({
     numCellsFilter: [2],
     difficultyFilter: ['easy', 'medium', 'hard'],
     toggleRatio: 1 / 2,
     numberofChallenges: 2,
   });
-
-  // next two challenges are eighths
+  // next 2 challenges are eighths, with 1/4, 2/4, 3/4
   let challengesEighthsThird = genRandomChallengeCanvases({
     numCellsFilter: [8],
     difficultyFilter: ['easy', 'medium', 'hard'],
@@ -79,9 +62,7 @@ const genStageNine = (): Stage => {
       difficultyFilter: ['easy', 'medium', 'hard'],
       toggleRatio: 2 / 4,
       numberofChallenges: 2,
-    })
-  );
-  challengesEighthsThird = challengesEighthsThird.concat(
+    }),
     genRandomChallengeCanvases({
       numCellsFilter: [8],
       difficultyFilter: ['easy', 'medium', 'hard'],
@@ -89,8 +70,7 @@ const genStageNine = (): Stage => {
       numberofChallenges: 2,
     })
   );
-
-  // final two challenges are fourths
+  // final 2 challenges are fourths, with 1/4, 2/4, 3/4
   let challengesFourthsFirst = genRandomChallengeCanvases({
     numCellsFilter: [4],
     difficultyFilter: ['easy', 'medium', 'hard'],
@@ -103,19 +83,22 @@ const genStageNine = (): Stage => {
       difficultyFilter: ['easy', 'medium', 'hard'],
       toggleRatio: 2 / 4,
       numberofChallenges: 2,
-    })
-  );
-  challengesFourthsFirst = challengesFourthsFirst.concat(
+    }),
     genRandomChallengeCanvases({
       numCellsFilter: [4],
       difficultyFilter: ['easy', 'medium', 'hard'],
       toggleRatio: 3 / 4,
       numberofChallenges: 2,
-    })
+    }),
   );
 
-  let challenges = getRandomOptions(challengesEighthsFirst, 4);
+  let challenges = (getRandomOptions(challengesEighthsFirst, 2));
+  challenges = challenges.concat(getRandomOptions(challengesEighthsSecond, 2));
+  challenges = challenges.concat(getRandomOptions(challengesHalvesFirst, 2));
+  challenges = challenges.concat(getRandomOptions(challengesEighthsThird, 2));
+  challenges = challenges.concat(getRandomOptions(challengesFourthsFirst, 2));
 
+  // canvases
   // first two canvases are eighths
   let canvases = concatArrays<GameCanvas>([
     initializeLevelChallenges(
@@ -204,28 +187,3 @@ const genStageNine = (): Stage => {
 };
 
 export default genStageNine;
-
-/* 
-* stageNine.ts consists of the following:
-
-* Levels 1 and 2 will be:
-*   challenge: random eighths, easy medium and hard
-*   canvas: random eighths, easy medium and hard
-
-* Levels 3 and 4 will be:
-*   challenge: random eighths, easy medium and hard
-*   canvas: random halves, easy medium and hard
-
-* Levels 5 and 6 will be:
-*   challenge: random halves, easy medium and hard
-*   canvas: random eighths, easy medium and hard
-
-* Levels 7 and 8 will be:
-*   challenge: random eighths, easy medium and hard
-*   canvas: random fourths, easy medium and hard
-
-* Levels 9 and 10 will be:
-*   challenge: random fourths, easy medium and hard
-*   canvas: random eighths, easy medium and hard
-
-*/

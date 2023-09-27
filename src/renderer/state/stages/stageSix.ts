@@ -9,7 +9,12 @@ import {
   getRandomOptions,
 } from './utils';
 
+// ------------- NIVEL SEIS PRONTO  ------------- //
+
 const genStageSix = (): Stage => {
+
+  // challenges
+  // first three challenges are thirds, with 1/3, 2/3
   let challengesThirdsFirst = genRandomChallengeCanvases({
     numCellsFilter: [3],
     difficultyFilter: ['easy', 'medium'],
@@ -24,7 +29,7 @@ const genStageSix = (): Stage => {
       numberofChallenges: 3,
     })
   );
-
+  // next three challenges are sixths, with 1/3, 2/3
   let challengesThirdsSecond = genRandomChallengeCanvases({
     numCellsFilter: [6],
     difficultyFilter: ['easy', 'medium'],
@@ -41,8 +46,9 @@ const genStageSix = (): Stage => {
   );
 
   let challenges = getRandomOptions(challengesThirdsFirst, 3);
-
   challenges = challenges.concat(getRandomOptions(challengesThirdsSecond, 3));
+
+
   challenges = challenges.concat(
     genRandomChallengeCanvases({
       numCellsFilter: [6],
@@ -59,6 +65,7 @@ const genStageSix = (): Stage => {
       numberofChallenges: 2,
     })
   );
+
 
   let canvases = concatArrays<GameCanvas>([
     initializeLevelChallenges(
