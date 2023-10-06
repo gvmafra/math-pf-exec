@@ -73,7 +73,7 @@ const genStageEight = (): Stage => ({
         { challengeId: 'Diamond8e' }, // challenge canvas 9
       ]),
       [
-        genGridCanvas({ rows: 2, columns: 1 }, { rows: 2, columns: 3 }), // challenge canvas 10
+        genGridCanvas({ rows: 2, columns: 1 }, { rows: 2, columns: 4 }), // challenge canvas 10
       ],
     ])
   ),

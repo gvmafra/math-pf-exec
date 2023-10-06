@@ -7,8 +7,8 @@ import {
 
 const genStageOne = (): Stage => ({
   levels: initializeLevels(
-    // 'Square2a', 'Square2b', 'Square2c','Circle2b', 'Diamond2b', 'Triangle2b', 'Square2a', 'Square2b', 'Diamond2a', 'Triangle2a'],
 
+    // below are the 10 challenges for stage 1
     initializeLevelChallenges([
       {
         challengeId: 'Square2a',
@@ -51,6 +51,8 @@ const genStageOne = (): Stage => ({
         toggles: [true, false],
       },
     ]),
+
+    // below are the 10 canvases for stage 1
     initializeLevelChallenges([
       { challengeId: 'Square2a' },
       { challengeId: 'Square2a' },

@@ -37,7 +37,7 @@ export const challenges: challengeDetailsMap = {
   Square2e: {
     shape: 'square',
     letter: 'e',
-    difficulty: 'easy',
+    difficulty: 'medium',
     numCells: 2,
     paths: [
       'M90 63.3L50 63.3L50 36.7L10 36.7L10 10L90 10L90 63.3z',
@@ -367,7 +367,7 @@ export const challenges: challengeDetailsMap = {
   Circle2c: {
     shape: 'circle',
     letter: 'c',
-    difficulty: 'easy',
+    difficulty: 'medium',
     numCells: 2,
     paths: [
       'M19.6,19.5c-16.8,16.8-16.8,44.1,0,60.9L80.4,19.5c-16.8-16.8-44-16.8-60.8,0Z',
@@ -397,7 +397,7 @@ export const challenges: challengeDetailsMap = {
   Circle2f: {
     shape: 'circle',
     letter: 'e',
-    difficulty: 'easy',
+    difficulty: 'medium',
     numCells: 2,
     paths: [
       'M49.8,50c0-28.6,41.8-29.1,43.2-1.4-.8-23.1-19.7-41.6-43-41.6S7,26.3,7,50s0,1,0,1.4c1.4,27.6,42.8,27.1,42.8-1.4Z',
@@ -552,7 +552,7 @@ export const challenges: challengeDetailsMap = {
   Diamond2c: {
     shape: 'diamond',
     letter: 'c',
-    difficulty: 'easy',
+    difficulty: 'medium',
     numCells: 2,
     paths: [
       'M4.9,50L49.9,5.1l22.5,22.5L27.4,72.5,4.9,50Z',
@@ -910,7 +910,7 @@ export const challenges: challengeDetailsMap = {
   Triangle3d: {
     shape: 'triangle',
     letter: 'd',
-    difficulty: 'medium',
+    difficulty: 'hard',
     numCells: 3,
     paths: [
       'M50,11l-15,78H5L50,11Z',
@@ -921,7 +921,7 @@ export const challenges: challengeDetailsMap = {
   Triangle3e: {
     shape: 'triangle',
     letter: 'e',
-    difficulty: 'medium',
+    difficulty: 'hard',
     numCells: 3,
     paths: [
       'M5,88.9L27.7,49.6l22.2,13,.2,26.3H5Z',
