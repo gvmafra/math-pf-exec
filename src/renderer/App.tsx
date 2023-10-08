@@ -5,7 +5,7 @@ import 'tailwindcss/tailwind.css';
 import Game from './components/Game';
 import AdvanceStage from './components/AdvanceStage';
 
-import FinishedGame from './components/FinishedGame';
+import FinishedGame from './components/FinishedGamePage';
 import { useGameState } from './state/gameReducer';
 
 export default function App() {
