@@ -13,7 +13,7 @@ const StagesCompletedList: React.FC<StagesCompletedListProps> = ({
     <ol className="text-black text-xl">
       {stages.map((stage, index) => (
         <li key={`stage-list-${index}`}>
-          Estágio {index + 1}: {stage.metadata.completed ? '✅' : '-'}
+          Estágio {index + 1} {stage.metadata.completed ? '✅' : ''}
         </li>
       ))}
     </ol>

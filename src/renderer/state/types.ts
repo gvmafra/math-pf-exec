@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type ShapeIds =
   | 'Square2a'
   | 'Square2b'
@@ -139,6 +141,7 @@ export type Level = {
 };
 
 export type StageMetadata = {
+  [x: string]: ReactNode;
   currentLevel: number;
   completed: boolean;
 };
