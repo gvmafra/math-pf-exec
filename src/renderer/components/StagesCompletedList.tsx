@@ -10,13 +10,15 @@ const StagesCompletedList: React.FC<StagesCompletedListProps> = ({
   stages,
 }) => {
   return (
-    <ol className="text-black text-xl">
-      {stages.map((stage, index) => (
-        <li key={`stage-list-${index}`}>
-          Estágio {index + 1} {stage.metadata.completed ? '✅' : ''}
-        </li>
-      ))}
-    </ol>
+    <div className="">
+      <ol className="flex flex-col m-auto gap-2 text-black text-xl p-6 rounded-xl">
+        {stages.map((stage, index) => (
+          <li key={`stage-list-${index}`}>
+            Estágio {index + 1} {stage.metadata.completed ? '✅' : ''}
+          </li>
+        ))}
+      </ol>
+    </div>
   );
 };
 

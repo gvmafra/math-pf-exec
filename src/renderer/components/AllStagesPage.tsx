@@ -74,14 +74,3 @@ const AllStagesPage: React.FC = () => {
 };
 
 export default AllStagesPage;
-
-
-/*
-
-[webpack-dev-server] Server started: Hot Module Replacement disabled, Live Reloading disabled, Progress disabled, Overlay disabled.
-log.js:39 [HMR] Waiting for update signal from WDS...
-react-dom.development.js:29840 Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
-index.tsx:11 IPC test: pong
-2gameReducer.ts:55 Cannot divide a non-grid canvas
-
-*/
