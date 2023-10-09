@@ -1,4 +1,4 @@
-// // App.tsx
+// App.tsx
 // import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 // import 'tailwindcss/tailwind.css';
 
@@ -36,7 +36,6 @@ import FinishedGame from './components/FinishedGamePage';
 import { useGameState } from './state/gameReducer';
 import AllStagesPage from './components/AllStagesPage';
 import BeginPage from './components/BeginPage';
-import genStageSeven from './state/stages/stageSeven';
 
 export default function App() {
   const [state, dispatch] = useGameState();

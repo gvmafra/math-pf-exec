@@ -2,31 +2,8 @@
 import { GameState } from 'renderer/state/types';
 import genInitialState from '../state/gameSetup';
 import { Link } from 'react-router-dom';
-import React from 'react';
-import { StageMetadata } from 'renderer/state/types';
-
-import genStageOne from 'renderer/state/stages/stageOne';
-import genStageTwo from 'renderer/state/stages/stageTwo';
-import genStageThree from 'renderer/state/stages/stageThree';
-import genStageFour from 'renderer/state/stages/stageFour';
-import genStageFive from 'renderer/state/stages/stageFive';
-import genStageSix from 'renderer/state/stages/stageSix';
-import genStageSeven from 'renderer/state/stages/stageSeven';
-import genStageEight from 'renderer/state/stages/stageEight';
-import genStageNine from 'renderer/state/stages/stageNine';
-import genStageTen from 'renderer/state/stages/stageTen';
-import genStageEleven from 'renderer/state/stages/stageEleven';
-import genStageTwelve from 'renderer/state/stages/stageTwelve';
-
-import { Dispatch, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-
+import { Dispatch } from 'react';
 import { Action } from 'renderer/state/gameReducer';
-import Challenge from './canvas/Challenge';
-import Panel from './Panel';
-import CircleButton from './CircleButton';
-import GridSplitterButton from './GridSplitterButton';
-import Canvas from './canvas/Canvas';
 
 interface GameProps {
   state: GameState;

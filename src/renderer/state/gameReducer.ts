@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
+//gameReducer.ts
 import { produce } from 'immer';
 import type { Draft } from 'immer';
 
