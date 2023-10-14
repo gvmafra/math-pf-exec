@@ -25,10 +25,10 @@ function StageIndicator(currentStageNum: number, currentLevelNum: number) {
 }
 
 export default function Game({ state, dispatch }: GameProps) {
+
   const { currentStage: currentStageNum } = state;
   const { currentLevel: currentLevelNum } =
     state.stages[currentStageNum].metadata;
-
   const currentStageRef = state.stages[currentStageNum];
   const currentLevelRef = currentStageRef.levels[currentLevelNum];
 
@@ -65,7 +65,8 @@ export default function Game({ state, dispatch }: GameProps) {
 
   return (
     <div className=" relative flex flex-row w-screen items-center justify-between h-screen text-white">
-      <Panel
+
+      <Panel // left panel
         header={StageIndicator(currentStageNum, currentLevelNum)}
         body={
           <>
@@ -93,7 +94,7 @@ export default function Game({ state, dispatch }: GameProps) {
         }
       />
 
-      <Panel
+      <Panel // Challenge Panel
         header={
           <Challenge
             gameCanvas={
@@ -114,7 +115,7 @@ export default function Game({ state, dispatch }: GameProps) {
         panelClassName="w-[40vw] bg-[#F76C4B]"
       />
 
-      <Panel
+      <Panel // right panel
         header={<h3 className="text-black text-xl">Tempo:</h3>}
         body={
           <>
@@ -136,6 +137,7 @@ export default function Game({ state, dispatch }: GameProps) {
         }
         footer={<h3 className="text-black text-xl">Pontos:</h3>}
       />
+
     </div>
   );
 }

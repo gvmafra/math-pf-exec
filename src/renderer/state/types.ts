@@ -159,3 +159,4 @@ export type GameState = {
   justAdvancedStage: boolean;
   finishedGame: boolean;
 };
+

@@ -42,11 +42,9 @@ export default function App() {
   return (
     <Router>
       <Routes>
-
         <Route path="/" element={<BeginPage />} />
         <Route path="/AllStagesPage" element={<AllStagesPage />} />
         <Route path="/Game" element={<Game state={state} dispatch={dispatch} />} />
-
         <Route path="/genStageOne" element={<Game state={{...state, currentStage: 1}} dispatch={dispatch} />} />
         <Route path="/genStageTwo" element={<Game state={{...state, currentStage: 2}} dispatch={dispatch} />} />
         <Route path="/genStageThree" element={<Game state={{...state, currentStage: 3}} dispatch={dispatch} />} />
@@ -59,10 +57,8 @@ export default function App() {
         <Route path="/genStageTen" element={<Game state={{...state, currentStage: 10}} dispatch={dispatch} />} />
         <Route path="/genStageEleven" element={<Game state={{...state, currentStage: 11}} dispatch={dispatch} />} />
         <Route path="/genStageTwelve" element={<Game state={{...state, currentStage: 12}} dispatch={dispatch} />} />
-
         <Route path="/AdvanceStage" element={<AdvanceStage state={state} dispatch={dispatch} />} />
         <Route path="/FinishedGame" element={<FinishedGame state={state} dispatch={dispatch} />} />
-        
       </Routes>
     </Router>
   );

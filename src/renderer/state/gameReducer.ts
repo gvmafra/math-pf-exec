@@ -1,17 +1,17 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
+
 //gameReducer.ts
 import { produce } from 'immer';
 import type { Draft } from 'immer';
-
 import { useReducer } from 'react';
-
 import { GameState } from 'renderer/state/types';
 import { getToggledRatio } from './utils';
 import genInitialState from './gameSetup';
 
-export type Direction = 'horizontal' | 'vertical';
 
+
+export type Direction = 'horizontal' | 'vertical';
 export type Action =
   | {
       type: 'TOGGLE_CELL';
@@ -31,12 +31,15 @@ export type Action =
   | { type: 'RESET_GAME'; payload?: undefined }
   | { type: 'CLEAR_JUST_ADVANCED_STAGE'; payload?: undefined };
 
+
+
 export default function gameStateReducer(
   state: GameState,
   action: Action
 ): GameState {
   return produce(state, (draft: Draft<GameState>) => {
     switch (action.type) {
+
       case 'TOGGLE_CELL': {
         const { stageIndex, levelIndex, cellIndex } = action.payload;
 
@@ -45,10 +48,12 @@ export default function gameStateReducer(
         currentCells[cellIndex] = !currentCells[cellIndex];
         break;
       }
+
       case 'DIVIDE_SQUARE': {
         const { direction } = action.payload;
         const { currentStage } = draft;
         const { currentLevel } = draft.stages[currentStage].metadata;
+        
         const gameCanvasDraft =
           draft.stages[currentStage].levels[currentLevel].canvas;
 
@@ -61,14 +66,16 @@ export default function gameStateReducer(
           max: { rows: maxRows, columns: maxColumns },
           current: { rows: oldNumRows, columns: oldNumColumns },
         } = gameCanvasDraft.grid;
-
         let numRows = oldNumRows;
         let numColumns = oldNumColumns;
 
-        if (direction === 'horizontal') {
+        if (direction === 'horizontal') 
+        {
           if (oldNumRows === maxRows) return;
           numRows += 1;
-        } else if (direction === 'vertical') {
+        } 
+        else if (direction === 'vertical') 
+        {
           if (oldNumColumns === maxColumns) return;
           numColumns += 1;
         }
@@ -77,6 +84,7 @@ export default function gameStateReducer(
         gameCanvasDraft.toggled = new Array(numRows * numColumns).fill(false);
         break;
       }
+
       case 'CLEAR_JUST_ADVANCED_STAGE': {
         draft.justAdvancedStage = false;
         break;
@@ -170,7 +178,8 @@ export default function gameStateReducer(
 
       default: {
         break;
-      }
+      } //break;
+
     }
   });
 }
