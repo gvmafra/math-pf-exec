@@ -141,7 +141,7 @@ export type Level = {
 };
 
 export type StageMetadata = {
-  [x: string]: ReactNode;
+  // [x: string]: ReactNode;
   currentLevel: number;
   completed: boolean;
 };

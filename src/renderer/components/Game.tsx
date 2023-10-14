@@ -43,7 +43,7 @@ export default function Game({ state, dispatch }: GameProps) {
     dispatch({ type: 'RESET_GAME' });
   };
 
-  const handleNectLevelClick = () => {
+  const handleNextLevelClick = () => {
     dispatch({
       type: 'NEXT_LEVEL',
       payload: {
@@ -79,7 +79,7 @@ export default function Game({ state, dispatch }: GameProps) {
                 Voltar
               </CircleButton>
               <CircleButton
-                onClick={handleNectLevelClick}
+                onClick={handleNextLevelClick}
                 ariaLabel="Next Level"
               >
                 Continuar

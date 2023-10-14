@@ -29,7 +29,8 @@ export type Action =
       payload: { stageIndex: number; levelIndex: number };
     }
   | { type: 'RESET_GAME'; payload?: undefined }
-  | { type: 'CLEAR_JUST_ADVANCED_STAGE'; payload?: undefined };
+  | { type: 'CLEAR_JUST_ADVANCED_STAGE'; payload?: undefined }
+  | { type: 'SET_STAGE'; payload: { stageIndex: number } };
 
 
 
@@ -53,11 +54,11 @@ export default function gameStateReducer(
         const { direction } = action.payload;
         const { currentStage } = draft;
         const { currentLevel } = draft.stages[currentStage].metadata;
-        
+
         const gameCanvasDraft =
           draft.stages[currentStage].levels[currentLevel].canvas;
 
-        if (gameCanvasDraft.type !== 'grid') {
+        if (gameCanvasDraft.type != 'grid') {
           console.log('Cannot divide a non-grid canvas');
           return;
         }
@@ -174,6 +175,18 @@ export default function gameStateReducer(
       case 'RESET_GAME': {
         // eslint-disable-next-line consistent-return
         return genInitialState();
+      }
+
+      case 'SET_STAGE': {
+        const { stageIndex } = action.payload;
+        const stageLastIndex = draft.stages.length - 1;
+
+        if (stageIndex < 0 || stageIndex > stageLastIndex) {
+          return;
+        }
+
+        draft.currentStage = stageIndex;
+        break;
       }
 
       default: {
