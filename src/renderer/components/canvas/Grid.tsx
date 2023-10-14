@@ -17,10 +17,6 @@ export default function Grid({ grid, handleToggle }: GridCanvasProps) {
 
   const cells = grid.toggled;
 
-  // log the type
-  console.log('gridDimentions', gridDimentions);
-  console.log('type', grid.type);
-
   return (
     <div
       className="w-[200px] h-[200px] grid grid-flow-dense justify-center items-center"

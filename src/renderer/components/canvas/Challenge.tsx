@@ -15,6 +15,26 @@ function Challenge({ gameCanvas, handleToggle }: ChallengeProps) {
     toggled: gameCanvas.toggled[index],
   }));
 
+  // anon function to return the correct fill color
+  const fillColor = () => {
+    switch (gameCanvas.toggled.length) {
+      case 2:
+        return 'fill-yellow-300';
+      case 3:
+        return 'fill-blue-600';
+      case 4:
+        return 'fill-green-500';
+      case 6:
+        return 'fill-orange-700';
+      case 8:
+        return 'fill-red-500';
+      case 9:
+        return 'fill-purple-500';
+      default:
+        return 'fill-yellow-300';
+    }
+  }
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +46,7 @@ function Challenge({ gameCanvas, handleToggle }: ChallengeProps) {
         <path
           key={`path-${cellInfo.path}`}
           d={cellInfo.path}
-          className={cellInfo.toggled ? 'fill-orange-300' : 'fill-white'}
+          className={cellInfo.toggled ? fillColor() : 'fill-white'}
           stroke="black"
           strokeLinecap="round"
           strokeLinejoin="round"

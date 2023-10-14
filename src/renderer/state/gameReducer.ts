@@ -9,8 +9,6 @@ import { GameState } from 'renderer/state/types';
 import { getToggledRatio } from './utils';
 import genInitialState from './gameSetup';
 
-
-
 export type Direction = 'horizontal' | 'vertical';
 export type Action =
   | {
@@ -32,15 +30,12 @@ export type Action =
   | { type: 'CLEAR_JUST_ADVANCED_STAGE'; payload?: undefined }
   | { type: 'SET_STAGE'; payload: { stageIndex: number } };
 
-
-
 export default function gameStateReducer(
   state: GameState,
   action: Action
 ): GameState {
   return produce(state, (draft: Draft<GameState>) => {
     switch (action.type) {
-
       case 'TOGGLE_CELL': {
         const { stageIndex, levelIndex, cellIndex } = action.payload;
 
@@ -67,18 +62,22 @@ export default function gameStateReducer(
           max: { rows: maxRows, columns: maxColumns },
           current: { rows: oldNumRows, columns: oldNumColumns },
         } = gameCanvasDraft.grid;
+
         let numRows = oldNumRows;
         let numColumns = oldNumColumns;
 
-        if (direction === 'horizontal') 
-        {
-          if (oldNumRows === maxRows) return;
-          numRows += 1;
-        } 
-        else if (direction === 'vertical') 
-        {
-          if (oldNumColumns === maxColumns) return;
-          numColumns += 1;
+        if (direction === 'horizontal') {
+          if (oldNumRows !== maxRows) {
+            numRows += 1;
+          } else {
+            numRows = 1;
+          }
+        } else if (direction === 'vertical') {
+          if (oldNumColumns !== maxColumns) {
+            numColumns += 1;
+          } else {
+            numColumns = 1;
+          }
         }
 
         gameCanvasDraft.grid.current = { rows: numRows, columns: numColumns };
@@ -192,7 +191,6 @@ export default function gameStateReducer(
       default: {
         break;
       } //break;
-
     }
   });
 }
