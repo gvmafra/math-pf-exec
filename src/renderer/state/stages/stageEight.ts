@@ -56,16 +56,16 @@ const genStageEight = (): Stage => ({
 
     concatArrays<GameCanvas>([
       [
-        genGridCanvas({ rows: 4, columns: 1 }, { rows: 4, columns: 2 }), // challenge canvas 1
-        genGridCanvas({ rows: 1, columns: 4 }, { rows: 2, columns: 4 }), // challenge canvas 2
+        genGridCanvas({ rows: 4, columns: 1 }, { rows: [4], columns: [1, 2] }), // challenge canvas 1
+        genGridCanvas({ rows: 1, columns: 4 }, { rows: [1, 2], columns: [4] }), // challenge canvas 2
       ],
       initializeLevelChallenges([
         { challengeId: 'Square8h' }, // challenge canvas 3
         { challengeId: 'Triangle8e' }, // challenge canvas 4
       ]),
       [
-        genGridCanvas({ rows: 1, columns: 1 }, { rows: 2, columns: 2 }), // challenge canvas 5
-        genGridCanvas({ rows: 1, columns: 1 }, { rows: 2, columns: 2 }), // challenge canvas 6
+        genGridCanvas({ rows: 1, columns: 1 }, { rows: [1, 2], columns: [1, 2] }), // challenge canvas 5
+        genGridCanvas({ rows: 1, columns: 1 }, { rows: [1, 2], columns: [1, 2] }), // challenge canvas 6
       ],
       initializeLevelChallenges([
         { challengeId: 'Square4h' }, // challenge canvas 7
@@ -73,7 +73,7 @@ const genStageEight = (): Stage => ({
         { challengeId: 'Diamond8e' }, // challenge canvas 9
       ]),
       [
-        genGridCanvas({ rows: 2, columns: 1 }, { rows: 2, columns: 4 }), // challenge canvas 10
+        genGridCanvas({ rows: 2, columns: 1 }, { rows: [2], columns: [1, 4] }), // challenge canvas 10
       ],
     ])
   ),

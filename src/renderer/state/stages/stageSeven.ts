@@ -64,10 +64,10 @@ const genStageSeven = (): Stage => ({
         { challengeId: 'Square8a' }, // challenge canvas 6
       ]),
       [
-        genGridCanvas({ rows: 1, columns: 2 }, { rows: 1, columns: 2 }), // challenge canvas 7
-        genGridCanvas({ rows: 1, columns: 2 }, { rows: 1, columns: 2 }), // challenge canvas 8
-        genGridCanvas({ rows: 2, columns: 1 }, { rows: 2, columns: 4 }), // challenge canvas 9
-        genGridCanvas({ rows: 1, columns: 2 }, { rows: 4, columns: 2 }), // challenge canvas 10
+        genGridCanvas({ rows: 1, columns: 2 }, { rows: [1], columns: [2] }), // challenge canvas 7
+        genGridCanvas({ rows: 1, columns: 2 }, { rows: [1], columns: [2] }), // challenge canvas 8
+        genGridCanvas({ rows: 2, columns: 1 }, { rows: [2], columns: [1, 4] }), // challenge canvas 9
+        genGridCanvas({ rows: 1, columns: 2 }, { rows: [1, 4], columns: [2] }), // challenge canvas 10
       ],
     ])
   ),

@@ -56,10 +56,10 @@ const genStageFive = (): Stage => ({
     
     concatArrays<GameCanvas>([
       [
-        genGridCanvas({ rows: 2, columns: 1 }, { rows: 2, columns: 3 }), // challenge canvas 1
-        genGridCanvas({ rows: 2, columns: 1 }, { rows: 2, columns: 3 }), // challenge canvas 2
-        genGridCanvas({ rows: 1, columns: 2 }, { rows: 3, columns: 2 }), // challenge canvas 3
-        genGridCanvas({ rows: 1, columns: 2 }, { rows: 3, columns: 2 }), // challenge canvas 4
+        genGridCanvas({ rows: 2, columns: 1 }, { rows: [1, 2], columns: [1, 2, 3] }), // challenge canvas 1
+        genGridCanvas({ rows: 2, columns: 1 }, { rows: [1, 2], columns: [1, 2, 3] }), // challenge canvas 2
+        genGridCanvas({ rows: 1, columns: 2 }, { rows: [1, 2, 3], columns: [1, 2] }), // challenge canvas 3
+        genGridCanvas({ rows: 1, columns: 2 }, { rows: [1, 2, 3], columns: [1, 2] }), // challenge canvas 4
       ],
       initializeLevelChallenges([
         { challengeId: 'Square3b' }, // challenge canvas 5

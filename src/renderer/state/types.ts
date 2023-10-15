@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 export type ShapeIds =
   | 'Square2a'
@@ -84,7 +84,7 @@ export type ShapeIds =
   | 'Triangle8d'
   | 'Triangle8e'
   | 'Triangle9c';
-  
+
 // Enum litrals, used for indexing
 export type Shape = 'square' | 'diamond' | 'triangle' | 'circle';
 export type NumCells = 2 | 3 | 4 | 6 | 8 | 9;
@@ -113,9 +113,9 @@ export type GridCanvas = {
 
 export type gridSpecs = {
   current: { rows: number; columns: number };
-  max: {
-    rows?: number;
-    columns?: number;
+  options: {
+    rows: number[];
+    columns: number[];
   };
 };
 
@@ -159,4 +159,3 @@ export type GameState = {
   justAdvancedStage: boolean;
   finishedGame: boolean;
 };
-

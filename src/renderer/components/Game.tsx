@@ -63,6 +63,10 @@ export default function Game({ state, dispatch }: GameProps) {
     }
   }, [state.finishedGame, state.justAdvancedStage, navigate]);
 
+  const horizontalSplitDisabled = currentLevelRef.canvas.type !== 'grid' || currentLevelRef.canvas.grid.options.rows.length === 1 
+
+  const verticalSplitDisabled = currentLevelRef.canvas.type !== 'grid' || currentLevelRef.canvas.grid.options.columns.length === 1
+
   return (
     <div className=" relative flex flex-row w-screen items-center justify-between h-screen text-white">
 
@@ -70,7 +74,8 @@ export default function Game({ state, dispatch }: GameProps) {
         header={StageIndicator(currentStageNum, currentLevelNum)}
         body={
           <>
-            {GridSplitterButton(dispatch, 'horizontal')}
+            <GridSplitterButton dispatch={dispatch} direction="horizontal" disabled={horizontalSplitDisabled} />
+
             <div className="flex gap-4">
               <CircleButton
                 onClick={() => dispatch({ type: 'PREV_LEVEL' })}
@@ -119,7 +124,7 @@ export default function Game({ state, dispatch }: GameProps) {
         header={<h3 className="text-black text-xl">Tempo:</h3>}
         body={
           <>
-            {GridSplitterButton(dispatch, 'vertical')}
+            <GridSplitterButton dispatch={dispatch} direction="vertical" disabled={verticalSplitDisabled} />
 
             <div className="flex gap-4">
               <CircleButton

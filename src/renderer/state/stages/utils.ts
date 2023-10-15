@@ -209,13 +209,13 @@ export const genRandomChallengeCanvases = ({
 
 export function genGridCanvas(
   current: { rows: number; columns: number },
-  max: { rows: number; columns: number }
+  options: { rows: number[]; columns: number[] }
 ): GridCanvas {
   return {
     type: 'grid',
     grid: {
       current,
-      max,
+      options,
     },
     toggled: Array(current.rows * current.columns).fill(false),
   };

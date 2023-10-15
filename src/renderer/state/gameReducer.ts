@@ -30,6 +30,20 @@ export type Action =
   | { type: 'CLEAR_JUST_ADVANCED_STAGE'; payload?: undefined }
   | { type: 'SET_STAGE'; payload: { stageIndex: number } };
 
+function loopList<T>(list: T[], index: number): T {
+  const lastIndex = list.length - 1;
+
+  if (index < 0) {
+    return list[lastIndex];
+  }
+
+  if (index > lastIndex) {
+    return list[0];
+  }
+
+  return list[index];
+}
+
 export default function gameStateReducer(
   state: GameState,
   action: Action
@@ -59,25 +73,20 @@ export default function gameStateReducer(
         }
 
         const {
-          max: { rows: maxRows, columns: maxColumns },
-          current: { rows: oldNumRows, columns: oldNumColumns },
+          options: { rows: rowOptions, columns: colOptions },
+          current: { rows: currNumRows, columns: currNumColumns },
         } = gameCanvasDraft.grid;
 
-        let numRows = oldNumRows;
-        let numColumns = oldNumColumns;
+        let numRows = currNumRows;
+        let numColumns = currNumColumns;
+
+        const rowIndex = rowOptions.indexOf(currNumRows);
+        const colIndex = colOptions.indexOf(currNumColumns);
 
         if (direction === 'horizontal') {
-          if (oldNumRows !== maxRows) {
-            numRows += 1;
-          } else {
-            numRows = 1;
-          }
+          numRows = loopList(rowOptions, rowIndex + 1);
         } else if (direction === 'vertical') {
-          if (oldNumColumns !== maxColumns) {
-            numColumns += 1;
-          } else {
-            numColumns = 1;
-          }
+          numColumns = loopList(colOptions, colIndex + 1);
         }
 
         gameCanvasDraft.grid.current = { rows: numRows, columns: numColumns };
