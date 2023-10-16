@@ -17,20 +17,20 @@ const genStageNine = (): Stage => {
   // first 2 challenges are eighths, with 1/4, 2/4, 3/4
   let challengesEighthsFirst = genRandomChallengeCanvases({
     numCellsFilter: [8],
-    difficultyFilter: ['easy', 'medium', 'hard'],
+    difficultyFilter: ['medium', 'hard'],
     toggleRatio: 1 / 4,
     numberofChallenges: 2,
   });
   challengesEighthsFirst = challengesEighthsFirst.concat(
     genRandomChallengeCanvases({
       numCellsFilter: [8],
-      difficultyFilter: ['easy', 'medium', 'hard'],
+      difficultyFilter: ['medium', 'hard'],
       toggleRatio: 2 / 4,
       numberofChallenges: 2,
     }),
     genRandomChallengeCanvases({
       numCellsFilter: [8],
-      difficultyFilter: ['easy', 'medium', 'hard'],
+      difficultyFilter: ['medium', 'hard'],
       toggleRatio: 3 / 4,
       numberofChallenges: 2,
     })
@@ -38,34 +38,34 @@ const genStageNine = (): Stage => {
   // next 2 challenges are eighths, but with only 1/2
   let challengesEighthsSecond = genRandomChallengeCanvases({
     numCellsFilter: [8],
-    difficultyFilter: ['easy', 'medium', 'hard'],
+    difficultyFilter: ['medium', 'hard'],
     toggleRatio: 1 / 2,
     numberofChallenges: 2,
   });
   // next 2 challenges are halves, only 1/2
   let challengesHalvesFirst = genRandomChallengeCanvases({
     numCellsFilter: [2],
-    difficultyFilter: ['easy', 'medium', 'hard'],
+    difficultyFilter: ['medium', 'hard'],
     toggleRatio: 1 / 2,
     numberofChallenges: 2,
   });
   // next 2 challenges are eighths, with 1/4, 2/4, 3/4
   let challengesEighthsThird = genRandomChallengeCanvases({
     numCellsFilter: [8],
-    difficultyFilter: ['easy', 'medium', 'hard'],
+    difficultyFilter: ['medium', 'hard'],
     toggleRatio: 1 / 4,
     numberofChallenges: 2,
   });
   challengesEighthsThird = challengesEighthsThird.concat(
     genRandomChallengeCanvases({
       numCellsFilter: [8],
-      difficultyFilter: ['easy', 'medium', 'hard'],
+      difficultyFilter: ['medium', 'hard'],
       toggleRatio: 2 / 4,
       numberofChallenges: 2,
     }),
     genRandomChallengeCanvases({
       numCellsFilter: [8],
-      difficultyFilter: ['easy', 'medium', 'hard'],
+      difficultyFilter: ['medium', 'hard'],
       toggleRatio: 3 / 4,
       numberofChallenges: 2,
     })
@@ -73,20 +73,20 @@ const genStageNine = (): Stage => {
   // final 2 challenges are fourths, with 1/4, 2/4, 3/4
   let challengesFourthsFirst = genRandomChallengeCanvases({
     numCellsFilter: [4],
-    difficultyFilter: ['easy', 'medium', 'hard'],
+    difficultyFilter: ['medium', 'hard'],
     toggleRatio: 1 / 4,
     numberofChallenges: 2,
   });
   challengesFourthsFirst = challengesFourthsFirst.concat(
     genRandomChallengeCanvases({
       numCellsFilter: [4],
-      difficultyFilter: ['easy', 'medium', 'hard'],
+      difficultyFilter: ['medium', 'hard'],
       toggleRatio: 2 / 4,
       numberofChallenges: 2,
     }),
     genRandomChallengeCanvases({
       numCellsFilter: [4],
-      difficultyFilter: ['easy', 'medium', 'hard'],
+      difficultyFilter: ['medium', 'hard'],
       toggleRatio: 3 / 4,
       numberofChallenges: 2,
     }),
@@ -105,7 +105,7 @@ const genStageNine = (): Stage => {
       getRandomOptions(
         filterChallenges({
           numCellsFilter: [8],
-          difficultyFilter: ['easy', 'medium', 'hard'],
+          difficultyFilter: ['medium', 'hard'],
         }).map((challengeId) => ({
           challengeId,
         })),
@@ -120,7 +120,7 @@ const genStageNine = (): Stage => {
         getRandomOptions(
           filterChallenges({
             numCellsFilter: [2],
-            difficultyFilter: ['easy', 'medium', 'hard'],
+            difficultyFilter: ['medium', 'hard'],
           }).map((challengeId) => ({
             challengeId,
           })),
@@ -136,7 +136,7 @@ const genStageNine = (): Stage => {
         getRandomOptions(
           filterChallenges({
             numCellsFilter: [8],
-            difficultyFilter: ['easy', 'medium', 'hard'],
+            difficultyFilter: ['medium', 'hard'],
           }).map((challengeId) => ({
             challengeId,
           })),
@@ -152,7 +152,7 @@ const genStageNine = (): Stage => {
         getRandomOptions(
           filterChallenges({
             numCellsFilter: [4],
-            difficultyFilter: ['easy', 'medium', 'hard'],
+            difficultyFilter: ['medium', 'hard'],
           }).map((challengeId) => ({
             challengeId,
           })),
@@ -168,7 +168,7 @@ const genStageNine = (): Stage => {
         getRandomOptions(
           filterChallenges({
             numCellsFilter: [8],
-            difficultyFilter: ['easy', 'medium', 'hard'],
+            difficultyFilter: ['medium', 'hard'],
           }).map((challengeId) => ({
             challengeId,
           })),

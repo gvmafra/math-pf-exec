@@ -27,6 +27,12 @@ function Canvas({
     });
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent, index: number) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      handleToggle(index);
+    }
+  };
+
   if (gameCanvas.type === 'grid') {
     return <Grid grid={gameCanvas} handleToggle={handleToggle} />;
   }
@@ -52,6 +58,10 @@ function Canvas({
           strokeLinecap="round"
           strokeLinejoin="round"
           onClick={() => handleToggle(index)}
+          onKeyDown={(e) => handleKeyDown(e, index)}
+          role="button"
+          tabIndex={0}
+          className="focus:stroke-red-600 focus:outline-none focus:stroke-[1px] focus:ring-2 focus:z-10"
         />
       ))}
     </svg>

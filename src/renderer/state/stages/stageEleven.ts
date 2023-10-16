@@ -26,7 +26,7 @@ const genStageEleven = (): Stage => ({
       },
       {
         challengeId: 'Circle9g', // challenge 4 --
-        toggles: [false, true, true, false, false, true, true, false, true],
+        toggles: [true, false, true, true, false, true, true, false, true],
       },
       {
         challengeId: 'Diamond9c', // challenge 5 --
@@ -61,7 +61,7 @@ const genStageEleven = (): Stage => ({
       ]),
       [
         genGridCanvas({ rows: 2, columns: 1 }, { rows: [2], columns: [1, 3] }), // challenge canvas 3
-        genGridCanvas({ rows: 1, columns: 2 }, { rows: [1, 3], columns: [2, 3] }), // challenge canvas 4
+        genGridCanvas({ rows: 1, columns: 2 }, { rows: [1, 3], columns: [2] }), // challenge canvas 4
         genGridCanvas({ rows: 1, columns: 1 }, { rows: [1, 2], columns: [1, 2, 3] }), // challenge canvas 5
         genGridCanvas({ rows: 3, columns: 3 }, { rows: [3], columns: [3] }), // challenge canvas 6
       ],

@@ -4,7 +4,7 @@ on:
     push:
         branches:
             - main
-            - add-interfaces
+            # - add-interfaces
 jobs:
     build:
         # build on windows

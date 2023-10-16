@@ -2,14 +2,17 @@ import React, { FC } from 'react';
 import { Dispatch } from 'react';
 import { Action, Direction } from 'renderer/state/gameReducer';
 import CircleButton from './CircleButton';
+import IconHorizontal from '../img/iconHorizontal.svg';
+import IconVertical from '../img/iconVertical.svg';
 
 interface GridSplitterButtonProps {
   dispatch: Dispatch<Action>;
   direction: Direction;
   disabled?: boolean;
+  image?: SVGAElement;
 }
 
-const GridSplitterButton: FC<GridSplitterButtonProps> = ({ dispatch, direction, disabled}) => {
+const GridSplitterButton: FC<GridSplitterButtonProps> = ({ dispatch, direction, disabled, image}) => {
   return (
     <CircleButton
       disabled={disabled}

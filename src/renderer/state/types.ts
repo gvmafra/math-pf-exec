@@ -1,5 +1,3 @@
-import { ReactNode } from 'react';
-
 export type ShapeIds =
   | 'Square2a'
   | 'Square2b'

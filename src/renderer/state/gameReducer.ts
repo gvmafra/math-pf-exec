@@ -169,8 +169,10 @@ export default function gameStateReducer(
           draft.stages[stageIndex].levels[levelIndex].canvas;
 
         if (gameCanvasDraft.type !== 'grid') {
-          console.log('Cannot reset a non-grid canvas');
-          return;
+          gameCanvasDraft.toggled = new Array(
+            gameCanvasDraft.toggled.length
+          ).fill(false);
+          break;
         }
 
         gameCanvasDraft.toggled = new Array(

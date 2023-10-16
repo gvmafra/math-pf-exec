@@ -25,6 +25,8 @@ function StageIndicator(currentStageNum: number, currentLevelNum: number) {
 }
 
 export default function Game({ state, dispatch }: GameProps) {
+  
+  const navigate = useNavigate();
 
   const { currentStage: currentStageNum } = state;
   const { currentLevel: currentLevelNum } =
@@ -40,7 +42,8 @@ export default function Game({ state, dispatch }: GameProps) {
   };
 
   const handleResetGame = () => {
-    dispatch({ type: 'RESET_GAME' });
+    // dispatch({ type: 'RESET_GAME' });
+    navigate('/AllStagesPage');
   };
 
   const handleNextLevelClick = () => {
@@ -53,7 +56,6 @@ export default function Game({ state, dispatch }: GameProps) {
     });
   };
 
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (state.finishedGame) {
@@ -131,11 +133,11 @@ export default function Game({ state, dispatch }: GameProps) {
                 onClick={handleResetSquare}
                 ariaLabel="Reset Square"
               >
-                Resetar Nível
+                Resetar
               </CircleButton>
 
               <CircleButton onClick={handleResetGame} ariaLabel="Reset Game">
-                Reiniciar Jogo
+                Estágios
               </CircleButton>
             </div>
           </>
