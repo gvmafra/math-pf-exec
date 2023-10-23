@@ -14,9 +14,9 @@ const CircleButton: FC<CircleButtonProps> = ({
   size = 'small',
   disabled = false,
 }) => {
-  const baseStyle = 'bg-white border-black border-[1px] text-black text-xs rounded-full';
-  const sizeStyle = size === 'large' ? 'w-24 h-24' : 'w-16 h-16';
-  const disabledStyle = disabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100';
+  const baseStyle = 'bg-white border-black text-black text-xs rounded-full flex items-center justify-center';
+  const sizeStyle = size === 'large' ? 'w-24 h-24 border-4' : 'w-16 h-16 border';
+  const disabledStyle = disabled ? 'opacity-40 cursor-not-allowed' : 'hover:bg-gray-100';
 
   return (
     <button

@@ -118,7 +118,7 @@ export default function Game({ state, dispatch }: GameProps) {
             currentStage={currentStageNum}
           />
         }
-        footer={<h3 className="text-black text-xl">Pintando Frações</h3>}
+        footer={<h3 className="text-black text-xl">FRATIX</h3>}
         panelClassName="w-[40vw] bg-[#F76C4B]"
       />
 

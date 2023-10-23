@@ -177,8 +177,8 @@
     "webpack-merge": "^5.9.0"
   },
   "build": {
-    "productName": "Pintando Fracoes",
-    "appId": "org.erb.PintandoFracoes",
+    "productName": "Fratix",
+    "appId": "org.erb.Fratix",
     "asar": true,
     "asarUnpack": "**\\*.{node,dll}",
     "files": [

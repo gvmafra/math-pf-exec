@@ -1,18 +1,19 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Dispatch } from 'react';
 import { Action, Direction } from 'renderer/state/gameReducer';
 import CircleButton from './CircleButton';
-import IconHorizontal from '../img/iconHorizontal.svg';
-import IconVertical from '../img/iconVertical.svg';
 
 interface GridSplitterButtonProps {
   dispatch: Dispatch<Action>;
   direction: Direction;
   disabled?: boolean;
-  image?: SVGAElement;
 }
 
-const GridSplitterButton: FC<GridSplitterButtonProps> = ({ dispatch, direction, disabled, image}) => {
+const GridSplitterButton: FC<GridSplitterButtonProps> = ({
+  dispatch,
+  direction,
+  disabled,
+}) => {
   return (
     <CircleButton
       disabled={disabled}
@@ -25,8 +26,11 @@ const GridSplitterButton: FC<GridSplitterButtonProps> = ({ dispatch, direction, 
       ariaLabel={`Divide Square in the ${direction} direction`}
       size="large"
     >
-      {direction.charAt(0).toUpperCase()}
-      {direction.slice(1)}
+      {direction === 'horizontal' ? (
+        <div className='w-[90px] h-3 bg-black' />
+      ) : (
+        <div className='w-3 h-[90px] bg-black' />
+      )}
     </CircleButton>
   );
 };
