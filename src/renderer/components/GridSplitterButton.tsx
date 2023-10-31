@@ -15,23 +15,28 @@ const GridSplitterButton: FC<GridSplitterButtonProps> = ({
   disabled,
 }) => {
   return (
-    <CircleButton
-      disabled={disabled}
-      onClick={() =>
-        dispatch({
-          type: 'DIVIDE_SQUARE',
-          payload: { direction },
-        })
-      }
-      ariaLabel={`Divide Square in the ${direction} direction`}
-      size="large"
-    >
-      {direction === 'horizontal' ? (
-        <div className='w-[90px] h-3 bg-black' />
-      ) : (
-        <div className='w-3 h-[90px] bg-black' />
-      )}
-    </CircleButton>
+    <div className='relative'>
+      {/* for the rings behind thw */}
+      {/* <div className='absolute z-2 bg-white w-24 h-24 rounded-full'/>
+      <div className='absolute z-1 -top-2 -left-2 bg-yellow-400 w-28 h-28 rounded-full'/> */}
+      <CircleButton
+        disabled={disabled}
+        onClick={() =>
+          dispatch({
+            type: 'DIVIDE_SQUARE',
+            payload: { direction },
+          })
+        }
+        ariaLabel={`Divide Square in the ${direction} direction`}
+        size="large"
+      >
+        {direction === 'horizontal' ? (
+          <div className="w-[90px] h-3 bg-black" />
+        ) : (
+          <div className="w-3 h-[90px] bg-black" />
+        )}
+      </CircleButton>
+    </div>
   );
 };
 

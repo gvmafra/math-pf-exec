@@ -25,7 +25,6 @@ function StageIndicator(currentStageNum: number, currentLevelNum: number) {
 }
 
 export default function Game({ state, dispatch }: GameProps) {
-  
   const navigate = useNavigate();
 
   const { currentStage: currentStageNum } = state;
@@ -56,7 +55,6 @@ export default function Game({ state, dispatch }: GameProps) {
     });
   };
 
-
   useEffect(() => {
     if (state.finishedGame) {
       navigate('/FinishedGame');
@@ -65,18 +63,25 @@ export default function Game({ state, dispatch }: GameProps) {
     }
   }, [state.finishedGame, state.justAdvancedStage, navigate]);
 
-  const horizontalSplitDisabled = currentLevelRef.canvas.type !== 'grid' || currentLevelRef.canvas.grid.options.rows.length === 1 
+  const horizontalSplitDisabled =
+    currentLevelRef.canvas.type !== 'grid' ||
+    currentLevelRef.canvas.grid.options.rows.length === 1;
 
-  const verticalSplitDisabled = currentLevelRef.canvas.type !== 'grid' || currentLevelRef.canvas.grid.options.columns.length === 1
+  const verticalSplitDisabled =
+    currentLevelRef.canvas.type !== 'grid' ||
+    currentLevelRef.canvas.grid.options.columns.length === 1;
 
   return (
     <div className=" relative flex flex-row w-screen items-center justify-between h-screen text-white">
-
       <Panel // left panel
         header={StageIndicator(currentStageNum, currentLevelNum)}
         body={
           <>
-            <GridSplitterButton dispatch={dispatch} direction="horizontal" disabled={horizontalSplitDisabled} />
+            <GridSplitterButton
+              dispatch={dispatch}
+              direction="horizontal"
+              disabled={horizontalSplitDisabled}
+            />
 
             <div className="flex gap-4">
               <CircleButton
@@ -126,7 +131,11 @@ export default function Game({ state, dispatch }: GameProps) {
         header={<h3 className="text-black text-xl">Tempo:</h3>}
         body={
           <>
-            <GridSplitterButton dispatch={dispatch} direction="vertical" disabled={verticalSplitDisabled} />
+            <GridSplitterButton
+              dispatch={dispatch}
+              direction="vertical"
+              disabled={verticalSplitDisabled}
+            />
 
             <div className="flex gap-4">
               <CircleButton
@@ -144,8 +153,6 @@ export default function Game({ state, dispatch }: GameProps) {
         }
         footer={<h3 className="text-black text-xl">Pontos:</h3>}
       />
-
     </div>
   );
 }
-
