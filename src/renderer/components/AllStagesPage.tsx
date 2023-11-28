@@ -49,7 +49,7 @@ const AllStagesPage: React.FC<GameProps> = ({ state, dispatch }) => {
               return (
                 <button
                   key={`stage-${i}`}
-                  className="h-20 w-20 bg-amber-100 hover:bg-amber-600 hover:text-white text-black font-bold py-2 px-8 drop-shadow-md rounded-2xl"
+                  className="h-20 w-20 bg-amber-100 hover:bg-amber-600 hover:text-white text-black font-bold py-2 px-8 drop-shadow-md rounded-full"
                   onClick={() => handleStageSelect(i)}
                 >
                   {stageName}

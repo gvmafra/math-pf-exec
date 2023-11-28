@@ -28,6 +28,7 @@ export type Action =
     }
   | { type: 'RESET_GAME'; payload?: undefined }
   | { type: 'CLEAR_JUST_ADVANCED_STAGE'; payload?: undefined }
+  | { type: 'ADVANCE_TO_NEXT_STAGE'; payload?: undefined }
   | { type: 'SET_STAGE'; payload: { stageIndex: number } };
 
 function loopList<T>(list: T[], index: number): T {
@@ -185,6 +186,27 @@ export default function gameStateReducer(
       case 'RESET_GAME': {
         // eslint-disable-next-line consistent-return
         return genInitialState();
+      }
+
+      // Add a new case in your reducer
+      case 'ADVANCE_TO_NEXT_STAGE': {
+        const stageLastIndex = draft.stages.length - 1;
+        if (draft.currentStage >= stageLastIndex) {
+          // If you're on the last stage, you might not do anything
+          // Or you could potentially set finishedGame to true,
+          // or take any other action that makes sense in your game context
+          draft.finishedGame = true;
+          return;
+        }
+
+        // Advance to the next stage
+        draft.currentStage += 1;
+        // Assuming that advancing to the next stage should
+        // also reset the level counter of this new stage, set it to 0 or to whatever makes sense in your game context
+        draft.stages[draft.currentStage].metadata.currentLevel = 0;
+        // Reset the justAdvancedStage flag
+        draft.justAdvancedStage = false;
+        break;
       }
 
       case 'SET_STAGE': {
