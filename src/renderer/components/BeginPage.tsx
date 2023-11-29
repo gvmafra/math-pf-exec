@@ -23,9 +23,6 @@ const BeginPage: React.FC = () => {
             <button className="bg-amber-100 hover:bg-amber-600 hover:text-white text-black font-bold py-2 px-8 rounded-xl">
               <Link to="/AllStagesPage">Estágios</Link>
             </button>
-            <button className="bg-amber-100 hover:bg-amber-600 hover:text-white text-black font-bold py-2 px-8 rounded-xl">
-              <Link to="/AllStagesPage">Estágios</Link>
-            </button>
           </div>
         </div>
       </div>
