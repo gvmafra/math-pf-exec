@@ -16,7 +16,7 @@ const ButtonFratix: React.FC<ButtonFratixProps> = ({ size, linkTo, imgSrc, altTe
 
   return (
     <Link to={linkTo}>
-      <button className={`bg-amber-100 hover:bg-amber-600 hover:text-white text-black font-bold rounded-full ${padding}`}>
+      <button className={`bg-amber-100 hover:bg-white hover:text-white text-black font-bold rounded-full ${padding}`}>
         <img
           src={imgSrc}
           alt={altText}
