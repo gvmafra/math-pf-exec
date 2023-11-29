@@ -1,46 +1,55 @@
 // NamePage.tsx
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Game from './Game';
+import ButtonFratix from './ButtonFratix';
+
+import bgPattern from '../img/bgPattern.svg';
 
 const NamePage: React.FC = () => {
+  const backgroundStyle = {
+    backgroundImage: `url(${bgPattern})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    zIndex: -1,
+  };
+
   return (
-    <div className="flex h-screen bg-[#60b6ba] items-center content-center">
-      <div className='flex flex-col items-center m-auto w-1/2 gap-8'>
+    <div
+      style={{
+        ...backgroundStyle,
+        position: 'absolute',
+      }}
+      className="flex h-screen items-center content-center bg-no-repeat bg-cover bg-[#60b6ba]"
+    >
+      <div className="flex flex-col items-center m-auto w-1/2 gap-8 z-10">
         <img
           src={require('../img/logoFratix.svg').default}
           alt="Logo Fratix"
           className="flex justify-center m-auto"
         />
-        <div className=" flex flex-col items-center w-1/2">
+        <div className=" flex flex-col items-center">
           <div className="flex items-center content-center gap-6">
-            <button className="bg-amber-100 hover:bg-amber-600 hover:text-white text-black font-bold p-2 rounded-full">
-              <Link to="/AllStagesPage">
-                <img
-                  src={require('../img/iconReset.svg').default}
-                  alt="arrow"
-                  className="w-10 h-10"
-                />
-              </Link>
-            </button>
-            <button className="bg-amber-100 hover:bg-amber-600 hover:text-white text-black font-bold p-2 rounded-full">
-              <Link to="/AllStagesPage">
-                <img
-                  src={require('../img/iconInsight.svg').default}
-                  alt="arrow"
-                  className="w-10 h-10"
-                />
-              </Link>
-            </button>
-            <button className="bg-amber-100 hover:bg-amber-600 hover:text-white text-black font-bold p-2 rounded-full">
-              <Link to="/AllStagesPage">
-                <img
-                  src={require('../img/iconAudio.svg').default}
-                  alt="arrow"
-                  className="w-10 h-10"
-                />
-              </Link>
-            </button>
+            <ButtonFratix
+              size="50"
+              linkTo="/AllStagesPage"
+              imgSrc={require('../img/iconFile.svg').default}
+              altText="file icon"
+            />
+            <ButtonFratix
+              size="50"
+              linkTo="/AllStagesPage"
+              imgSrc={require('../img/iconPlay.svg').default}
+              altText="play icon"
+            />
+            <ButtonFratix
+              size="50"
+              linkTo="/AllStagesPage"
+              imgSrc={require('../img/iconInfo.svg').default}
+              altText="info icon"
+            />
           </div>
         </div>
       </div>
