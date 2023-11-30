@@ -1,30 +1,15 @@
 // NamePage.tsx
 import React from 'react';
 import ButtonFratix from './ButtonFratix';
-
-import bgPattern from '../img/bgPattern.svg';
+import FratixBackground from './FratixBackground';
 
 const NamePage: React.FC = () => {
-  const backgroundStyle = {
-    backgroundImage: `url(${bgPattern})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    width: '100%',
-    height: '100%',
-    position: 'absolute',
-    zIndex: -1,
-  };
-
   return (
-    <div
-      style={{
-        ...backgroundStyle,
-        position: 'absolute',
-      }}
-      className="flex h-screen items-center content-center bg-no-repeat bg-cover bg-[#60b6ba]"
-    >
-      <div className="flex flex-col items-center m-auto w-1/2 gap-8 z-10">
+    <div className="flex h-screen items-center content-center">
+
+      <FratixBackground color="blue" />
+
+      <div className="flex flex-col items-center m-auto w-4/6 gap-8 z-10">
         <img
           src={require('../img/logoFratix.svg').default}
           alt="Logo Fratix"
@@ -52,6 +37,23 @@ const NamePage: React.FC = () => {
             />
           </div>
         </div>
+      </div>
+      
+      <div className="bottom-4 right-4 absolute">
+        <ButtonFratix
+          size="40"
+          linkTo="/AllStagesPage"
+          imgSrc={require('../img/iconConfig.svg').default}
+          altText="settings icon"
+        />
+      </div>
+      <div className="bottom-4 left-4 absolute">
+        <ButtonFratix
+          size="40"
+          linkTo="/AllStagesPage"
+          imgSrc={require('../img/iconExit.svg').default}
+          altText="settings icon"
+        />
       </div>
     </div>
   );

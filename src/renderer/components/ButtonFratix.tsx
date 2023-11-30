@@ -9,19 +9,24 @@ interface ButtonFratixProps {
   altText: string;
 }
 
-const ButtonFratix: React.FC<ButtonFratixProps> = ({ size, linkTo, imgSrc, altText }) => {
-  let width = size === '50' ? 'w-12' : 'w-10'; // 50px or 40px
-  let height = size === '50' ? 'h-12' : 'h-10'; // 50px or 40px
-  let padding = size === '50' ? 'p-3' : 'p-2.5'; // Adjust padding based on size
+const ButtonFratix: React.FC<ButtonFratixProps> = ({
+  size,
+  linkTo,
+  imgSrc,
+  altText,
+}) => {
+  let width = size === '50' ? 'w-12' : 'w-12'; // 50px or 40px
+  let height = size === '50' ? 'h-12' : 'h-12'; // 50px or 40px
+  let padding = size === '50' ? 'p-3' : 'p-1'; // Adjust padding based on size
 
   return (
     <Link to={linkTo}>
-      <button className={`bg-amber-100 hover:bg-white hover:text-white text-black font-bold rounded-full ${padding}`}>
-        <img
-          src={imgSrc}
-          alt={altText}
-          className={`${width} ${height}`}
-        />
+      <button>
+        <div
+          className={`bg-white hover:bg-amber-100 hover:shadow-md hover:shadow-amber-300 rounded-full ${padding} `}
+        >
+          <img src={imgSrc} alt={altText} className={`${width} ${height} hover:opacity-75`} />
+        </div>
       </button>
     </Link>
   );
