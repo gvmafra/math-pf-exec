@@ -1,22 +1,24 @@
 // FratixBackground.tsx
 import React from 'react';
 import PropTypes from 'prop-types';
-import bgPattern from '../img/bgPattern.svg';
+
+const bgPatternBlue = require('../img/bgPatternBlue.svg').default;
+const bgPatternYellow = require('../img/bgPatternYellow.svg').default;
 
 interface FratixBackgroundProps {
   color: 'blue' | 'yellow';
 }
 
-const colorMap: { [key: string]: string } = {
-  blue: '#60b6ba',
-  yellow: '#55c8a7',
+const colorMap: { [key: string]: { backgroundColor: string; bgPatternUrl: string } } = {
+  blue: { backgroundColor: '#60b6ba', bgPatternUrl: bgPatternYellow },
+  yellow: { backgroundColor: '#ecf0d7', bgPatternUrl: bgPatternBlue },
 };
 
 const FratixBackground: React.FC<FratixBackgroundProps> = ({ color }) => {
-  const backgroundColor: string = colorMap[color] || colorMap['blue'];
+  const { backgroundColor, bgPatternUrl } = colorMap[color] || colorMap['blue'];
 
   const backgroundStyle = {
-    backgroundImage: `url(${bgPattern})`,
+    backgroundImage: `url(${bgPatternUrl})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
@@ -30,7 +32,7 @@ const FratixBackground: React.FC<FratixBackgroundProps> = ({ color }) => {
   return <div style={backgroundStyle}>
     <img
       src={require('../img/logoMGames.svg').default}
-      alt="bg pattern"
+      alt="logo MGames"
       className="w-14 top-4 right-4 absolute"
     />
   </div>;
