@@ -54,7 +54,8 @@ const AllStagesPage: React.FC<GameProps> = ({ state, dispatch }) => {
         </div>
       </div>
 
-      <div className="flex flex-col bg-[#fdffee] h-screen w-1/2 px-20 items-center justify-center gap-6 mr-24 shadow-lg">
+      <div className="flex flex-col bg-[#fdffee] h-screen w-1/2 px-20 items-center justify-center gap-10 mr-24 shadow-lg">
+        <p className='text-xl text-[#6c5353] text-center font-bold'>Selecione o estágio:</p>
         <div className="grid grid-cols-3 gap-4 items-center content-center">
           {stageNames.map((stageName, i) => {
             return (
