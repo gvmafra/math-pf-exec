@@ -4,6 +4,7 @@ import { Dispatch } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import { GameState } from 'renderer/state/types';
 import StagesCompletedList from './StagesCompletedList';
+import FratixBackground from './FratixBackground';
 
 interface AdvanceStageProps {
   state: GameState;
@@ -30,33 +31,34 @@ function AdvanceStage({ state, dispatch }: AdvanceStageProps) {
   };
 
   return (
-    <div className="flex h-screen bg-cyan-200">
-      <div className="flex flex-col gap-6 items-center content-center m-auto">
-        <h1 className="text-black text-2xl font-bold text-center">
-          Parabéns! Você passou de estágio!
+    <div className="flex h-screen items-center text-[#6c5353]">
+      <FratixBackground color="yellow" />
+
+      <div className="flex items-center m-auto gap-8 mt-12">
+        <div className="flex flex-col items-center gap-4">
+          <img
+            src={require('../img/logoFratixSm.svg').default}
+            alt="Logo Fratix"
+            className="flex justify-center w-[200px]"
+          />
+          <p className="text-2xl text-[#6c5353] text-center font-bold">
+            ESTÁGIO COMPLETO
+          </p>
+        </div>
+      </div>
+
+      <div className="flex flex-col bg-[#fdffee] h-screen w-1/2 px-20 items-center justify-center gap-10 mr-24 shadow-lg">
+        <h1 className="text-2xl font-bold text-center">
+          Parabéns!<br/> Você passou de estágio!
         </h1>
-
-        <div className="flex w-full bg-amber-100 rounded-2xl drop-shadow-md content-center items-center">
-          <StagesCompletedList stages={state.stages} />
-        </div>
-
-        <div className="flex w-full gap-4 items-center justify-between">
-          <button
-            className="flex flex-auto bg-amber-100 hover:bg-amber-600 hover:text-white text-black font-bold py-2 px-8 drop-shadow-md rounded-xl"
-            onClick={handleClick}
-            aria-label="Move to all stages page"
-          >
-            Estágios
-          </button>
-
-          <button
-            className="flex flex-auto bg-amber-100 hover:bg-amber-600 hover:text-white text-black font-bold py-2 px-8 drop-shadow-md rounded-xl"
-            onClick={handleAdvanceToNextStage}
-            aria-label="Move to next stage"
-          >
-            Continuar
-          </button>
-        </div>
+        <StagesCompletedList stages={state.stages} />
+        <button
+          className="flex items-center justify-center h-16 w-auto bg-white hover:bg-amber-100 text-[#6c5353] text-2xl font-bold py-4 px-6 border border-[#ecdbdb] shadow-md hover:shadow-md hover:shadow-amber-300 rounded-full"
+          onClick={handleClick}
+          aria-label="Move to all stages page"
+        >
+          Continuar
+        </button>
       </div>
     </div>
   );
