@@ -69,18 +69,73 @@ export default function gameStateReducer(
         draft.stages[stageIndex].levels[levelIndex].metadata.clickCount += 1;
 
         // implement the logic for removing points from the score
-        
         // 1st step: get the current level
         const currentLevel = draft.stages[stageIndex].levels[levelIndex];
         // 2nd step: get the current challenge and game canvas
         const { challenge, canvas } = currentLevel;
         // 3d step: get the current ratio of the challenge
         const challengeRatio = getToggledRatio(challenge);
+
         // 4th step: get the current number of segments in the game canvas;
         // get the length of the toggled array for challenge canvas
         const numberOfSegments = canvas.toggled.length;
-        /*
 
+        /*
+        The algorithm for calculating the score is as follows:
+        1. Get the current ratio of the challenge
+        2. Get the current number of segments in the game canvas
+        3. Use the matching ratio to get the number of segments that should be toggled
+        4. That number is the minimum number of clicks required to complete the level
+        5. Any number of clicks above that number should reduce the score 
+            (i.e., if the minimum number of clicks is 4, 
+            then 5 clicks should reduce the score by 1, 6 clicks should reduce the score by 2, etc.)
+        6. The score should be a number between 0 and 3.
+        7. Clicks include both toggling and untoggling cells, and clicking on the buttons that divide the canvas.
+
+        here's what I have so far, It doesn't work because it isn't accounting for the buttons that divide the canvas. It also doesn't account for the fact that the number of segments in the canvas can change.
+
+         const minimumNumberOfClicks = Math.ceil(
+           challengeRatio * numberOfSegments
+         );
+         const currentNumberOfClicks = currentLevel.metadata.clickCount;
+         const difference = currentNumberOfClicks - minimumNumberOfClicks;
+         const score = Math.max(3 - difference, 0);
+
+         currentLevel.metadata.score = score as 1 | 2 | 3;
+
+        what I need to do is to get the number of segments in the canvas after the canvas is divided, 
+        and then use that number to calculate the minimum number of clicks required to complete the level.
+        I also need to account for the fact that the number of segments in the canvas can change. 
+        As of now, when the canvas is divided, the number of points increases. I need to account for that.
+
+        So I tried this:
+        */
+
+        // 1. Get the current ratio of the challenge
+        const currentChallengeRatio = getToggledRatio(challenge);
+        // 2. Get the current number of segments in the game canvas
+        const currentNumberOfSegments = canvas.toggled.length;
+        // 3. Use the matching ratio to get the number of segments that should be toggled
+        const minimumNumberOfSegments = Math.ceil(
+          currentChallengeRatio * currentNumberOfSegments
+        );
+        // 4. That number is the minimum number of clicks required to complete the level
+        const minimumNumberOfClicks = minimumNumberOfSegments;
+        // 5. Any number of clicks above that number should reduce the score
+        const currentNumberOfClicks = currentLevel.metadata.clickCount;
+        const difference = currentNumberOfClicks - minimumNumberOfClicks;
+        const score = Math.max(3 - difference, 0);
+        // 6. The score should be a number between 0 and 3.
+        currentLevel.metadata.score = score as 1 | 2 | 3;
+
+        /*
+        This works fine for the challenge canvas, but not for the grid canvas.
+        I need to account for the fact that the number of points should never exceed 3.
+        The required minimum number of clicks should equal the number of cells toggled required to equal the challenge ratio, plus the amount of clicks required to divide the canvas.
+        i.e.: 
+        If the challenge ratio is 0.5, and the canvas is divided into 2 cells, then the minimum number of clicks required to complete the level with 3 points is 3. (1 click to divide the canvas, and 2 clicks to toggle the cells).
+        If the challenge ratio is 0.5, and the canvas is blank, then the minimum number of clicks required to complete the level with 3 points is 2. (1 click to divide the canvas, and 1 click to toggle the cells).
+        If the challenge ratio is 2/3, and the canvas is divided into 2 cells, the minimum number of clicks required to complete the level with 3 points is 3. (1 click to divide the canvas, and 2 clicks to toggle the cells).
         */
 
         break;
@@ -216,27 +271,6 @@ export default function gameStateReducer(
         return genInitialState();
       }
 
-      // Add a new case in your reducer
-      case 'ADVANCE_TO_NEXT_STAGE': {
-        const stageLastIndex = draft.stages.length - 1;
-        if (draft.currentStage >= stageLastIndex) {
-          // If you're on the last stage, you might not do anything
-          // Or you could potentially set finishedGame to true,
-          // or take any other action that makes sense in your game context
-          draft.finishedGame = true;
-          return;
-        }
-
-        // Advance to the next stage
-        draft.currentStage += 1;
-        // Assuming that advancing to the next stage should
-        // also reset the level counter of this new stage, set it to 0 or to whatever makes sense in your game context
-        draft.stages[draft.currentStage].metadata.currentLevel = 0;
-        // Reset the justAdvancedStage flag
-        draft.justAdvancedStage = false;
-        break;
-      }
-
       case 'SET_STAGE': {
         const { stageIndex } = action.payload;
         const stageLastIndex = draft.stages.length - 1;
@@ -249,9 +283,30 @@ export default function gameStateReducer(
         break;
       }
 
+      // // Add a new case in your reducer
+      // case 'ADVANCE_TO_NEXT_STAGE': {
+      //   const stageLastIndex = draft.stages.length - 1;
+      //   if (draft.currentStage >= stageLastIndex) {
+      //     // If you're on the last stage, you might not do anything
+      //     // Or you could potentially set finishedGame to true,
+      //     // or take any other action that makes sense in your game context
+      //     draft.finishedGame = true;
+      //     return;
+      //   }
+
+      //   // Advance to the next stage
+      //   draft.currentStage += 1;
+      //   // Assuming that advancing to the next stage should
+      //   // also reset the level counter of this new stage, set it to 0 or to whatever makes sense in your game context
+      //   draft.stages[draft.currentStage].metadata.currentLevel = 0;
+      //   // Reset the justAdvancedStage flag
+      //   draft.justAdvancedStage = false;
+      //   break;
+      // }
+
       default: {
         break;
-      } //break;
+      }
     }
   });
 }

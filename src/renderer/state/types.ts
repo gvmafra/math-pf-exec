@@ -138,8 +138,8 @@ export type Level = {
   metadata: LevelMetadata;
 };
 
+// stage metadata is the current level and if the stage is completed
 export type StageMetadata = {
-  // [x: string]: ReactNode;
   currentLevel: number;
   completed: boolean;
 };

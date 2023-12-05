@@ -207,7 +207,7 @@ export const genRandomChallengeCanvases = ({
   );
 };
 
-export function genGridCanvas(
+export function genGridCanvas( // function to generate a grid canvas
   current: { rows: number; columns: number },
   options: { rows: number[]; columns: number[] }
 ): GridCanvas {
