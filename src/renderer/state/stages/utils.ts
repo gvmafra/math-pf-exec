@@ -18,7 +18,7 @@ import {
 export const initialLevelMetadata = (): LevelMetadata => ({
   clickCount: 0,
   attempts: 0,
-  time: 0,
+  score: 3,
   completed: false,
   challengesAlreadyCompleted: [],
 });

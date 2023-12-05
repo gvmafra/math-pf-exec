@@ -126,7 +126,7 @@ export type GameCanvas = GridCanvas | ChallengeCanvas;
 export type LevelMetadata = {
   clickCount: number; // number of times user clicked on any cell
   attempts: number; // number of times user attempted to move to the next level but failed
-  time: number;
+  score: 3 | 2 | 1 ; // score is calculated based on the number of clicks and attempts
   completed: boolean;
   challengesAlreadyCompleted: ShapeIds[]; // array of challenge ids to prevent duplicates
 };

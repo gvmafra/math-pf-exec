@@ -29,6 +29,10 @@ export type Action =
   | { type: 'RESET_GAME'; payload?: undefined }
   | { type: 'CLEAR_JUST_ADVANCED_STAGE'; payload?: undefined }
   | { type: 'ADVANCE_TO_NEXT_STAGE'; payload?: undefined }
+  | {
+      type: 'INCREMENT_CLICK_COUNT';
+      payload: { stageIndex: number; levelIndex: number };
+    }
   | { type: 'SET_STAGE'; payload: { stageIndex: number } };
 
 function loopList<T>(list: T[], index: number): T {
@@ -57,6 +61,28 @@ export default function gameStateReducer(
         const currentCells =
           draft.stages[stageIndex].levels[levelIndex].canvas.toggled;
         currentCells[cellIndex] = !currentCells[cellIndex];
+        break;
+      }
+
+      case 'INCREMENT_CLICK_COUNT': {
+        const { stageIndex, levelIndex } = action.payload;
+        draft.stages[stageIndex].levels[levelIndex].metadata.clickCount += 1;
+
+        // implement the logic for removing points from the score
+        
+        // 1st step: get the current level
+        const currentLevel = draft.stages[stageIndex].levels[levelIndex];
+        // 2nd step: get the current challenge and game canvas
+        const { challenge, canvas } = currentLevel;
+        // 3d step: get the current ratio of the challenge
+        const challengeRatio = getToggledRatio(challenge);
+        // 4th step: get the current number of segments in the game canvas;
+        // get the length of the toggled array for challenge canvas
+        const numberOfSegments = canvas.toggled.length;
+        /*
+
+        */
+
         break;
       }
 
@@ -166,6 +192,7 @@ export default function gameStateReducer(
 
       case 'RESET_SQUARE': {
         const { stageIndex, levelIndex } = action.payload;
+        draft.stages[stageIndex].levels[levelIndex].metadata.clickCount = 0;
         const gameCanvasDraft =
           draft.stages[stageIndex].levels[levelIndex].canvas;
 
@@ -180,6 +207,7 @@ export default function gameStateReducer(
           gameCanvasDraft.grid.current.rows *
             gameCanvasDraft.grid.current.columns
         ).fill(false);
+
         break;
       }
 

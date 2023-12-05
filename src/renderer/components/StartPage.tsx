@@ -23,7 +23,7 @@ const StartPage: React.FC = () => {
           <div className="flex items-center content-center gap-6">
             <ButtonFratix
               size="50"
-              linkTo="/CreditPage"
+              linkTo="/AboutPage"
               imgSrc={require('../img/iconFile.svg').default}
               altText="file icon"
             />
@@ -35,7 +35,7 @@ const StartPage: React.FC = () => {
             />
             <ButtonFratix
               size="50"
-              linkTo="/AboutPage"
+              linkTo="/CreditPage"
               imgSrc={require('../img/iconInfo.svg').default}
               altText="info icon"
             />

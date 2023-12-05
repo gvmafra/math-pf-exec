@@ -1,3 +1,4 @@
+//gameSetup.ts
 import genStageOne from './stages/stageOne';
 import genStageTwo from './stages/stageTwo';
 import genStageThree from './stages/stageThree';

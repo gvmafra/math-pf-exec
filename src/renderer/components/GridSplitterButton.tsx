@@ -7,26 +7,33 @@ interface GridSplitterButtonProps {
   dispatch: Dispatch<Action>;
   direction: Direction;
   disabled?: boolean;
+  stageIndex: number;
+  levelIndex: number;
 }
 
 const GridSplitterButton: FC<GridSplitterButtonProps> = ({
   dispatch,
   direction,
   disabled,
+  stageIndex,
+  levelIndex,
 }) => {
+  const handleClick = () => {
+    // divide square + increment click count
+    dispatch({
+      type: 'DIVIDE_SQUARE',
+      payload: { direction },
+    });
+    dispatch({
+      type: 'INCREMENT_CLICK_COUNT',
+      payload: { stageIndex, levelIndex },
+    });
+  };
   return (
-    <div className='relative'>
-      {/* for the rings behind thw */}
-      {/* <div className='absolute z-2 bg-white w-24 h-24 rounded-full'/>
-      <div className='absolute z-1 -top-2 -left-2 bg-yellow-400 w-28 h-28 rounded-full'/> */}
+    <div className="relative">
       <CircleButton
         disabled={disabled}
-        onClick={() =>
-          dispatch({
-            type: 'DIVIDE_SQUARE',
-            payload: { direction },
-          })
-        }
+        onClick={() => handleClick()}
         ariaLabel={`Divide Square in the ${direction} direction`}
         size="large"
       >

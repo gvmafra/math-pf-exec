@@ -25,6 +25,13 @@ function Canvas({
         cellIndex: index,
       },
     });
+    dispatch({
+      type: 'INCREMENT_CLICK_COUNT',
+      payload: {
+        stageIndex: currentStage,
+        levelIndex: currentLevel,
+      },
+    });
   };
 
   const handleKeyDown = (event: React.KeyboardEvent, index: number) => {

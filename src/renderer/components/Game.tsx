@@ -81,6 +81,8 @@ export default function Game({ state, dispatch }: GameProps) {
               dispatch={dispatch}
               direction="horizontal"
               disabled={horizontalSplitDisabled}
+              stageIndex={currentStageNum}
+              levelIndex={currentLevelNum}
             />
 
             <div className="flex gap-4">
@@ -135,6 +137,8 @@ export default function Game({ state, dispatch }: GameProps) {
               dispatch={dispatch}
               direction="vertical"
               disabled={verticalSplitDisabled}
+              stageIndex={currentStageNum}
+              levelIndex={currentLevelNum}
             />
 
             <div className="flex gap-4">
@@ -151,7 +155,8 @@ export default function Game({ state, dispatch }: GameProps) {
             </div>
           </>
         }
-        footer={<h3 className="text-black text-xl">Pontos:</h3>}
+        footer={<h3 className="text-black text-xl">Pontos: {currentLevelRef.metadata.score}</h3>
+      }
       />
     </div>
   );
