@@ -14,15 +14,6 @@ interface GameProps {
   dispatch: Dispatch<Action>;
 }
 
-function StageIndicator(currentStageNum: number, currentLevelNum: number) {
-  return (
-    <div className="flex flex-row gap-2">
-      <h3 className="text-black text-sm">Estágio: {currentStageNum + 1}</h3>
-      <h3 className="text-black text-sm">Nível: {currentLevelNum + 1}</h3>
-    </div>
-  );
-}
-
 export default function Game({ state, dispatch }: GameProps) {
   const navigate = useNavigate();
 
@@ -105,7 +96,16 @@ export default function Game({ state, dispatch }: GameProps) {
             />
           </div>
         </div>
-        <div className="flex w-full h-1/2 items-center justify-center bg-[#9378e3]">
+        <div className="flex w-full h-1/2 items-center justify-center bg-[#9378e3] relative">
+          <div className='absolute left-0'>
+            <img
+              src={require('../img/gridArt.svg').default}
+              alt="grid"
+              className="w-[17rem] h-auto left-0"
+            />
+          </div>
+          <div className='absolute left-[7.3rem]'>
+
           <GridSplitterButton
             dispatch={dispatch}
             direction="horizontal"
@@ -113,6 +113,7 @@ export default function Game({ state, dispatch }: GameProps) {
             stageIndex={currentStageNum}
             levelIndex={currentLevelNum}
           />
+          </div>
         </div>
         <div className="flex gap-4 mt-auto p-12">
           {/* <CircleButton
@@ -188,7 +189,16 @@ export default function Game({ state, dispatch }: GameProps) {
             />
           </div>
         </div>
-        <div className="flex w-full h-1/2 items-center justify-center bg-[#9378e3]">
+        <div className="flex w-full h-1/2 items-center justify-center bg-[#9378e3] relative">
+        <div className='absolute right-0'>
+  <img
+    src={require('../img/gridArt.svg').default}
+    alt="grid"
+    className="w-[17rem] h-auto right-0 transform scale-x-[-1]" // Use Tailwind's utility classes for transformation.
+  />
+</div>
+          <div className='absolute right-[7.3rem]'>
+
           <GridSplitterButton
             dispatch={dispatch}
             direction="vertical"
@@ -196,6 +206,7 @@ export default function Game({ state, dispatch }: GameProps) {
             stageIndex={currentStageNum}
             levelIndex={currentLevelNum}
           />
+          </div>
         </div>
         <div className="flex flex-col items-center justify-center gap-4 mt-auto p-6">
           <CircleButton onClick={handleNextLevelClick} ariaLabel="Next Level">

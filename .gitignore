@@ -30,3 +30,7 @@ npm-debug.log.*
 
 #pdfs
 *.pdf
+
+#audio
+*.mp3
+*.wav

@@ -1,9 +1,12 @@
-// CreditPage.tsx
+// ConfigPage.tsx
 import React from 'react';
 import ButtonFratix from './ButtonFratix';
 import FratixBackground from './FratixBackground';
+import RangeSlider from './RangeSlider';
 
-const NamePage: React.FC = () => {
+const ConfigPage: React.FC = () => {
+  const [volume, setVolume] = React.useState(50);
+
   return (
     // main container
     <div className="flex h-screen items-center">
@@ -22,18 +25,17 @@ const NamePage: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex flex-col bg-white h-screen w-1/2 px-20 items-center justify-center gap-6 mr-24 shadow-lg font-semibold">
-        <div className="flex w-full gap-6">
-          <p>MÚSICA</p>
-          <div className="flex h-6 w-full bg-slate-200 rounded-lg">
-            <div className="h-full w-10 bg-red-300 rounded-lg" />
-          </div>
-        </div>
-        <div className="flex w-full gap-6">
-          <p>EFEITOS</p>
-          <div className="flex h-6 w-full bg-slate-200 rounded-lg">
-            <div className="h-full w-10 bg-red-300 rounded-lg" />
-          </div>
+      <div className="flex flex-col bg-white h-screen w-1/2 items-center justify-center gap-6 mr-24 shadow-lg font-semibold">
+        <div className="flex gap-4 w-3/4">
+          <p>MÚSICA:</p>
+          <RangeSlider
+            value={volume}
+            setValue={setVolume}
+            min={0}
+            max={100}
+            step={1}
+          />
+          {volume}
         </div>
       </div>
 
@@ -50,4 +52,4 @@ const NamePage: React.FC = () => {
   );
 };
 
-export default NamePage;
+export default ConfigPage;

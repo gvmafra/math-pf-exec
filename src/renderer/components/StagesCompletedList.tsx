@@ -8,7 +8,7 @@ interface StagesCompletedListProps {
 const StagesCompletedList: React.FC<StagesCompletedListProps> = ({ stages }) => {
   return (
     <div>
-      <ol className="grid grid-cols-4 m-auto gap-4 text-xl p-6 rounded-xl">
+      <ol className="grid grid-cols-3 m-auto gap-4 text-xl p-6 rounded-xl">
         {stages.map((stage, index) => {
           const itemClasses = stage.metadata.completed
             ? 'w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center'
