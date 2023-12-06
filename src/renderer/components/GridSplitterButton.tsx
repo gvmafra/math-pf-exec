@@ -38,9 +38,13 @@ const GridSplitterButton: FC<GridSplitterButtonProps> = ({
         size="large"
       >
         {direction === 'horizontal' ? (
-          <div className="w-[90px] h-3 bg-black" />
+          <div>
+            <img src={require('../img/iconHorizontal.svg').default} alt="horizontal" className='w-full h-auto' />
+          </div>
         ) : (
-          <div className="w-3 h-[90px] bg-black" />
+          <div>
+            <img src={require('../img/iconVertical.svg').default} alt="vertical" className='w-full h-auto' />
+          </div>
         )}
       </CircleButton>
     </div>

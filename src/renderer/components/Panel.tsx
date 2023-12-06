@@ -21,7 +21,7 @@ function Panel({
 }: PanelProps) {
   return (
     <section
-      className={`py-16 bg-[#69C0C9] h-full flex flex-col items-center justify-between gap-y-16 ${panelClassName}`}
+      className={`py-16 bg-[#69C0C9] h-full flex flex-col items-center justify-between gap-y-5 ${panelClassName}`}
     >
       <div className={`${headerClassName}`}>{header}</div>
       <div

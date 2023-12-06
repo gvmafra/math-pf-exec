@@ -52,8 +52,8 @@ function Canvas({
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={200}
-      height={200}
+      width={220}
+      height={220}
       viewBox="0 0 100 100"
     >
       {toggledPaths.map((cellInfo, index) => (

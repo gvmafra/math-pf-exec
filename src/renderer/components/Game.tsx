@@ -72,92 +72,86 @@ export default function Game({ state, dispatch }: GameProps) {
     currentLevelRef.canvas.grid.options.columns.length === 1;
 
   return (
-    <div className=" relative flex flex-row w-screen items-center justify-between h-screen text-white">
-      <Panel // left panel
-        header={StageIndicator(currentStageNum, currentLevelNum)}
-        body={
-          <>
-            <GridSplitterButton
-              dispatch={dispatch}
-              direction="horizontal"
-              disabled={horizontalSplitDisabled}
-              stageIndex={currentStageNum}
-              levelIndex={currentLevelNum}
-            />
+    <div className=" relative flex w-screen items-center justify-between h-screen">
+      {/* left panel */}
+      <div className="flex flex-col items-center justify-center w-[30vw] h-screen bg-[#74c0c9]">
+        <div className="flex gap-4 mb-auto p-16">
+          <h3 className="text-black text-sm">Estágio: {currentStageNum + 1}</h3>
+          <h3 className="text-black text-sm">Nível: {currentLevelNum + 1}</h3>
+        </div>
 
-            <div className="flex gap-4">
-              <CircleButton
-                onClick={() => dispatch({ type: 'PREV_LEVEL' })}
-                ariaLabel="Previous Level"
-              >
-                Voltar
-              </CircleButton>
-              <CircleButton
-                onClick={handleNextLevelClick}
-                ariaLabel="Next Level"
-              >
-                Continuar
-              </CircleButton>
-            </div>
-          </>
-        }
-        footer={
-          <h3 className="text-black text-xl">
-            Cliques: {currentLevelRef.metadata.clickCount}
-          </h3>
-        }
-      />
+        <div className="flex w-full items-center justfy-center bg-[#9378e3]">
+          <GridSplitterButton
+            dispatch={dispatch}
+            direction="horizontal"
+            disabled={horizontalSplitDisabled}
+            stageIndex={currentStageNum}
+            levelIndex={currentLevelNum}
+          />
+        </div>
 
-      <Panel // Challenge Panel
-        header={
+        <div className="flex gap-4 mt-auto p-16">
+          <CircleButton
+            onClick={() => dispatch({ type: 'PREV_LEVEL' })}
+            ariaLabel="Previous Level"
+          >
+            Voltar
+          </CircleButton>
+          <CircleButton onClick={handleResetGame} ariaLabel="Reset Game">
+            Sair
+          </CircleButton>
+          <CircleButton onClick={handleResetSquare} ariaLabel="Reset Square">
+            Resetar
+          </CircleButton>
+        </div>
+      </div>
+
+      {/* middle panel */}
+      <div className="flex flex-col items-center justify-between w-[40vw] h-screen">
+        <div className="flex flex-col items-center justify-center bg-[#f66844] w-full h-full gap-10">
           <Challenge
             gameCanvas={
               state.stages[currentStageNum].levels[currentLevelNum].challenge
             }
             handleToggle={() => {}}
           />
-        }
-        body={
           <Canvas
             gameCanvas={currentLevelRef.canvas}
             dispatch={dispatch}
             currentLevel={currentLevelNum}
             currentStage={currentStageNum}
           />
-        }
-        footer={<h3 className="text-black text-xl">FRATIX</h3>}
-        panelClassName="w-[40vw] bg-[#F76C4B]"
-      />
+        </div>
 
-      <Panel // right panel
-        header={<h3 className="text-black text-xl">Tempo:</h3>}
-        body={
-          <>
-            <GridSplitterButton
-              dispatch={dispatch}
-              direction="vertical"
-              disabled={verticalSplitDisabled}
-              stageIndex={currentStageNum}
-              levelIndex={currentLevelNum}
-            />
+        {/* This div is now pushed to the bottom of the middle panel */}
+        <div className="flex bg-[#eebd35] w-full items-center justify-center p-3 mb-0">
+          <img
+            src={require('../img/logoFratixSm.svg').default}
+            alt="Logo Fratix"
+            className="w-[200px]"
+          />
+        </div>
+      </div>
 
-            <div className="flex gap-4">
-              <CircleButton
-                onClick={handleResetSquare}
-                ariaLabel="Reset Square"
-              >
-                Resetar
-              </CircleButton>
+      <div className="flex flex-col items-center justify-center w-[30vw] h-screen bg-[#74c0c9]">
+        <h3 className="text-black text-xl">
+          Cliques: {currentLevelRef.metadata.clickCount}
+        </h3>
+        <GridSplitterButton
+          dispatch={dispatch}
+          direction="vertical"
+          disabled={verticalSplitDisabled}
+          stageIndex={currentStageNum}
+          levelIndex={currentLevelNum}
+        />
 
-              <CircleButton onClick={handleResetGame} ariaLabel="Reset Game">
-                Estágios
-              </CircleButton>
-            </div>
-          </>
-        }
-        footer={<h3 className="text-black text-xl">Pontos: {currentLevelRef.metadata.score}</h3>
-      }
-      />
+        <CircleButton onClick={handleNextLevelClick} ariaLabel="Next Level">
+            Continuar
+          </CircleButton>
+        {/* <h3 className="text-black text-xl">
+          Pontos: {currentLevelRef.metadata.score}
+        </h3> */}
+      </div>
     </div>
   );
 }
