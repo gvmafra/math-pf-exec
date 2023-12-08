@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { GameState } from 'renderer/state/types';
 
 import { Action } from 'renderer/state/gameReducer';
+import scoreData from 'renderer/state/scoreData';
 import Challenge from './canvas/Challenge';
 import CircleButton from './CircleButton';
 import GridSplitterButton from './GridSplitterButton';
@@ -97,22 +98,21 @@ export default function Game({ state, dispatch }: GameProps) {
           </div>
         </div>
         <div className="flex w-full h-1/2 items-center justify-center bg-[#9378e3] relative">
-          <div className='absolute left-0'>
+          <div className="absolute left-0">
             <img
               src={require('../img/gridArt.svg').default}
               alt="grid"
               className="w-[17rem] h-auto left-0"
             />
           </div>
-          <div className='absolute left-[7.3rem]'>
-
-          <GridSplitterButton
-            dispatch={dispatch}
-            direction="horizontal"
-            disabled={horizontalSplitDisabled}
-            stageIndex={currentStageNum}
-            levelIndex={currentLevelNum}
-          />
+          <div className="absolute left-[7.3rem]">
+            <GridSplitterButton
+              dispatch={dispatch}
+              direction="horizontal"
+              disabled={horizontalSplitDisabled}
+              stageIndex={currentStageNum}
+              levelIndex={currentLevelNum}
+            />
           </div>
         </div>
         <div className="flex gap-4 mt-auto p-12">
@@ -126,21 +126,33 @@ export default function Game({ state, dispatch }: GameProps) {
               className="w-12 h-auto"
             />
           </CircleButton> */}
-          <CircleButton onClick={handleExitToConfig} ariaLabel="Next Level">
+          <CircleButton
+            onClick={handleExitToConfig}
+            ariaLabel="Next Level"
+            color="red"
+          >
             <img
               src={require('../img/iconAudio.svg').default}
               alt="next"
               className="w-12 h-auto"
             />
           </CircleButton>
-          <CircleButton onClick={handleResetGame} ariaLabel="Reset Game">
+          <CircleButton
+            onClick={handleResetGame}
+            ariaLabel="Reset Game"
+            color="red"
+          >
             <img
               src={require('../img/iconLeave.svg').default}
               alt="reset"
               className="w-12 h-auto"
             />
           </CircleButton>
-          <CircleButton onClick={handleResetSquare} ariaLabel="Reset Square">
+          <CircleButton
+            onClick={handleResetSquare}
+            ariaLabel="Reset Square"
+            color="red"
+          >
             <img
               src={require('../img/iconReset.svg').default}
               alt="reset"
@@ -166,6 +178,10 @@ export default function Game({ state, dispatch }: GameProps) {
             currentStage={currentStageNum}
           />
         </div>
+        <h3 className="text-black text-xl">
+          Pontos: {currentLevelRef.metadata.score}{' '}
+          {/* brought in algorithm to calculate the score */}
+        </h3>
         <div className="flex bg-[#eebd35] w-full items-center justify-center p-3 mb-0">
           <img
             src={require('../img/logoFratixSm.svg').default}
@@ -190,26 +206,29 @@ export default function Game({ state, dispatch }: GameProps) {
           </div>
         </div>
         <div className="flex w-full h-1/2 items-center justify-center bg-[#9378e3] relative">
-        <div className='absolute right-0'>
-  <img
-    src={require('../img/gridArt.svg').default}
-    alt="grid"
-    className="w-[17rem] h-auto right-0 transform scale-x-[-1]" // Use Tailwind's utility classes for transformation.
-  />
-</div>
-          <div className='absolute right-[7.3rem]'>
-
-          <GridSplitterButton
-            dispatch={dispatch}
-            direction="vertical"
-            disabled={verticalSplitDisabled}
-            stageIndex={currentStageNum}
-            levelIndex={currentLevelNum}
-          />
+          <div className="absolute right-0">
+            <img
+              src={require('../img/gridArt.svg').default}
+              alt="grid"
+              className="w-[17rem] h-auto right-0 transform scale-x-[-1]"
+            />
+          </div>
+          <div className="absolute right-[7.3rem]">
+            <GridSplitterButton
+              dispatch={dispatch}
+              direction="vertical"
+              disabled={verticalSplitDisabled}
+              stageIndex={currentStageNum}
+              levelIndex={currentLevelNum}
+            />
           </div>
         </div>
         <div className="flex flex-col items-center justify-center gap-4 mt-auto p-6">
-          <CircleButton onClick={handleNextLevelClick} ariaLabel="Next Level">
+          <CircleButton
+            onClick={handleNextLevelClick}
+            ariaLabel="Next Level"
+            color="red"
+          >
             <img
               src={require('../img/iconNext.svg').default}
               alt="next"
@@ -222,9 +241,6 @@ export default function Game({ state, dispatch }: GameProps) {
             className="w-28 h-auto"
           />
         </div>
-        {/* <h3 className="text-black text-xl">
-          Pontos: {currentLevelRef.metadata.score}
-        </h3> */}
       </div>
     </div>
   );

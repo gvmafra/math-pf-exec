@@ -135,6 +135,7 @@ export type LevelMetadata = {
 export type Level = {
   challenge: ChallengeCanvas;
   canvas: GameCanvas;
+  // clickMax: number;
   metadata: LevelMetadata;
 };
 

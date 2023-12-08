@@ -35,13 +35,14 @@
 
 // export default CircleButton;
 
-import React, { FC, ButtonHTMLAttributes } from 'react';
+import { FC, ButtonHTMLAttributes } from 'react';
 
 interface CircleButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick: () => void;
   ariaLabel: string;
   size?: 'small' | 'large';
   disabled?: boolean;
+  color?: 'red' | 'white';
 }
 
 const CircleButton: FC<CircleButtonProps> = ({
@@ -50,12 +51,13 @@ const CircleButton: FC<CircleButtonProps> = ({
   children,
   size = 'small',
   disabled = false,
+  color = 'white',
 }) => {
   const getButtonClass = () => {
     const baseStyle = 'bg-white text-xs rounded-full flex items-center justify-center';
     const sizeStyle = size === 'large' ? 'w-[8rem] h-[8rem]' : 'w-[4rem] h-[4rem]';
     const disabledStyle = disabled ? 'opacity-40 cursor-not-allowed' : 'hover:bg-red-400 hover:border-red-700 hover:shadow-md';
-    const colorStyle = size === 'large' ? 'border-1 text-black' : 'bg-red-400 border-4 border-black';
+    const colorStyle = color === 'red' ? 'bg-yellow-500 border-4 border-black' : 'bg-white border-1 text-black';
     
     return `${baseStyle} ${sizeStyle} ${disabledStyle} ${colorStyle}`;
   };
@@ -67,6 +69,7 @@ const CircleButton: FC<CircleButtonProps> = ({
       aria-label={ariaLabel}
       aria-disabled={disabled}
       disabled={disabled}
+      color={color}
     >
       {children}
     </button>
