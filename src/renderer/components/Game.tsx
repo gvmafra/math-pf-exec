@@ -66,6 +66,24 @@ export default function Game({ state, dispatch }: GameProps) {
     currentLevelRef.canvas.type !== 'grid' ||
     currentLevelRef.canvas.grid.options.columns.length === 1;
 
+  interface StarScoreProps {
+    score: number;
+  }
+  const StarScore: React.FC<StarScoreProps> = ({ score }) => {
+    let stars = [];
+    for (let i = 0; i < score; i++) {
+      stars.push(
+        <img
+          src={require('../img/iconStar.svg').default}
+          alt="Star"
+          key={i}
+          className="w-8 h-8 flex"
+        />
+      );
+    }
+    return <>{stars}</>;
+  };
+
   return (
     <div className=" relative flex w-screen items-center justify-between h-screen">
       {/* left panel */}
@@ -173,10 +191,12 @@ export default function Game({ state, dispatch }: GameProps) {
             currentStage={currentStageNum}
           />
         </div>
-        <h3 className="text-black text-xl">
-          Pontos: {currentLevelRef.metadata.score}
-          {/* turn the score into stars - i.e. if the score is 2, two stars are displayed (instead of just the number) */}
-        </h3>
+        <div className="flex items-center justify-center w-full bg-[#f66844] h-20 gap-4">
+          <div className="flex items-center justify-center w-1/3 bg-white h-12 rounded-full">
+            <StarScore score={currentLevelRef.metadata.score} />
+          </div>
+        </div>
+
         <div className="flex bg-[#eebd35] w-full items-center justify-center p-3 mb-0">
           <Overlayed
             imgSrc={require('../img/logoFratixSm.svg').default}

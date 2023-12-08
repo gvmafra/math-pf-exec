@@ -1,10 +1,11 @@
 // src/renderer/components/AdvanceStage.tsx
 import { Action } from 'renderer/state/gameReducer';
 import { Dispatch } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import { GameState } from 'renderer/state/types';
 import StagesCompletedList from './StagesCompletedList';
 import FratixBackground from './FratixBackground';
+import Overlayed from './Overlayed';
 
 interface AdvanceStageProps {
   state: GameState;
@@ -36,10 +37,10 @@ function AdvanceStage({ state, dispatch }: AdvanceStageProps) {
 
       <div className="flex items-center m-auto gap-8 mt-12">
         <div className="flex flex-col items-center gap-4">
-          <img
-            src={require('../img/logoFratixSm.svg').default}
-            alt="Logo Fratix"
-            className="flex justify-center w-[200px]"
+          <Overlayed
+            imgSrc={require('../img/logoFratixSm.svg').default}
+            altText="Logo Fratix"
+            styling="flex justify-center w-[200px]"
           />
           <p className="text-2xl text-[#6c5353] text-center font-bold">
             ESTÁGIO COMPLETO
@@ -49,7 +50,8 @@ function AdvanceStage({ state, dispatch }: AdvanceStageProps) {
 
       <div className="flex flex-col bg-[#fdffee] h-screen w-1/2 px-20 items-center justify-center gap-10 mr-24 shadow-lg">
         <h1 className="text-2xl font-bold text-center">
-          Parabéns!<br/> Você passou de estágio!
+          Parabéns!
+          <br /> Você passou de estágio!
         </h1>
         <StagesCompletedList stages={state.stages} />
         <button

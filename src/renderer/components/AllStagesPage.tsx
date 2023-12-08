@@ -6,6 +6,7 @@ import { Action } from 'renderer/state/gameReducer';
 import { useNavigate } from 'react-router-dom';
 import FratixBackground from './FratixBackground';
 import ButtonFratix from './ButtonFratix';
+import Overlayed from './Overlayed';
 
 interface GameProps {
   state: GameState;
@@ -40,22 +41,25 @@ const AllStagesPage: React.FC<GameProps> = ({ state, dispatch }) => {
 
   return (
     <div className="flex h-screen items-center">
-
       <FratixBackground color="yellow" />
 
       <div className="flex items-center m-auto gap-8 mt-12">
         <div className="flex flex-col items-center gap-4">
-          <img
-            src={require('../img/logoFratixSm.svg').default}
-            alt="Logo Fratix"
-            className="flex justify-center w-[200px]"
+          <Overlayed
+            imgSrc={require('../img/logoFratixSm.svg').default}
+            altText="Logo Fratix"
+            styling="flex justify-center w-[200px]"
           />
-          <p className="text-2xl text-[#6c5353] text-center font-bold">ESTÁGIOS</p>
+          <p className="text-2xl text-[#6c5353] text-center font-bold">
+            ESTÁGIOS
+          </p>
         </div>
       </div>
 
       <div className="flex flex-col bg-[#fdffee] h-screen w-1/2 px-20 items-center justify-center gap-10 mr-24 shadow-lg">
-        <p className='text-xl text-[#6c5353] text-center font-bold'>Selecione o estágio:</p>
+        <p className="text-xl text-[#6c5353] text-center font-bold">
+          Selecione o estágio:
+        </p>
         <div className="grid grid-cols-3 gap-4 items-center content-center">
           {stageNames.map((stageName, i) => {
             return (

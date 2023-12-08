@@ -3,6 +3,7 @@ import React from 'react';
 import ButtonFratix from './ButtonFratix';
 import FratixBackground from './FratixBackground';
 import RangeSlider from './RangeSlider';
+import Overlayed from './Overlayed';
 
 const ConfigPage: React.FC = () => {
   const [volume, setVolume] = React.useState(50);
@@ -16,10 +17,10 @@ const ConfigPage: React.FC = () => {
       {/* main page */}
       <div className="flex items-center m-auto gap-8 mt-12">
         <div className="flex flex-col items-center gap-4">
-          <img
-            src={require('../img/logoFratixSm.svg').default}
-            alt="Logo Fratix"
-            className="flex justify-center w-[200px]"
+          <Overlayed
+            imgSrc={require('../img/logoFratixSm.svg').default}
+            altText="Logo Fratix"
+            styling="flex justify-center w-[200px]"
           />
           <p className="text-2xl text-center font-bold">CONFIGURAÇÕES</p>
         </div>

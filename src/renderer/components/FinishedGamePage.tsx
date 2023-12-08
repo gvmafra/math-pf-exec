@@ -3,8 +3,8 @@ import { Dispatch } from 'react';
 import { GameState } from 'renderer/state/types';
 import { useNavigate } from 'react-router-dom';
 import StagesCompletedList from './StagesCompletedList';
-import CircleButton from './CircleButton';
 import FratixBackground from './FratixBackground';
+import Overlayed from './Overlayed';
 
 interface FinishedGameProps {
   state: GameState;
@@ -25,10 +25,10 @@ function FinishedGame({ state, dispatch }: FinishedGameProps) {
 
       <div className="flex items-center m-auto gap-8 mt-12">
         <div className="flex flex-col items-center gap-4">
-          <img
-            src={require('../img/logoFratixSm.svg').default}
-            alt="Logo Fratix"
-            className="flex justify-center w-[200px]"
+          <Overlayed
+            imgSrc={require('../img/logoFratixSm.svg').default}
+            altText="Logo Fratix"
+            styling="flex justify-center w-[200px]"
           />
           <p className="text-2xl text-[#6c5353] text-center font-bold">
             FIM DO JOGO
