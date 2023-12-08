@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { GameState } from 'renderer/state/types';
 
 import { Action } from 'renderer/state/gameReducer';
-import scoreData from 'renderer/state/scoreData';
 import Challenge from './canvas/Challenge';
 import CircleButton from './CircleButton';
 import GridSplitterButton from './GridSplitterButton';
 import Canvas from './canvas/Canvas';
+import Overlayed from './Overlayed';
 
 interface GameProps {
   state: GameState;
@@ -75,20 +75,20 @@ export default function Game({ state, dispatch }: GameProps) {
             <div className="flex items-center justify-center w-[4rem] h-[4rem] bg-white border-4 border-yellow-400 rounded-full font-bold text-4xl">
               {currentStageNum + 1}
             </div>
-            <img
-              src={require('../img/iconEstágio.svg').default}
-              alt="stage"
-              className="w-24 h-auto"
+            <Overlayed
+              imgSrc={require('../img/iconEstágio.svg').default}
+              altText="stage"
+              styling="w-24 h-auto"
             />
           </div>
           <div className="flex flex-col items-center justify-center gap-2">
             <div className="flex items-center justify-center w-[4rem] h-[4rem] bg-white border-4 border-yellow-400 rounded-full font-bold text-4xl">
               {currentLevelNum + 1}
             </div>
-            <img
-              src={require('../img/iconNivel.svg').default}
-              alt="level"
-              className="w-20 h-auto"
+            <Overlayed
+              imgSrc={require('../img/iconNivel.svg').default}
+              altText="level"
+              styling="w-20 h-auto"
             />
           </div>
         </div>
@@ -123,13 +123,13 @@ export default function Game({ state, dispatch }: GameProps) {
           </CircleButton> */}
           <CircleButton
             onClick={handleExitToConfig}
-            ariaLabel="Next Level"
+            ariaLabel="Exit to Config"
             color="red"
           >
-            <img
-              src={require('../img/iconAudio.svg').default}
-              alt="next"
-              className="w-12 h-auto"
+            <Overlayed
+              imgSrc={require('../img/iconAudio.svg').default}
+              altText="next"
+              styling="w-12 h-auto"
             />
           </CircleButton>
           <CircleButton
@@ -137,10 +137,10 @@ export default function Game({ state, dispatch }: GameProps) {
             ariaLabel="Reset Game"
             color="red"
           >
-            <img
-              src={require('../img/iconLeave.svg').default}
-              alt="reset"
-              className="w-12 h-auto"
+            <Overlayed
+              imgSrc={require('../img/iconLeave.svg').default}
+              altText="reset"
+              styling="w-12 h-auto"
             />
           </CircleButton>
           <CircleButton
@@ -148,10 +148,10 @@ export default function Game({ state, dispatch }: GameProps) {
             ariaLabel="Reset Square"
             color="red"
           >
-            <img
-              src={require('../img/iconReset.svg').default}
-              alt="reset"
-              className="w-12 h-auto"
+            <Overlayed
+              imgSrc={require('../img/iconReset.svg').default}
+              altText="reset"
+              styling="w-12 h-auto"
             />
           </CircleButton>
         </div>
@@ -174,14 +174,14 @@ export default function Game({ state, dispatch }: GameProps) {
           />
         </div>
         <h3 className="text-black text-xl">
-          Pontos: {currentLevelRef.metadata.score}{' '}
-          {/* brought in algorithm to calculate the score */}
+          Pontos: {currentLevelRef.metadata.score}
+          {/* turn the score into stars - i.e. if the score is 2, two stars are displayed (instead of just the number) */}
         </h3>
         <div className="flex bg-[#eebd35] w-full items-center justify-center p-3 mb-0">
-          <img
-            src={require('../img/logoFratixSm.svg').default}
-            alt="Logo Fratix"
-            className="w-[200px]"
+          <Overlayed
+            imgSrc={require('../img/logoFratixSm.svg').default}
+            altText="Logo Fratix"
+            styling="w-[200px]"
           />
         </div>
       </div>
@@ -193,19 +193,19 @@ export default function Game({ state, dispatch }: GameProps) {
             <div className="flex items-center justify-center w-[4rem] h-[4rem] bg-white border-4 border-yellow-400 rounded-full font-bold text-4xl">
               {currentLevelRef.metadata.clickCount}
             </div>
-            <img
-              src={require('../img/iconCliques.svg').default}
-              alt="clicks"
-              className="w-24 h-auto"
+            <Overlayed
+              imgSrc={require('../img/iconCliques.svg').default}
+              altText="clicks"
+              styling="w-24 h-auto"
             />
           </div>
         </div>
         <div className="flex w-full h-1/2 items-center justify-center bg-[#9378e3] relative">
           <div className="absolute right-0">
-            <img
-              src={require('../img/gridArt.svg').default}
-              alt="grid"
-              className="w-[17rem] h-auto right-0 transform scale-x-[-1]"
+            <Overlayed
+              imgSrc={require('../img/gridArt.svg').default}
+              altText="grid"
+              styling="w-[17rem] h-auto right-0 transform scale-x-[-1]"
             />
           </div>
           <div className="absolute right-[7.3rem]">
@@ -224,16 +224,16 @@ export default function Game({ state, dispatch }: GameProps) {
             ariaLabel="Next Level"
             color="red"
           >
-            <img
-              src={require('../img/iconNext.svg').default}
-              alt="next"
-              className="w-14 h-auto"
+            <Overlayed
+              imgSrc={require('../img/iconNext.svg').default}
+              altText="next"
+              styling="w-28 h-auto"
             />
           </CircleButton>
-          <img
-            src={require('../img/iconAvancar.svg').default}
-            alt="level"
-            className="w-28 h-auto"
+          <Overlayed
+            imgSrc={require('../img/iconAvancar.svg').default}
+            altText="level"
+            styling="w-28 h-auto"
           />
         </div>
       </div>
