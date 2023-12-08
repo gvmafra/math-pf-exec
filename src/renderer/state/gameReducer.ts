@@ -95,6 +95,10 @@ export default function gameStateReducer(
           draft.stages[stageIndex].levels[levelIndex].metadata.score =
             newScore as 1 | 2 | 3;
         }
+        // reset the score to 3 if the user resets the square
+        if (currentClickCount === 0) {
+          draft.stages[stageIndex].levels[levelIndex].metadata.score = 3;
+        }
 
         break;
       }
@@ -220,6 +224,9 @@ export default function gameStateReducer(
           gameCanvasDraft.grid.current.rows *
             gameCanvasDraft.grid.current.columns
         ).fill(false);
+
+        // Reset the score to 3
+        draft.stages[stageIndex].levels[levelIndex].metadata.score = 3;
 
         break;
       }

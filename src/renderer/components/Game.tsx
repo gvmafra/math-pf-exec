@@ -46,11 +46,6 @@ export default function Game({ state, dispatch }: GameProps) {
     });
   };
 
-  // save game state to local storage
-  // useEffect(() => {
-  //   localStorage.setItem('gameState', JSON.stringify(state));
-  // }, [state]);
-
   const handleExitToConfig = () => {
     navigate('/ConfigPage');
   };
