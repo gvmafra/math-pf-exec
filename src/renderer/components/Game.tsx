@@ -112,13 +112,16 @@ export default function Game({ state, dispatch }: GameProps) {
         </div>
         <div className="flex w-full h-1/2 items-center justify-center bg-[#9378e3] relative">
           <div className="absolute left-0">
-            <img
-              src={require('../img/gridArt.svg').default}
-              alt="grid"
-              className="w-[17rem] h-auto left-0"
+            <Overlayed
+              imgSrc={require('../img/gridArt.svg').default}
+              altText="grid"
+              styling="w-[17rem] h-auto left-0"
             />
           </div>
+          <div className="absolute w-8 right-0 h-full bg-gradient-to-l from-purple-700 to-transparent -z-1" />
           <div className="absolute left-[7.3rem]">
+            {' '}
+            {/* horizontal button */}
             <GridSplitterButton
               dispatch={dispatch}
               direction="horizontal"
@@ -129,16 +132,8 @@ export default function Game({ state, dispatch }: GameProps) {
           </div>
         </div>
         <div className="flex gap-4 mt-auto p-12">
-          {/* <CircleButton
-            onClick={() => dispatch({ type: 'PREV_LEVEL' })}
-            ariaLabel="Previous Level"
-          >
-            <img
-              src={require('../img/iconReturn.svg').default}
-              alt="back"
-              className="w-12 h-auto"
-            />
-          </CircleButton> */}
+          {' '}
+          {/* bottom buttons */}
           <CircleButton
             onClick={handleExitToConfig}
             ariaLabel="Exit to Config"
@@ -177,7 +172,7 @@ export default function Game({ state, dispatch }: GameProps) {
 
       {/* middle panel */}
       <div className="flex flex-col items-center justify-between w-[40vw] h-screen">
-        <div className="flex flex-col items-center justify-center bg-[#f66844] w-full h-full gap-14">
+        <div className="flex flex-col items-center justify-center bg-[#f66844] w-full h-full gap-4">
           <Challenge
             gameCanvas={
               state.stages[currentStageNum].levels[currentLevelNum].challenge
@@ -192,16 +187,16 @@ export default function Game({ state, dispatch }: GameProps) {
           />
         </div>
         <div className="flex items-center justify-center w-full bg-[#f66844] h-20 gap-4">
-          <div className="flex items-center justify-center w-1/3 bg-white h-12 rounded-full">
+          <div className="flex items-center justify-center bg-[#fff] h-12 mb-8 px-4 gap-2 rounded-full">
             <StarScore score={currentLevelRef.metadata.score} />
           </div>
         </div>
 
-        <div className="flex bg-[#eebd35] w-full items-center justify-center p-3 mb-0">
+        <div className="flex bg-[#eebd35] w-full items-center justify-center p-2 mb-0">
           <Overlayed
             imgSrc={require('../img/logoFratixSm.svg').default}
             altText="Logo Fratix"
-            styling="w-[200px]"
+            styling="w-[150px]"
           />
         </div>
       </div>
@@ -228,6 +223,7 @@ export default function Game({ state, dispatch }: GameProps) {
               styling="w-[17rem] h-auto right-0 transform scale-x-[-1]"
             />
           </div>
+          <div className="absolute w-8 left-0 h-full bg-gradient-to-r from-purple-700 to-transparent -z-1" />
           <div className="absolute right-[7.3rem]">
             <GridSplitterButton
               dispatch={dispatch}
@@ -260,3 +256,14 @@ export default function Game({ state, dispatch }: GameProps) {
     </div>
   );
 }
+
+/* <CircleButton
+  onClick={() => dispatch({ type: 'PREV_LEVEL' })}
+  ariaLabel="Previous Level"
+>
+  <img
+    src={require('../img/iconReturn.svg').default}
+    alt="back"
+    className="w-12 h-auto"
+  />
+</CircleButton> */

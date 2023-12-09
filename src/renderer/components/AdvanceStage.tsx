@@ -22,14 +22,14 @@ function AdvanceStage({ state, dispatch }: AdvanceStageProps) {
 
   // Inside your AdvanceStage component
 
-  const handleAdvanceToNextStage = () => {
-    // Dispatch the new action
-    dispatch({ type: 'ADVANCE_TO_NEXT_STAGE' });
+  // const handleAdvanceToNextStage = () => {
+  //   // Dispatch the new action
+  //   dispatch({ type: 'ADVANCE_TO_NEXT_STAGE' });
 
-    // Navigate to the next stage
-    const nextStageIndex = state.currentStage + 1;
-    navigate(`/play/${nextStageIndex}`);
-  };
+  //   // Navigate to the next stage
+  //   const nextStageIndex = state.currentStage + 1;
+  //   navigate(`/play/${nextStageIndex}`);
+  // };
 
   return (
     <div className="flex h-screen items-center text-[#6c5353]">

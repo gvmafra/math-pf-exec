@@ -23,13 +23,13 @@ export type Action =
   | { type: 'NEXT_LEVEL'; payload: { stageIndex: number; levelIndex: number } }
   | { type: 'PREV_LEVEL'; payload?: undefined }
   | { type: 'DIVIDE_SQUARE'; payload: { direction: Direction } }
+  | { type: 'STAGE_COMPLETED'; payload: { stageIndex: number } }
   | {
       type: 'RESET_SQUARE';
       payload: { stageIndex: number; levelIndex: number };
     }
   | { type: 'RESET_GAME'; payload?: undefined }
   | { type: 'CLEAR_JUST_ADVANCED_STAGE'; payload?: undefined }
-  | { type: 'ADVANCE_TO_NEXT_STAGE'; payload?: undefined }
   | {
       type: 'INCREMENT_CLICK_COUNT';
       payload: { stageIndex: number; levelIndex: number };
@@ -38,15 +38,12 @@ export type Action =
 
 function loopList<T>(list: T[], index: number): T {
   const lastIndex = list.length - 1;
-
   if (index < 0) {
     return list[lastIndex];
   }
-
   if (index > lastIndex) {
     return list[0];
   }
-
   return list[index];
 }
 
@@ -69,28 +66,26 @@ export default function gameStateReducer(
         const { stageIndex, levelIndex } = action.payload;
         draft.stages[stageIndex].levels[levelIndex].metadata.clickCount += 1;
 
-        // implement the logic for removing points from the score
-        // 1st step: get the current level
-        const currentLevel = draft.stages[stageIndex].levels[levelIndex];
-        // 2nd step: get the current challenge and game canvas
-        const { challenge, canvas } = currentLevel;
-        // 3d step: get the current ratio of the challenge
-        const challengeRatio = getToggledRatio(challenge);
+        // // implement the logic for removing points from the score
+        // // 1st step: get the current level
+        // const currentLevel = draft.stages[stageIndex].levels[levelIndex];
+        // // 2nd step: get the current challenge and game canvas
+        // const { challenge, canvas } = currentLevel;
+        // // 3d step: get the current ratio of the challenge
+        // const challengeRatio = getToggledRatio(challenge);
+        // // 4th step: get the current number of segments in the game canvas;
+        // // get the length of the toggled array for challenge canvas
+        // const numberOfSegments = canvas.toggled.length;
 
-        // 4th step: get the current number of segments in the game canvas;
-        // get the length of the toggled array for challenge canvas
-        const numberOfSegments = canvas.toggled.length;
-
+        // UPDATED:
         // Access the clickMax for this particular level from the scoreData
         const clickMax = scoreData[stageIndex].levels[levelIndex].clickMax;
-
         // If the current clickCount exceeds the clickMax, decrease the score by the difference
         const currentClickCount =
           draft.stages[stageIndex].levels[levelIndex].metadata.clickCount;
         if (currentClickCount > clickMax) {
           let newScore = 3 - (currentClickCount - clickMax);
           newScore = newScore < 1 ? 1 : newScore; // Make sure the score never falls below 1
-
           // Update the score in the state
           draft.stages[stageIndex].levels[levelIndex].metadata.score =
             newScore as 1 | 2 | 3;
@@ -99,7 +94,25 @@ export default function gameStateReducer(
         if (currentClickCount === 0) {
           draft.stages[stageIndex].levels[levelIndex].metadata.score = 3;
         }
+        break;
+      }
 
+      case 'STAGE_COMPLETED': {
+        const { stageIndex } = action.payload;
+        const stage = draft.stages[stageIndex];
+        
+        // Calculate the stage score by summing up the scores of all levels in this stage
+        let stageScore = 0;
+        for (let level of stage.levels) {
+          stageScore += level.metadata.score;
+        }
+      
+        // Display or save this score somewhere, depending on your requirements
+        console.log(`Total Score for Stage ${stageIndex+1}:`, stageScore);
+        
+        // If you're adding a 'totalScore' field to your StageMetadata type, you could also store the score as follows
+        // stage.metadata.totalScore = stageScore;
+      
         break;
       }
 
@@ -107,10 +120,8 @@ export default function gameStateReducer(
         const { direction } = action.payload;
         const { currentStage } = draft;
         const { currentLevel } = draft.stages[currentStage].metadata;
-
         const gameCanvasDraft =
           draft.stages[currentStage].levels[currentLevel].canvas;
-
         if (gameCanvasDraft.type != 'grid') {
           console.log('Cannot divide a non-grid canvas');
           return;
@@ -247,27 +258,6 @@ export default function gameStateReducer(
         draft.currentStage = stageIndex;
         break;
       }
-
-      // // Add a new case in your reducer
-      // case 'ADVANCE_TO_NEXT_STAGE': {
-      //   const stageLastIndex = draft.stages.length - 1;
-      //   if (draft.currentStage >= stageLastIndex) {
-      //     // If you're on the last stage, you might not do anything
-      //     // Or you could potentially set finishedGame to true,
-      //     // or take any other action that makes sense in your game context
-      //     draft.finishedGame = true;
-      //     return;
-      //   }
-
-      //   // Advance to the next stage
-      //   draft.currentStage += 1;
-      //   // Assuming that advancing to the next stage should
-      //   // also reset the level counter of this new stage, set it to 0 or to whatever makes sense in your game context
-      //   draft.stages[draft.currentStage].metadata.currentLevel = 0;
-      //   // Reset the justAdvancedStage flag
-      //   draft.justAdvancedStage = false;
-      //   break;
-      // }
 
       default: {
         break;
