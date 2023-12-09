@@ -19,7 +19,7 @@ export default function Grid({ grid, handleToggle }: GridCanvasProps) {
 
   return (
     <div
-      className="w-[165px] h-[165px] border-2 border-black grid grid-flow-dense justify-center items-center"
+      className="w-[180px] h-[180px] border-2 border-black grid grid-flow-dense justify-center items-center"
       style={gridStyle}
     >
       {cells.map((cell, i) => {
