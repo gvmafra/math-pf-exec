@@ -179,17 +179,19 @@ export default function Game({ state, dispatch }: GameProps) {
             }
             handleToggle={() => {}}
           />
+
+          <div className="flex items-center justify-center w-full bg-[#f66844] h-20 gap-4">
+            <div className="flex items-center justify-center bg-[#fff] h-12 px-4 gap-2 rounded-full">
+              <StarScore score={currentLevelRef.metadata.score} />
+            </div>
+          </div>
+
           <Canvas
             gameCanvas={currentLevelRef.canvas}
             dispatch={dispatch}
             currentLevel={currentLevelNum}
             currentStage={currentStageNum}
           />
-        </div>
-        <div className="flex items-center justify-center w-full bg-[#f66844] h-20 gap-4">
-          <div className="flex items-center justify-center bg-[#fff] h-12 mb-8 px-4 gap-2 rounded-full">
-            <StarScore score={currentLevelRef.metadata.score} />
-          </div>
         </div>
 
         <div className="flex bg-[#eebd35] w-full items-center justify-center p-2 mb-0">
