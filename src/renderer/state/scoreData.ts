@@ -47,7 +47,7 @@ const scoreData: StageData[] = [
       { clickMax: 2 },
       { clickMax: 2 },
       { clickMax: 2 },
-      { clickMax: 2 },
+      { clickMax: 4 },
       { clickMax: 2 },
       { clickMax: 2 },
       { clickMax: 2 },

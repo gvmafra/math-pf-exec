@@ -1,4 +1,5 @@
 // Game.tsx
+// contains the game screen, which is the main screen of the game
 import { Dispatch, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GameState } from 'renderer/state/types';

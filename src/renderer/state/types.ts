@@ -1,3 +1,4 @@
+//types.ts
 export type ShapeIds =
   | 'Square2a'
   | 'Square2b'
@@ -135,7 +136,6 @@ export type LevelMetadata = {
 export type Level = {
   challenge: ChallengeCanvas;
   canvas: GameCanvas;
-  // clickMax: number;
   metadata: LevelMetadata;
 };
 
@@ -143,6 +143,7 @@ export type Level = {
 export type StageMetadata = {
   currentLevel: number;
   completed: boolean;
+  stageScore: number;
 };
 
 // stages are a collection of levels or similar difficulty, they allow the game to have milestones

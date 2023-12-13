@@ -1,4 +1,4 @@
-// src/renderer/components/AdvanceStage.tsx
+//AdvanceStage.tsx
 import { Action } from 'renderer/state/gameReducer';
 import { Dispatch } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -19,17 +19,6 @@ function AdvanceStage({ state, dispatch }: AdvanceStageProps) {
     dispatch({ type: 'CLEAR_JUST_ADVANCED_STAGE' });
     navigate('/AllStagesPage');
   };
-
-  // Inside your AdvanceStage component
-
-  // const handleAdvanceToNextStage = () => {
-  //   // Dispatch the new action
-  //   dispatch({ type: 'ADVANCE_TO_NEXT_STAGE' });
-
-  //   // Navigate to the next stage
-  //   const nextStageIndex = state.currentStage + 1;
-  //   navigate(`/play/${nextStageIndex}`);
-  // };
 
   return (
     <div className="flex h-screen items-center text-[#6c5353]">
@@ -53,7 +42,9 @@ function AdvanceStage({ state, dispatch }: AdvanceStageProps) {
           Parabéns!
           <br /> Você passou de estágio!
         </h1>
-        <StagesCompletedList stages={state.stages} />
+
+        <StagesCompletedList stages={state.stages} dispatch={dispatch} />
+         
         <button
           className="flex items-center justify-center h-16 w-auto bg-white hover:bg-amber-100 text-[#6c5353] text-2xl font-bold py-4 px-6 border border-[#ecdbdb] shadow-md hover:shadow-md hover:shadow-amber-300 rounded-full"
           onClick={handleClick}

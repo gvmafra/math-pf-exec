@@ -1,3 +1,5 @@
+//utils.ts
+//contains helper functions used to initialize levels and stages
 import { challenges } from '../challengeData';
 import {
   Level,
@@ -26,7 +28,22 @@ export const initialLevelMetadata = (): LevelMetadata => ({
 export const initialStageMetadata = (): StageMetadata => ({
   currentLevel: 0,
   completed: false,
+  stageScore: 0,
 });
+
+// these functions are used to calculate the score of a level or stage
+// function to sum all the values in an array
+export function sumArray(array: number[]): number {
+  return array.reduce((a, b) => a + b, 0);
+}
+// function to calculate the score of a level
+export function calculateLevelScore(levelMetadata: LevelMetadata): number {
+  return levelMetadata.score;
+}
+// function to calculate the score of a stage
+export function calculateStageScore(levels: Level[]): number {
+  return sumArray(levels.map((level) => calculateLevelScore(level.metadata)));
+}
 
 // function is used to initialize a list of grids from array of current and max rows and columns
 export function initializeLevelGrids(
@@ -135,6 +152,7 @@ export function filterChallenges({
 
   return allChallenges.map((challenge) => challenge[0] as ShapeIds);
 }
+
 export function concatArrays<T>(arrays: T[][]): T[] {
   return arrays.reduce((acc, curr) => [...acc, ...curr], []);
 }

@@ -1,6 +1,3 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-console */
-
 //gameReducer.ts
 import { produce } from 'immer';
 import type { Draft } from 'immer';
@@ -9,6 +6,7 @@ import { GameState } from 'renderer/state/types';
 import { getToggledRatio } from './utils';
 import genInitialState from './gameSetup';
 import scoreData from './scoreData';
+import { calculateStageScore } from './stages/utils';
 
 export type Direction = 'horizontal' | 'vertical';
 export type Action =
@@ -23,7 +21,7 @@ export type Action =
   | { type: 'NEXT_LEVEL'; payload: { stageIndex: number; levelIndex: number } }
   | { type: 'PREV_LEVEL'; payload?: undefined }
   | { type: 'DIVIDE_SQUARE'; payload: { direction: Direction } }
-  | { type: 'STAGE_COMPLETED'; payload: { stageIndex: number } }
+  | { type: 'STAGE_COMPLETED'; payload: { stageIndex: number;  } }
   | {
       type: 'RESET_SQUARE';
       payload: { stageIndex: number; levelIndex: number };
@@ -66,17 +64,6 @@ export default function gameStateReducer(
         const { stageIndex, levelIndex } = action.payload;
         draft.stages[stageIndex].levels[levelIndex].metadata.clickCount += 1;
 
-        // // implement the logic for removing points from the score
-        // // 1st step: get the current level
-        // const currentLevel = draft.stages[stageIndex].levels[levelIndex];
-        // // 2nd step: get the current challenge and game canvas
-        // const { challenge, canvas } = currentLevel;
-        // // 3d step: get the current ratio of the challenge
-        // const challengeRatio = getToggledRatio(challenge);
-        // // 4th step: get the current number of segments in the game canvas;
-        // // get the length of the toggled array for challenge canvas
-        // const numberOfSegments = canvas.toggled.length;
-
         // UPDATED:
         // Access the clickMax for this particular level from the scoreData
         const clickMax = scoreData[stageIndex].levels[levelIndex].clickMax;
@@ -99,20 +86,12 @@ export default function gameStateReducer(
 
       case 'STAGE_COMPLETED': {
         const { stageIndex } = action.payload;
-        const stage = draft.stages[stageIndex];
-        
-        // Calculate the stage score by summing up the scores of all levels in this stage
-        let stageScore = 0;
-        for (let level of stage.levels) {
-          stageScore += level.metadata.score;
-        }
-      
-        // Display or save this score somewhere, depending on your requirements
-        console.log(`Total Score for Stage ${stageIndex+1}:`, stageScore);
-        
-        // If you're adding a 'totalScore' field to your StageMetadata type, you could also store the score as follows
-        // stage.metadata.totalScore = stageScore;
-      
+        draft.stages[stageIndex].metadata.completed = true;
+
+        // when stage is completed, sum the score from all levels in the stage
+        const stageScore = calculateStageScore(draft.stages[stageIndex].levels);
+        draft.stages[stageIndex].metadata.stageScore = stageScore;
+
         break;
       }
 
