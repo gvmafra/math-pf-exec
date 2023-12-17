@@ -58,11 +58,7 @@ const configuration: webpack.Configuration = {
       // Audio files
       {
         test: /\.(wav|mp3)$/i,
-        use: [
-          {
-            loader: 'url-loader',
-          },
-        ],
+        use: 'file-loader',
       },
       {
         test: /\.s?(a|c)ss$/,
