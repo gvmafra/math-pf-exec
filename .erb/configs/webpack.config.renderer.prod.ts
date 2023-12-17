@@ -38,6 +38,7 @@ const configuration: webpack.Configuration = {
 
   module: {
     rules: [
+      // CSS
       {
         test: /\.s?(a|c)ss$/,
         use: [
@@ -53,6 +54,15 @@ const configuration: webpack.Configuration = {
           'sass-loader',
         ],
         include: /\.module\.s?(c|a)ss$/,
+      },
+      // Audio files
+      {
+        test: /\.(wav|mp3)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+          },
+        ],
       },
       {
         test: /\.s?(a|c)ss$/,
@@ -76,12 +86,12 @@ const configuration: webpack.Configuration = {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: 'asset/resource',
       },
-      // Images
+      // Normal images
       {
         test: /\.(png|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
       },
-      // SVG
+      // vector images
       {
         test: /\.svg$/,
         use: [

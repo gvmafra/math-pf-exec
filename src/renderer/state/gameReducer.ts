@@ -21,7 +21,7 @@ export type Action =
   | { type: 'NEXT_LEVEL'; payload: { stageIndex: number; levelIndex: number } }
   | { type: 'PREV_LEVEL'; payload?: undefined }
   | { type: 'DIVIDE_SQUARE'; payload: { direction: Direction } }
-  | { type: 'STAGE_COMPLETED'; payload: { stageIndex: number;  } }
+  | { type: 'STAGE_COMPLETED'; payload: { stageIndex: number } }
   | {
       type: 'RESET_SQUARE';
       payload: { stageIndex: number; levelIndex: number };
@@ -194,6 +194,7 @@ export default function gameStateReducer(
             currentLevelIndex
           ].metadata.clickCount = 0;
         }
+
         break;
       }
 

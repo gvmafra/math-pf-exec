@@ -1,17 +1,35 @@
 // ConfigPage.tsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ButtonFratix from './ButtonFratix';
 import FratixBackground from './FratixBackground';
 import RangeSlider from './RangeSlider';
 import Overlayed from './Overlayed';
+import { Howl, Howler } from 'howler';
+// import { useGameState } from '../state/gameReducer';
+
+import fratixMusica from '../audio/fratixMusica.mp3';
+const sound = new Howl({
+  src: [fratixMusica],
+  autoplay: true,
+  loop: true,
+});
 
 const ConfigPage: React.FC = () => {
-  const [volume, setVolume] = React.useState(50);
 
+  const [volume, setVolume] = useState(50);
+  useEffect(() => {
+    Howler.volume(volume / 100);
+  }, [volume]);
+
+  // const [effectsVolume, setEffectsVolume] = useState(50);
+  // useEffect(() => {
+  //   Howler.volume(effectsVolume / 100);
+  // }, [effectsVolume]);
+  
   return (
     // main container
     <div className="flex h-screen items-center">
-      {/* background */}
+
       <FratixBackground color="yellow" />
 
       {/* main page */}

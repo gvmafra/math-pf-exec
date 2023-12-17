@@ -17,18 +17,14 @@ export default function App() {
   return (
     <Router>
       <Routes>
-
         <Route path="/" element={<StartPage />} />
-
         <Route path="/ConfigPage" element={<ConfigPage />} />
         <Route path="/CreditPage" element={<CreditPage />} />
         <Route path="/AboutPage" element={<AboutPage />} />
         <Route path="/AllStagesPage" element={<AllStagesPage state={state} dispatch={dispatch} />} />
-
         <Route path="/Game" element={<Game state={state} dispatch={dispatch} />} />
         <Route path="/AdvanceStage" element={<AdvanceStage state={state} dispatch={dispatch} />} />
         <Route path="/FinishedGame" element={<FinishedGame state={state} dispatch={dispatch} />} />
-        
       </Routes>
     </Router>
   );

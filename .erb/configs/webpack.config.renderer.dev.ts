@@ -62,6 +62,7 @@ const configuration: webpack.Configuration = {
 
   module: {
     rules: [
+      // CSS
       {
         test: /\.s?css$/,
         use: [
@@ -95,17 +96,26 @@ const configuration: webpack.Configuration = {
         ],
         exclude: /\.module\.s?(c|a)ss$/,
       },
+      // audio files
+      {
+        test: /\.(wav|mp3)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+          },
+        ],
+      },
       // Fonts
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: 'asset/resource',
       },
-      // Images
+      // normal images
       {
         test: /\.(png|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
       },
-      // SVG
+      // vector images
       {
         test: /\.svg$/,
         use: [

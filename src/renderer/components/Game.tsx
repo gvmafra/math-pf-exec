@@ -1,15 +1,31 @@
 // Game.tsx
-// contains the game screen, which is the main screen of the game
-import { Dispatch, useEffect } from 'react';
+import { Dispatch, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GameState } from 'renderer/state/types';
-
 import { Action } from 'renderer/state/gameReducer';
+
 import Challenge from './canvas/Challenge';
 import CircleButton from './CircleButton';
 import GridSplitterButton from './GridSplitterButton';
 import Canvas from './canvas/Canvas';
 import Overlayed from './Overlayed';
+
+import { Howl, Howler } from 'howler';
+
+// import estagioFim from '../audio/estagioFim.mp3';
+// import nivelFim from '../audio/nivelFim.wav';
+// import somDeErro from '../audio/somDeErro.wav';
+
+// create howl instances for each audio track
+// const estagioFimSound = new Howl({
+//   src: [estagioFim],
+// });
+// const nivelFimSound = new Howl({
+//   src: [nivelFim],
+// });
+// const somDeErroSound = new Howl({
+//   src: [somDeErro],
+// });
 
 interface GameProps {
   state: GameState;
@@ -17,6 +33,25 @@ interface GameProps {
 }
 
 export default function Game({ state, dispatch }: GameProps) {
+  // // set the volume of each audio track
+  // useEffect(() => {
+  //   Howler.volume(0.5);
+  // }, []);
+
+  // // handle function to control sound effect volumes
+  // const handleVolume = (volume: number) => {
+  //   Howler.volume(volume / 100);
+  // };
+
+  // volume state for sound effects
+  // const [volume, setVolume] = useState(50);
+
+  // // handleVolume function to control sound effect volumes
+  // const handleVolume = (value: number) => {
+  //   Howler.volume(value / 100);
+  //   setVolume(value);
+  // };
+
   const navigate = useNavigate();
 
   const { currentStage: currentStageNum } = state;
@@ -37,7 +72,49 @@ export default function Game({ state, dispatch }: GameProps) {
     navigate('/AllStagesPage');
   };
 
+  // const handleAudioPlayer = (statusCode: string) => {
+  //   switch (statusCode) {
+  //     case 'nextLevel':
+  //       nivelFimSound.play();
+  //       break;
+  //     case 'nextStage':
+  //       estagioFimSound.play();
+  //       break;
+  //     case 'levelFailed':
+  //       somDeErroSound.play();
+  //       break;
+  //   }
+  // };
+
+  // const handleNextLevelClick = () => {
+  //   dispatch({
+  //     type: 'NEXT_LEVEL',
+  //     payload: {
+  //       stageIndex: currentStageNum,
+  //       levelIndex: currentLevelNum,
+  //     },
+  //   });
+  // };
+  
   const handleNextLevelClick = () => {
+
+    // // Before dispatching 'NEXT_LEVEL' action, check for all different situations
+    // if (
+    //   // If the current level is the last level of the current stage
+    //   currentLevelNum ===
+    //   currentStageRef.levels.length - 1
+    // ) {
+    //   handleAudioPlayer('nextStage');
+    // } else if (
+    //   // if the current level is not the last level of the current stage
+    //   currentLevelNum <
+    //   currentStageRef.levels.length - 1
+    // ) {
+    //   handleAudioPlayer('nextLevel');
+    // } else {
+    //   handleAudioPlayer('levelFailed');
+    // }
+
     dispatch({
       type: 'NEXT_LEVEL',
       payload: {
@@ -190,7 +267,7 @@ export default function Game({ state, dispatch }: GameProps) {
         </div>
 
         <div className="flex items-center justify-center w-full bg-[#f66844] h-40 gap-4 relative">
-          <div className='absolute top-2'>
+          <div className="absolute top-2">
             <div className="flex items-center justify-center bg-[#fff] h-12 px-4 gap-2 rounded-full">
               <StarScore score={currentLevelRef.metadata.score} />
             </div>
@@ -239,6 +316,13 @@ export default function Game({ state, dispatch }: GameProps) {
             />
           </div>
         </div>
+
+        {/* 
+          I need to add functionality to this button, so that 
+          if the user clicks on it and passes to the next level, it triggers the 'nivelFim.wav' audio track. 
+          If the user clicks on it and passes to the next stage, it triggers the 'estagioFim.wav' audio track.
+          If the user clicks on it and does not pass the level, it triggers the 'somDeErro.wav' audio track.
+        */}
         <div className="flex flex-col items-center justify-center gap-4 mt-auto p-6">
           <CircleButton
             onClick={handleNextLevelClick}
@@ -251,6 +335,7 @@ export default function Game({ state, dispatch }: GameProps) {
               styling="w-28 h-auto"
             />
           </CircleButton>
+
           <Overlayed
             imgSrc={require('../img/iconAvancar.svg').default}
             altText="level"
@@ -261,14 +346,3 @@ export default function Game({ state, dispatch }: GameProps) {
     </div>
   );
 }
-
-/* <CircleButton
-  onClick={() => dispatch({ type: 'PREV_LEVEL' })}
-  ariaLabel="Previous Level"
->
-  <img
-    src={require('../img/iconReturn.svg').default}
-    alt="back"
-    className="w-12 h-auto"
-  />
-</CircleButton> */
