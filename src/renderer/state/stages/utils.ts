@@ -226,15 +226,16 @@ export const genRandomChallengeCanvases = ({
 };
 
 export function genGridCanvas( // function to generate a grid canvas
-  current: { rows: number; columns: number },
+  original: { rows: number; columns: number }, // original number of rows and columns
   options: { rows: number[]; columns: number[] }
 ): GridCanvas {
   return {
     type: 'grid',
     grid: {
-      current,
+      original,
+      current: original,
       options,
     },
-    toggled: Array(current.rows * current.columns).fill(false),
+    toggled: Array(original.rows * original.columns).fill(false),
   };
 }

@@ -111,6 +111,7 @@ export type GridCanvas = {
 };
 
 export type gridSpecs = {
+  original: { rows: number; columns: number };
   current: { rows: number; columns: number };
   options: {
     rows: number[];

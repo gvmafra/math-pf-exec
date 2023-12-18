@@ -201,6 +201,7 @@ export default function gameStateReducer(
       case 'RESET_SQUARE': {
         const { stageIndex, levelIndex } = action.payload;
         draft.stages[stageIndex].levels[levelIndex].metadata.clickCount = 0;
+
         const gameCanvasDraft =
           draft.stages[stageIndex].levels[levelIndex].canvas;
 
@@ -210,11 +211,15 @@ export default function gameStateReducer(
           ).fill(false);
           break;
         }
+        
+        const originalGridSize = 
+          gameCanvasDraft.grid.original.rows * gameCanvasDraft.grid.original.columns;
 
-        gameCanvasDraft.toggled = new Array(
-          gameCanvasDraft.grid.current.rows *
-            gameCanvasDraft.grid.current.columns
-        ).fill(false);
+        // Reset the toggled array back its original size and state
+        gameCanvasDraft.toggled = new Array(originalGridSize).fill(false);
+
+        // Reset the current grid to its original state
+        gameCanvasDraft.grid.current = {...gameCanvasDraft.grid.original};
 
         // Reset the score to 3
         draft.stages[stageIndex].levels[levelIndex].metadata.score = 3;
