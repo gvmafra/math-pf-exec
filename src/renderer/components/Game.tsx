@@ -68,7 +68,7 @@ export default function Game({ state, dispatch }: GameProps) {
   };
 
   const handleResetGame = () => {
-    dispatch({ type: 'RESET_GAME' });
+    // dispatch({ type: 'RESET_GAME' });
     navigate('/AllStagesPage');
   };
 
@@ -210,9 +210,8 @@ export default function Game({ state, dispatch }: GameProps) {
           </div>
         </div>
         <div className="flex gap-4 mt-auto p-12">
-          {' '}
-          {/* bottom buttons */}
-          <CircleButton
+
+          {/* <CircleButton
             onClick={handleExitToConfig}
             ariaLabel="Exit to Config"
             color="red"
@@ -222,7 +221,8 @@ export default function Game({ state, dispatch }: GameProps) {
               altText="next"
               styling="w-12 h-auto"
             />
-          </CircleButton>
+          </CircleButton> */}
+
           <CircleButton
             onClick={handleResetGame}
             ariaLabel="Reset Game"
@@ -234,6 +234,7 @@ export default function Game({ state, dispatch }: GameProps) {
               styling="w-12 h-auto"
             />
           </CircleButton>
+
           <CircleButton
             onClick={handleResetSquare}
             ariaLabel="Reset Square"

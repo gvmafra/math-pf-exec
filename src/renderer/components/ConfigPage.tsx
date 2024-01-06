@@ -16,7 +16,7 @@ const sound = new Howl({
 
 const ConfigPage: React.FC = () => {
 
-  const [volume, setVolume] = useState(50);
+  const [volume, setVolume] = useState(100);
   useEffect(() => {
     Howler.volume(volume / 100);
   }, [volume]);

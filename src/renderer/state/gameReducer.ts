@@ -32,6 +32,7 @@ export type Action =
       type: 'INCREMENT_CLICK_COUNT';
       payload: { stageIndex: number; levelIndex: number };
     }
+  | { type: 'REPLAY_STAGE'; payload?: undefined }
   | { type: 'SET_STAGE'; payload: { stageIndex: number } };
 
 function loopList<T>(list: T[], index: number): T {
@@ -241,6 +242,57 @@ export default function gameStateReducer(
         }
 
         draft.currentStage = stageIndex;
+        break;
+      }
+
+      case 'REPLAY_STAGE': {
+        const { currentStage } = draft;
+        const stageLastIndex = draft.stages.length - 1;
+        const currentLevel = draft.stages[currentStage].metadata.currentLevel;
+        const levelLastIndex = draft.stages[currentStage].levels.length - 1;
+      
+        if (
+          currentStage < 0 ||
+          currentStage > stageLastIndex ||
+          currentLevel < 0 ||
+          currentLevel > levelLastIndex
+        ) {
+          return;
+        }
+      
+        const currentLevelMetadata = draft.stages[currentStage].levels[currentLevel].metadata;
+        if (currentLevelMetadata.completed) {
+          draft.stages[currentStage].metadata.stageScore = 0;
+          draft.stages[currentStage].metadata.completed = false;
+          draft.stages[currentStage].metadata.currentLevel = 0;
+      
+          draft.stages[currentStage].levels.forEach(level => {
+            const levelIndex = draft.stages[currentStage].levels.indexOf(level);
+            const gameCanvasDraft = draft.stages[currentStage].levels[levelIndex].canvas;
+      
+            level.metadata.completed = false;
+            level.metadata.clickCount = 0;
+            if (level.canvas.type === 'challenge' || level.canvas.type === 'grid') {
+              level.canvas.toggled = new Array(level.canvas.toggled.length).fill(false);
+            }
+            
+            if (gameCanvasDraft.type === 'grid') {
+              const originalGridSize = 
+                gameCanvasDraft.grid.original.rows * gameCanvasDraft.grid.original.columns;
+      
+              // Reset the toggled array back its original size and state
+              gameCanvasDraft.toggled = new Array(originalGridSize).fill(false);
+      
+              // Reset the current grid to its original state
+              gameCanvasDraft.grid.current = {...gameCanvasDraft.grid.original};
+            }
+      
+            level.metadata.score = 3;
+          });
+        } else {
+          return;
+        }
+      
         break;
       }
 

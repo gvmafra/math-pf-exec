@@ -35,7 +35,7 @@ const AllStagesPage: React.FC<GameProps> = ({ state, dispatch }) => {
 
   function handleStageSelect(stageNumber: number) {
     dispatch({ type: 'SET_STAGE', payload: { stageIndex: stageNumber } });
-
+    dispatch({ type: 'REPLAY_STAGE' });
     navigate('/Game');
   }
 
