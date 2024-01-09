@@ -22,7 +22,7 @@ const genStageTen = (): Stage => ({
       },
       {
         challengeId: 'Circle9g', // challenge 3 --
-        toggles: [false, false, false, false, false, false, true, true, true],
+        toggles: [false, false, false, false, false, true, true, true, true],
       },
       {
         challengeId: 'Triangle9c', // challenge 4 --
