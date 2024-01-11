@@ -210,6 +210,9 @@ export default function gameStateReducer(
           gameCanvasDraft.toggled = new Array(
             gameCanvasDraft.toggled.length
           ).fill(false);
+          // Reset the score to 3
+          draft.stages[stageIndex].levels[levelIndex].metadata.score = 3;
+          
           break;
         }
         
