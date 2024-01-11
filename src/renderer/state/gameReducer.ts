@@ -256,7 +256,7 @@ export default function gameStateReducer(
         const stageLastIndex = draft.stages.length - 1;
         const currentLevel = draft.stages[currentStage].metadata.currentLevel;
         const levelLastIndex = draft.stages[currentStage].levels.length - 1;
-
+      
         if (
           currentStage < 0 ||
           currentStage > stageLastIndex ||
@@ -265,13 +265,21 @@ export default function gameStateReducer(
         ) {
           return;
         }
-
+      
+        // get the current level metadata
         const currentLevelMetadata = draft.stages[currentStage].levels[currentLevel].metadata;
-        if (currentLevelMetadata.completed) {
-          return;
+        
+        // If the current level is completed, unblock the next stage.
+        if (currentLevelMetadata.completed && currentStage < stageLastIndex) {
+          draft.stages[currentStage + 1].metadata.blocked = false;
+        } else {
+          for (let i = currentStage + 1; i < stageLastIndex; i++) {
+            draft.stages[i].metadata.blocked = true; 
+          }
         }
-
-      } // ---------------------------------- TEST THIS ---------------------------------
+      
+        return;
+      }
 
       case 'REPLAY_STAGE': {
         const { currentStage } = draft;

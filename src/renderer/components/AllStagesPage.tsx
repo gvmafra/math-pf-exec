@@ -36,6 +36,7 @@ const AllStagesPage: React.FC<GameProps> = ({ state, dispatch }) => {
   function handleStageSelect(stageNumber: number) {
     dispatch({ type: 'SET_STAGE', payload: { stageIndex: stageNumber } });
     dispatch({ type: 'REPLAY_STAGE' });
+    dispatch({ type: 'PREVIOUS_STAGE_CHECK' });
     navigate('/Game');
   }
 
@@ -62,11 +63,15 @@ const AllStagesPage: React.FC<GameProps> = ({ state, dispatch }) => {
         </p>
         <div className="grid grid-cols-3 gap-4 items-center content-center">
           {stageNames.map((stageName, i) => {
+            const isBlocked = state.stages[i]?.metadata.blocked;
             return (
               <button
                 key={`stage-${i}`}
-                className="flex items-center justify-center h-16 w-16 bg-white hover:bg-amber-100 text-[#6c5353] text-4xl font-bold py-2 px-8 border border-[#fff] shadow-md hover:shadow-md hover:shadow-amber-300 hover:border-amber-200 rounded-full"
+                className={`flex items-center justify-center h-16 w-16 bg-white hover:bg-amber-100 text-[#6c5353] text-4xl font-bold py-2 px-8 border border-[#fff] shadow-md hover:shadow-md hover:shadow-amber-300 hover:border-amber-200 rounded-full ${
+                  isBlocked ? 'opacity-50 pointer-events-none' : ''
+                }`}
                 onClick={() => handleStageSelect(i)}
+                disabled={isBlocked}
               >
                 {stageName}
               </button>

@@ -140,17 +140,18 @@ export type Level = {
   metadata: LevelMetadata;
 };
 
-// stage metadata is the current level and if the stage is completed
-export type StageMetadata = {
-  currentLevel: number;
-  completed: boolean;
-  stageScore: number;
-};
-
 // stages are a collection of levels or similar difficulty, they allow the game to have milestones
 export type Stage = {
   levels: Level[];
   metadata: StageMetadata;
+};
+
+// stage metadata is the current level and if the stage is completed
+export type StageMetadata = {
+  currentLevel: number;
+  completed: boolean;
+  blocked: boolean;
+  stageScore: number;
 };
 
 // state is the current state of the game, it contains the current stage and the stages
