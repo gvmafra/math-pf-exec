@@ -33,6 +33,7 @@ export type Action =
       payload: { stageIndex: number; levelIndex: number };
     }
   | { type: 'REPLAY_STAGE'; payload?: undefined }
+  | { type: 'PREVIOUS_STAGE_CHECK'; payload?: undefined }
   | { type: 'SET_STAGE'; payload: { stageIndex: number } };
 
 function loopList<T>(list: T[], index: number): T {
@@ -212,7 +213,7 @@ export default function gameStateReducer(
           ).fill(false);
           // Reset the score to 3
           draft.stages[stageIndex].levels[levelIndex].metadata.score = 3;
-          
+
           break;
         }
         
@@ -247,6 +248,30 @@ export default function gameStateReducer(
         draft.currentStage = stageIndex;
         break;
       }
+
+      case 'PREVIOUS_STAGE_CHECK': {
+        // check if the previous stages before the current stage are completed
+        // if not, return
+        const { currentStage } = draft;
+        const stageLastIndex = draft.stages.length - 1;
+        const currentLevel = draft.stages[currentStage].metadata.currentLevel;
+        const levelLastIndex = draft.stages[currentStage].levels.length - 1;
+
+        if (
+          currentStage < 0 ||
+          currentStage > stageLastIndex ||
+          currentLevel < 0 ||
+          currentLevel > levelLastIndex
+        ) {
+          return;
+        }
+
+        const currentLevelMetadata = draft.stages[currentStage].levels[currentLevel].metadata;
+        if (currentLevelMetadata.completed) {
+          return;
+        }
+
+      } // ---------------------------------- TEST THIS ---------------------------------
 
       case 'REPLAY_STAGE': {
         const { currentStage } = draft;
