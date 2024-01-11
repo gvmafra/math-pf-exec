@@ -86,16 +86,16 @@ const scoreData: StageData[] = [
   // Stage 6
   {
     levels: [
-      { clickMax: 2 },
-      { clickMax: 2 },
-      { clickMax: 2 },
-      { clickMax: 2 },
-      { clickMax: 2 },
-      { clickMax: 2 },
-      { clickMax: 1 },
-      { clickMax: 1 },
-      { clickMax: 3 },
-      { clickMax: 3 },
+      { clickMax: 2 }, // done
+      { clickMax: 2 }, // done
+      { clickMax: 4 }, // done
+      { clickMax: 1 }, // done
+      { clickMax: 1 }, // done
+      { clickMax: 2 }, // done
+      { clickMax: 1 }, // done
+      { clickMax: 1 }, // done
+      { clickMax: 3 }, // done
+      { clickMax: 3 }, // done
     ],
   },
   // Stage 7
@@ -131,16 +131,16 @@ const scoreData: StageData[] = [
   // Stage 9
   {
     levels: [
-      { clickMax: 7 },
-      { clickMax: 7 },
-      { clickMax: 1 },
-      { clickMax: 1 },
-      { clickMax: 4 },
-      { clickMax: 4 },
-      { clickMax: 3 },
-      { clickMax: 3 },
-      { clickMax: 6 },
-      { clickMax: 6 },
+      { clickMax: 2 }, // done
+      { clickMax: 6 }, // done
+      { clickMax: 1 }, // done
+      { clickMax: 1 }, // done
+      { clickMax: 4 }, // done
+      { clickMax: 4 }, // done
+      { clickMax: 3 }, // done
+      { clickMax: 1 }, // done
+      { clickMax: 2 }, // done
+      { clickMax: 6 }, // done
     ],
   },
   // Stage 10

@@ -14,27 +14,20 @@ import {
 const genStageNine = (): Stage => {
 
   // challenges
-  // first 2 challenges are eighths, with 1/4, 2/4, 3/4
+  // first challenge is eighths, with 1/4
   let challengesEighthsFirst = genRandomChallengeCanvases({
     numCellsFilter: [8],
     difficultyFilter: ['medium', 'hard'],
     toggleRatio: 1 / 4,
-    numberofChallenges: 2,
+    numberofChallenges: 1,
   });
-  challengesEighthsFirst = challengesEighthsFirst.concat(
-    genRandomChallengeCanvases({
-      numCellsFilter: [8],
-      difficultyFilter: ['medium', 'hard'],
-      toggleRatio: 2 / 4,
-      numberofChallenges: 2,
-    }),
-    genRandomChallengeCanvases({
-      numCellsFilter: [8],
-      difficultyFilter: ['medium', 'hard'],
-      toggleRatio: 3 / 4,
-      numberofChallenges: 2,
-    })
-  );
+  // second challenge is eighths, with 3/4
+  let challengesEighthsFirstTwo = genRandomChallengeCanvases({
+    numCellsFilter: [8],
+    difficultyFilter: ['medium', 'hard'],
+    toggleRatio: 3 / 4,
+    numberofChallenges: 1,
+  });
   // next 2 challenges are eighths, but with only 1/2
   let challengesEighthsSecond = genRandomChallengeCanvases({
     numCellsFilter: [8],
@@ -49,54 +42,45 @@ const genStageNine = (): Stage => {
     toggleRatio: 1 / 2,
     numberofChallenges: 2,
   });
-  // next 2 challenges are eighths, with 1/4, 2/4, 3/4
+  // next challenge is eighths, with 3/4
   let challengesEighthsThird = genRandomChallengeCanvases({
     numCellsFilter: [8],
     difficultyFilter: ['medium', 'hard'],
-    toggleRatio: 1 / 4,
-    numberofChallenges: 2,
+    toggleRatio: 3 / 4,
+    numberofChallenges: 1,
   });
-  challengesEighthsThird = challengesEighthsThird.concat(
-    genRandomChallengeCanvases({
-      numCellsFilter: [8],
-      difficultyFilter: ['medium', 'hard'],
-      toggleRatio: 2 / 4,
-      numberofChallenges: 2,
-    }),
-    genRandomChallengeCanvases({
-      numCellsFilter: [8],
-      difficultyFilter: ['medium', 'hard'],
-      toggleRatio: 3 / 4,
-      numberofChallenges: 2,
-    })
-  );
-  // final 2 challenges are fourths, with 1/4, 2/4, 3/4
+  // next challenge is eighths, with 1/4
+  let challengesEighthsThirdTwo = genRandomChallengeCanvases({
+    numCellsFilter: [8],
+    difficultyFilter: ['medium', 'hard'],
+    toggleRatio: 1 / 4,
+    numberofChallenges: 1,
+  });
+
+  // next challenge is fourths, with 1/4
   let challengesFourthsFirst = genRandomChallengeCanvases({
     numCellsFilter: [4],
     difficultyFilter: ['medium', 'hard'],
     toggleRatio: 1 / 4,
-    numberofChallenges: 2,
+    numberofChallenges: 1,
   });
-  challengesFourthsFirst = challengesFourthsFirst.concat(
-    genRandomChallengeCanvases({
-      numCellsFilter: [4],
-      difficultyFilter: ['medium', 'hard'],
-      toggleRatio: 2 / 4,
-      numberofChallenges: 2,
-    }),
-    genRandomChallengeCanvases({
-      numCellsFilter: [4],
-      difficultyFilter: ['medium', 'hard'],
-      toggleRatio: 3 / 4,
-      numberofChallenges: 2,
-    }),
-  );
+  // next challenge is fourths, with 3/4
+  let challengesFourthsTwo = genRandomChallengeCanvases({
+    numCellsFilter: [4],
+    difficultyFilter: ['medium', 'hard'],
+    toggleRatio: 3 / 4,
+    numberofChallenges: 1,
+  });
 
-  let challenges = (getRandomOptions(challengesEighthsFirst, 2));
-  challenges = challenges.concat(getRandomOptions(challengesEighthsSecond, 2));
-  challenges = challenges.concat(getRandomOptions(challengesHalvesFirst, 2));
-  challenges = challenges.concat(getRandomOptions(challengesEighthsThird, 2));
-  challenges = challenges.concat(getRandomOptions(challengesFourthsFirst, 2));
+  let challenges = (getRandomOptions(challengesEighthsFirst, 1)).concat(
+    getRandomOptions(challengesEighthsFirstTwo, 1),
+    getRandomOptions(challengesEighthsSecond, 2),
+    getRandomOptions(challengesHalvesFirst, 2),
+    getRandomOptions(challengesEighthsThird, 1),
+    getRandomOptions(challengesEighthsThirdTwo, 1),
+    getRandomOptions(challengesFourthsFirst, 1),
+    getRandomOptions(challengesFourthsTwo, 1)
+  );
 
   // canvases
   // first two canvases are eighths
