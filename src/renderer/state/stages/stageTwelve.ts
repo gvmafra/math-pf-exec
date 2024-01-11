@@ -14,99 +14,86 @@ import {
 const genStageTwelve = (): Stage => {
 
   // challenges
-  // first 2 challenges are ninths, with 2/9, 4/9, 6/9, 8/9 - easy, medium and hard
+  // first 2 challenges are ninths, with 4/9 and 7/9 - easy, medium and hard
   let challengesNinthsFirst = genRandomChallengeCanvases({
     numCellsFilter: [9],
     difficultyFilter: ['medium', 'hard'],
-    toggleRatio: 2 / 9,
-    numberofChallenges: 2,
+    toggleRatio: 4 / 9,
+    numberofChallenges: 1,
   });
-  challengesNinthsFirst = challengesNinthsFirst.concat(
-    genRandomChallengeCanvases({
-      numCellsFilter: [9],
-      difficultyFilter: ['medium', 'hard'],
-      toggleRatio: 4 / 9,
-      numberofChallenges: 2,
-    }),
-    genRandomChallengeCanvases({
-      numCellsFilter: [9],
-      difficultyFilter: ['medium', 'hard'],
-      toggleRatio: 6 / 9,
-      numberofChallenges: 2,
-    }),
-    genRandomChallengeCanvases({
-      numCellsFilter: [9],
-      difficultyFilter: ['medium', 'hard'],
-      toggleRatio: 8 / 9,
-      numberofChallenges: 2,
-    })
-  );
+  let challengesNinthsFirstTwo = genRandomChallengeCanvases({
+    numCellsFilter: [9],
+    difficultyFilter: ['medium', 'hard'],
+    toggleRatio: 7 / 9,
+    numberofChallenges: 1,
+  });
+
   // next 2 challenges are ninths, with 1/3, 2/3 - easy, medium and hard
   let challengesNinthsSecond = genRandomChallengeCanvases({
     numCellsFilter: [9],
     difficultyFilter: ['medium', 'hard'],
     toggleRatio: 1 / 3,
-    numberofChallenges: 2,
+    numberofChallenges: 1,
   });
-  challengesNinthsSecond = challengesNinthsSecond.concat(
-    genRandomChallengeCanvases({
-      numCellsFilter: [9],
-      difficultyFilter: ['medium', 'hard'],
-      toggleRatio: 2 / 3,
-      numberofChallenges: 2,
-    })
-  );
+  let challengesNinthsSecondTwo = genRandomChallengeCanvases({
+    numCellsFilter: [9],
+    difficultyFilter: ['medium', 'hard'],
+    toggleRatio: 2 / 3,
+    numberofChallenges: 1,
+  });
+
   // next 2 challenges are thirds, with 1/3, 2/3 - easy, medium and hard
   let challengesThirdsFirst = genRandomChallengeCanvases({
     numCellsFilter: [3],
     difficultyFilter: ['medium', 'hard'],
     toggleRatio: 1 / 3,
-    numberofChallenges: 2,
+    numberofChallenges: 1,
   });
-  challengesThirdsFirst = challengesThirdsFirst.concat(
-    genRandomChallengeCanvases({
-      numCellsFilter: [3],
-      difficultyFilter: ['medium', 'hard'],
-      toggleRatio: 2 / 3,
-      numberofChallenges: 2,
-    })
-  );
+  let challengesThirdsFirstTwo = genRandomChallengeCanvases({
+    numCellsFilter: [3],
+    difficultyFilter: ['medium', 'hard'],
+    toggleRatio: 2 / 3,
+    numberofChallenges: 1,
+  });
+
   // next 2 challenges are ninths, with 1/3, 2/3 - easy, medium and hard
   let challengesThirdsSecond = genRandomChallengeCanvases({
     numCellsFilter: [9],
     difficultyFilter: ['medium', 'hard'],
     toggleRatio: 1 / 3,
-    numberofChallenges: 2,
+    numberofChallenges: 1,
   });
-  challengesThirdsSecond = challengesThirdsSecond.concat(
-    genRandomChallengeCanvases({
-      numCellsFilter: [9],
-      difficultyFilter: ['medium', 'hard'],
-      toggleRatio: 2 / 3,
-      numberofChallenges: 2,
-    })
-  );
+  let challengesThirdsSecondTwo = genRandomChallengeCanvases({
+    numCellsFilter: [9],
+    difficultyFilter: ['medium', 'hard'],
+    toggleRatio: 2 / 3,
+    numberofChallenges: 1,
+  });
+
   // final 2 challenges are sixths, with 1/3, 2/3 - easy, medium and hard
   let challengesSixthsFirst = genRandomChallengeCanvases({
     numCellsFilter: [6],
     difficultyFilter: ['medium', 'hard'],
-    toggleRatio: 1 / 3,
-    numberofChallenges: 2,
+    toggleRatio: 2 / 3,
+    numberofChallenges: 1,
   });
-  challengesSixthsFirst = challengesSixthsFirst.concat(
-    genRandomChallengeCanvases({
-      numCellsFilter: [6],
-      difficultyFilter: ['medium', 'hard'],
-      toggleRatio: 2 / 3,
-      numberofChallenges: 2,
-    })
-  );
+  let challengesSixthsFirstTwo = genRandomChallengeCanvases({
+    numCellsFilter: [6],
+    difficultyFilter: ['medium', 'hard'],
+    toggleRatio: 1 / 3,
+    numberofChallenges: 1,
+  });
 
-  let challenges = getRandomOptions(challengesNinthsFirst, 2);
-  challenges = challenges.concat(getRandomOptions(challengesNinthsSecond, 2));
-  challenges = challenges.concat(getRandomOptions(challengesThirdsFirst, 2));
-  challenges = challenges.concat(getRandomOptions(challengesThirdsSecond, 2));
-  challenges = challenges.concat(getRandomOptions(challengesSixthsFirst, 2));
+  let challenges = getRandomOptions(challengesNinthsFirst, 1);
+  challenges = challenges.concat(getRandomOptions(challengesNinthsFirstTwo, 1))
+  challenges = challenges.concat(getRandomOptions(challengesNinthsSecond, 1));
+  challenges = challenges.concat(getRandomOptions(challengesNinthsSecondTwo, 1));
+  challenges = challenges.concat(getRandomOptions(challengesThirdsFirst, 1));
+  challenges = challenges.concat(getRandomOptions(challengesThirdsFirstTwo, 1));
+  challenges = challenges.concat(getRandomOptions(challengesThirdsSecond, 1));
+  challenges = challenges.concat(getRandomOptions(challengesThirdsSecondTwo, 1));
+  challenges = challenges.concat(getRandomOptions(challengesSixthsFirst, 1));
+  challenges = challenges.concat(getRandomOptions(challengesSixthsFirstTwo, 1));
 
   // canvases
   // first 2 canvases are ninths - easy, medium and hard

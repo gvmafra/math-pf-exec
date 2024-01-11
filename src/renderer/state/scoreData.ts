@@ -176,16 +176,16 @@ const scoreData: StageData[] = [
   // Stage 12
   {
     levels: [
-      { clickMax: 6 },
-      { clickMax: 6 },
-      { clickMax: 2 },
-      { clickMax: 2 },
-      { clickMax: 4 },
-      { clickMax: 4 },
-      { clickMax: 4 },
-      { clickMax: 4 },
-      { clickMax: 3 },
-      { clickMax: 3 },
+      { clickMax: 4 }, // done
+      { clickMax: 7 }, // done
+      { clickMax: 1 }, // done
+      { clickMax: 2 }, // done
+      { clickMax: 3 }, // done
+      { clickMax: 6 }, // done
+      { clickMax: 2 }, // done
+      { clickMax: 4 }, // done
+      { clickMax: 6 }, // done
+      { clickMax: 3 }, // done
     ],
   },
 ];
