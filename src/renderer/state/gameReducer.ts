@@ -94,6 +94,8 @@ export default function gameStateReducer(
         const stageScore = calculateStageScore(draft.stages[stageIndex].levels);
         draft.stages[stageIndex].metadata.stageScore = stageScore;
 
+        // when a stage is comple
+
         break;
       }
 
