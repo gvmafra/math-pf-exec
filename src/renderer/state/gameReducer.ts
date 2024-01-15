@@ -33,7 +33,7 @@ export type Action =
       payload: { stageIndex: number; levelIndex: number };
     }
   | { type: 'REPLAY_STAGE'; payload?: undefined }
-  | { type: 'PREVIOUS_STAGE_CHECK'; payload?: undefined }
+  // | { type: 'PREVIOUS_STAGE_CHECK'; payload?: undefined }
   | { type: 'SET_STAGE'; payload: { stageIndex: number } };
 
 function loopList<T>(list: T[], index: number): T {
@@ -251,37 +251,37 @@ export default function gameStateReducer(
         break;
       }
 
-      case 'PREVIOUS_STAGE_CHECK': {
-        // check if the previous stages before the current stage are completed
-        // if not, return
-        const { currentStage } = draft;
-        const stageLastIndex = draft.stages.length - 1;
-        const currentLevel = draft.stages[currentStage].metadata.currentLevel;
-        const levelLastIndex = draft.stages[currentStage].levels.length - 1;
+      // case 'PREVIOUS_STAGE_CHECK': {
+      //   // check if the previous stages before the current stage are completed
+      //   // if not, return
+      //   const { currentStage } = draft;
+      //   const stageLastIndex = draft.stages.length - 1;
+      //   const currentLevel = draft.stages[currentStage].metadata.currentLevel;
+      //   const levelLastIndex = draft.stages[currentStage].levels.length - 1;
       
-        if (
-          currentStage < 0 ||
-          currentStage > stageLastIndex ||
-          currentLevel < 0 ||
-          currentLevel > levelLastIndex
-        ) {
-          return;
-        }
+      //   if (
+      //     currentStage < 0 ||
+      //     currentStage > stageLastIndex ||
+      //     currentLevel < 0 ||
+      //     currentLevel > levelLastIndex
+      //   ) {
+      //     return;
+      //   }
       
-        // get the current level metadata
-        const currentLevelMetadata = draft.stages[currentStage].levels[currentLevel].metadata;
+      //   // get the current level metadata
+      //   const currentLevelMetadata = draft.stages[currentStage].levels[currentLevel].metadata;
         
-        // If the current level is completed, unblock the next stage.
-        if (currentLevelMetadata.completed && currentStage < stageLastIndex) {
-          draft.stages[currentStage + 1].metadata.blocked = false;
-        } else {
-          for (let i = currentStage + 1; i < stageLastIndex; i++) {
-            draft.stages[i].metadata.blocked = true; 
-          }
-        }
+      //   // If the current level is completed, unblock the next stage.
+      //   if (currentLevelMetadata.completed && currentStage < stageLastIndex) {
+      //     draft.stages[currentStage + 1].metadata.blocked = false;
+      //   } else {
+      //     for (let i = currentStage + 1; i < stageLastIndex; i++) {
+      //       draft.stages[i].metadata.blocked = true; 
+      //     }
+      //   }
       
-        return;
-      }
+      //   return;
+      // }
 
       case 'REPLAY_STAGE': {
         const { currentStage } = draft;
