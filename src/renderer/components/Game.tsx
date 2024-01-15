@@ -10,47 +10,12 @@ import GridSplitterButton from './GridSplitterButton';
 import Canvas from './canvas/Canvas';
 import Overlayed from './Overlayed';
 
-import { Howl, Howler } from 'howler';
-
-// import estagioFim from '../audio/estagioFim.mp3';
-// import nivelFim from '../audio/nivelFim.wav';
-// import somDeErro from '../audio/somDeErro.wav';
-
-// create howl instances for each audio track
-// const estagioFimSound = new Howl({
-//   src: [estagioFim],
-// });
-// const nivelFimSound = new Howl({
-//   src: [nivelFim],
-// });
-// const somDeErroSound = new Howl({
-//   src: [somDeErro],
-// });
-
 interface GameProps {
   state: GameState;
   dispatch: Dispatch<Action>;
 }
 
 export default function Game({ state, dispatch }: GameProps) {
-  // // set the volume of each audio track
-  // useEffect(() => {
-  //   Howler.volume(0.5);
-  // }, []);
-
-  // // handle function to control sound effect volumes
-  // const handleVolume = (volume: number) => {
-  //   Howler.volume(volume / 100);
-  // };
-
-  // volume state for sound effects
-  // const [volume, setVolume] = useState(50);
-
-  // // handleVolume function to control sound effect volumes
-  // const handleVolume = (value: number) => {
-  //   Howler.volume(value / 100);
-  //   setVolume(value);
-  // };
 
   const navigate = useNavigate();
 
@@ -71,49 +36,8 @@ export default function Game({ state, dispatch }: GameProps) {
     // dispatch({ type: 'RESET_GAME' });
     navigate('/AllStagesPage');
   };
-
-  // const handleAudioPlayer = (statusCode: string) => {
-  //   switch (statusCode) {
-  //     case 'nextLevel':
-  //       nivelFimSound.play();
-  //       break;
-  //     case 'nextStage':
-  //       estagioFimSound.play();
-  //       break;
-  //     case 'levelFailed':
-  //       somDeErroSound.play();
-  //       break;
-  //   }
-  // };
-
-  // const handleNextLevelClick = () => {
-  //   dispatch({
-  //     type: 'NEXT_LEVEL',
-  //     payload: {
-  //       stageIndex: currentStageNum,
-  //       levelIndex: currentLevelNum,
-  //     },
-  //   });
-  // };
   
   const handleNextLevelClick = () => {
-
-    // // Before dispatching 'NEXT_LEVEL' action, check for all different situations
-    // if (
-    //   // If the current level is the last level of the current stage
-    //   currentLevelNum ===
-    //   currentStageRef.levels.length - 1
-    // ) {
-    //   handleAudioPlayer('nextStage');
-    // } else if (
-    //   // if the current level is not the last level of the current stage
-    //   currentLevelNum <
-    //   currentStageRef.levels.length - 1
-    // ) {
-    //   handleAudioPlayer('nextLevel');
-    // } else {
-    //   handleAudioPlayer('levelFailed');
-    // }
 
     dispatch({
       type: 'NEXT_LEVEL',
@@ -210,18 +134,6 @@ export default function Game({ state, dispatch }: GameProps) {
           </div>
         </div>
         <div className="flex gap-4 mt-auto p-12">
-
-          {/* <CircleButton
-            onClick={handleExitToConfig}
-            ariaLabel="Exit to Config"
-            color="red"
-          >
-            <Overlayed
-              imgSrc={require('../img/iconAudio.svg').default}
-              altText="next"
-              styling="w-12 h-auto"
-            />
-          </CircleButton> */}
 
           <CircleButton
             onClick={handleResetGame}
@@ -324,6 +236,7 @@ export default function Game({ state, dispatch }: GameProps) {
           If the user clicks on it and passes to the next stage, it triggers the 'estagioFim.wav' audio track.
           If the user clicks on it and does not pass the level, it triggers the 'somDeErro.wav' audio track.
         */}
+        
         <div className="flex flex-col items-center justify-center gap-4 mt-auto p-6">
           <CircleButton
             onClick={handleNextLevelClick}

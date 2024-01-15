@@ -20,11 +20,6 @@ const ConfigPage: React.FC = () => {
   useEffect(() => {
     Howler.volume(volume / 100);
   }, [volume]);
-
-  // const [effectsVolume, setEffectsVolume] = useState(50);
-  // useEffect(() => {
-  //   Howler.volume(effectsVolume / 100);
-  // }, [effectsVolume]);
   
   return (
     // main container
