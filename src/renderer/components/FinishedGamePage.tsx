@@ -1,7 +1,8 @@
+// FinishedGamePage.tsx
 import { Action } from 'renderer/state/gameReducer';
 import { Dispatch } from 'react';
-import { GameState } from 'renderer/state/types';
 import { useNavigate } from 'react-router-dom';
+import { GameState } from 'renderer/state/types';
 import StagesCompletedList from './StagesCompletedList';
 import FratixBackground from './FratixBackground';
 import Overlayed from './Overlayed';
