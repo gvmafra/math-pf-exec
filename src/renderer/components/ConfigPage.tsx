@@ -5,7 +5,6 @@ import FratixBackground from './FratixBackground';
 import RangeSlider from './RangeSlider';
 import Overlayed from './Overlayed';
 import { Howl, Howler } from 'howler';
-// import { useGameState } from '../state/gameReducer';
 
 import fratixMusica from '../audio/fratixMusica.mp3';
 const sound = new Howl({
@@ -16,9 +15,18 @@ const sound = new Howl({
 
 const ConfigPage: React.FC = () => {
 
-  const [volume, setVolume] = useState(100);
+  const [volume, setVolume] = useState(50);
   useEffect(() => {
-    Howler.volume(volume / 100);
+    sound.volume(volume / 100);
+  }, [volume]);
+  useEffect(() => {
+    const volume = localStorage.getItem('volume');
+    if (volume) {
+      setVolume(parseInt(volume));
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem('volume', volume.toString());
   }, [volume]);
   
   return (

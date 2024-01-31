@@ -24,12 +24,29 @@ const NamePage: React.FC = () => {
 
       <div className="flex flex-col bg-white h-screen w-1/2 px-20 items-start justify-center gap-6 mr-24 shadow-lg">
         <p>
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-          nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-          volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-          ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+          O foco central do jogo é a construção de peças que sejam equivalentes
+          à uma fração dada. Assim, Fratix é um jogo educativo projetado para
+          auxiliar no aprendizado e na consolidação do conceito de frações
+          equivalentes.
         </p>
-        <p className='font-semibold'>Bom jogo! <span className='font-light text-zinc-700'><br/>- Equipe MJogos</span></p>
+        <p>
+          O jogo apresenta um ambiente interativo, onde o jogador tem como
+          objetivo identificar qual fração está sendo abordada e reproduzi-la em
+          uma representação diferente ou criar sua equivalente, utilizando
+          formas que são distintas das tradicionalmente utilizadas e exploradas.
+          Mais que isso, construir frações equivalentes requer, em níveis mais
+          avançados do jogo, ter que redividir figuras, inserindo segmentos
+          horizontais e/ou verticais, o que torna o jogo mais motivante pois é
+          mais desafiante. Mas sempre levando a construção de imagem mental das
+          representações de frações e suas equivalências apoiadas sempre na
+          construção do número racional.
+        </p>
+        <p className="font-semibold">
+          Bom jogo!
+          <span className="font-semibold text-zinc-700">
+            <br />- Equipe MGames
+          </span>
+        </p>
       </div>
 
       {/* return button */}
