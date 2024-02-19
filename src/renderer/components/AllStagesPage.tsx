@@ -36,7 +36,8 @@ const AllStagesPage: React.FC<GameProps> = ({ state, dispatch }) => {
   function handleStageSelect(stageNumber: number) {
     dispatch({ type: 'SET_STAGE', payload: { stageIndex: stageNumber } });
     dispatch({ type: 'REPLAY_STAGE' });
-    // dispatch({ type: 'PREVIOUS_STAGE_CHECK' });
+    dispatch({ type: 'PREVIOUS_STAGE_CHECK' });
+    // dispatch({ type: 'STAGE_COMPLETED'});
     navigate('/Game');
   }
 
@@ -63,7 +64,7 @@ const AllStagesPage: React.FC<GameProps> = ({ state, dispatch }) => {
         </p>
         <div className="grid grid-cols-3 gap-4 items-center content-center">
           {stageNames.map((stageName, i) => {
-            const isBlocked = state.stages[i]?.metadata.blocked;
+            const isBlocked = !state.stages[i]?.metadata.completed;
             return (
               <button
                 key={`stage-${i}`}

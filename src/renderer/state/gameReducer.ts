@@ -33,7 +33,7 @@ export type Action =
       payload: { stageIndex: number; levelIndex: number };
     }
   | { type: 'REPLAY_STAGE'; payload?: undefined }
-  // | { type: 'PREVIOUS_STAGE_CHECK'; payload?: undefined }
+  | { type: 'PREVIOUS_STAGE_CHECK'; payload?: undefined }
   | { type: 'SET_STAGE'; payload: { stageIndex: number } };
 
 function loopList<T>(list: T[], index: number): T {
@@ -89,12 +89,16 @@ export default function gameStateReducer(
       case 'STAGE_COMPLETED': {
         const { stageIndex } = action.payload;
         draft.stages[stageIndex].metadata.completed = true;
+        console.log("guccigang completed")
 
         // when stage is completed, sum the score from all levels in the stage
         const stageScore = calculateStageScore(draft.stages[stageIndex].levels);
         draft.stages[stageIndex].metadata.stageScore = stageScore;
 
         // when a stage is comple
+        draft.currentStage = stageIndex + 1;
+        console.log(draft.currentStage)
+        console.log(draft.stages[stageIndex].metadata.completed)
 
         break;
       }
@@ -150,6 +154,7 @@ export default function gameStateReducer(
       }
 
       case 'NEXT_LEVEL': {
+        console.log("next level triggered")
         const { stageIndex: currentStageIndex, levelIndex: currentLevelIndex } =
           action.payload;
 
@@ -251,37 +256,45 @@ export default function gameStateReducer(
         break;
       }
 
-      // case 'PREVIOUS_STAGE_CHECK': {
-      //   // check if the previous stages before the current stage are completed
-      //   // if not, return
-      //   const { currentStage } = draft;
-      //   const stageLastIndex = draft.stages.length - 1;
-      //   const currentLevel = draft.stages[currentStage].metadata.currentLevel;
-      //   const levelLastIndex = draft.stages[currentStage].levels.length - 1;
+      case 'PREVIOUS_STAGE_CHECK': {
+        // check if the previous stages before the current stage are completed
+        // if not, return
+        const { currentStage } = draft;
+        const stageLastIndex = draft.stages.length - 1; // = 11
+        const currentLevel = draft.stages[currentStage].metadata.currentLevel;
+        const levelLastIndex = draft.stages[currentStage].levels.length - 1;
       
-      //   if (
-      //     currentStage < 0 ||
-      //     currentStage > stageLastIndex ||
-      //     currentLevel < 0 ||
-      //     currentLevel > levelLastIndex
-      //   ) {
-      //     return;
-      //   }
+        // Checking if levels or states are invalid
+        if (
+          currentStage < 0 ||
+          currentStage > stageLastIndex ||
+          currentLevel < 0 ||
+          currentLevel > levelLastIndex
+        ) {
+          return;
+        }
       
-      //   // get the current level metadata
-      //   const currentLevelMetadata = draft.stages[currentStage].levels[currentLevel].metadata;
+        // get the current level metadata
+        const currentLevelMetadata = draft.stages[currentStage].levels[currentLevel].metadata;
+        console.log('currentLevelMetadata', currentLevelMetadata);
         
-      //   // If the current level is completed, unblock the next stage.
-      //   if (currentLevelMetadata.completed && currentStage < stageLastIndex) {
-      //     draft.stages[currentStage + 1].metadata.blocked = false;
-      //   } else {
-      //     for (let i = currentStage + 1; i < stageLastIndex; i++) {
-      //       draft.stages[i].metadata.blocked = true; 
-      //     }
-      //   }
+        console.log("gucci gang")
+        console.log("currentLevelMetadata.completed", currentLevelMetadata.completed)
+        console.log("currentStage", currentStage)
+        console.log("currentLevel", currentLevel)
+
+        // If the current level is completed, unblock the next stage.
+        if (currentLevelMetadata.completed && currentStage < stageLastIndex) {
+          console.log("gucci gang")
+          draft.stages[currentStage + 1].metadata.blocked = false;
+        } else {
+          for (let i = currentStage + 1; i <= stageLastIndex; i++) {
+            draft.stages[i].metadata.blocked = true; 
+          }
+        }
       
-      //   return;
-      // }
+        return;
+      }
 
       case 'REPLAY_STAGE': {
         const { currentStage } = draft;
