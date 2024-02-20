@@ -52,14 +52,14 @@ const StartPage: React.FC = () => {
           altText="settings icon"
         />
       </div>
-      <div className="bottom-4 left-4 absolute">
+      {/* <div className="bottom-4 left-4 absolute">
         <ButtonFratix
           size="40"
           linkTo="/NamePage"
           imgSrc={require('../img/iconExit.svg').default}
           altText="settings icon"
         />
-      </div>
+      </div> */}
 
     </div>
   );
