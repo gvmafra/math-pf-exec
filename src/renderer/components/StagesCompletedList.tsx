@@ -29,6 +29,8 @@ const StagesCompletedList: React.FC<StagesCompletedListProps> = ({
       // ONLY recalculate score if stage is NOT blocked and completed
       if(!stage.metadata.blocked && stage.metadata.completed) {
         stageScore = stage.levels.reduce((acc, level) => acc + level.metadata.score, 0);
+        // set highest score
+        stageScore = stage.metadata.stageScore < stageScore ? stageScore : stage.metadata.stageScore;
       } else if (!stage.metadata.blocked && stage.metadata.stageScore > 0) {
         // If this stage is NOT completed, just use previous score as long as it is > 0
         stageScore = stage.metadata.stageScore;

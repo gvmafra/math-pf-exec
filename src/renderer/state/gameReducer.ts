@@ -89,17 +89,12 @@ export default function gameStateReducer(
       case 'STAGE_COMPLETED': {
         const { stageIndex } = action.payload;
         draft.stages[stageIndex].metadata.completed = true;
-        console.log("guccigang completed")
 
         // when stage is completed, sum the score from all levels in the stage
-        console.log("stage 1 score", draft.stages[0].metadata.stageScore)
         const stageScore = calculateStageScore(draft.stages[stageIndex].levels);
-        draft.stages[stageIndex].metadata.stageScore = stageScore;
+        draft.stages[stageIndex].metadata.stageScore = (draft.stages[stageIndex].metadata.stageScore < stageScore) ? stageScore :  draft.stages[stageIndex].metadata.stageScore;
 
         draft.currentStage = stageIndex + 1;
-        console.log("draft current stage", draft.currentStage)
-        console.log("stage index", stageIndex)
-        console.log("stage 1 score", draft.stages[0].metadata.stageScore)
         draft.stages[stageIndex + 1].metadata.blocked = false;
 
         break;
@@ -156,7 +151,6 @@ export default function gameStateReducer(
       }
 
       case 'NEXT_LEVEL': {
-        console.log("next level triggered")
         const { stageIndex: currentStageIndex, levelIndex: currentLevelIndex } =
           action.payload;
 
@@ -277,13 +271,7 @@ export default function gameStateReducer(
         }
       
         // get the current level metadata
-        const currentLevelMetadata = draft.stages[currentStage].levels[currentLevel].metadata;
-        console.log('currentLevelMetadata', currentLevelMetadata);
-        
-        console.log("gucci gang")
-        console.log("currentLevelMetadata.completed", currentLevelMetadata.completed)
-        console.log("currentStage", currentStage)
-        console.log("currentLevel", currentLevel)
+        // const currentLevelMetadata = draft.stages[currentStage].levels[currentLevel].metadata;
 
         return;
       }
@@ -305,8 +293,6 @@ export default function gameStateReducer(
       
         const currentLevelMetadata = draft.stages[currentStage].levels[currentLevel].metadata;
         if (currentLevelMetadata.completed) {
-          console.log("Replaying completed stage, but old stage score is:", draft.stages[currentStage].metadata.stageScore)
-          console.log("currentStage", currentStage)
           // draft.stages[currentStage].metadata.stageScore = 0;
           draft.stages[currentStage].metadata.completed = false;
           draft.stages[currentStage].metadata.currentLevel = 0;
