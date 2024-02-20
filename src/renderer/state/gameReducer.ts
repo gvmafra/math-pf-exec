@@ -92,12 +92,14 @@ export default function gameStateReducer(
         console.log("guccigang completed")
 
         // when stage is completed, sum the score from all levels in the stage
+        console.log("stage 1 score", draft.stages[0].metadata.stageScore)
         const stageScore = calculateStageScore(draft.stages[stageIndex].levels);
         draft.stages[stageIndex].metadata.stageScore = stageScore;
 
         draft.currentStage = stageIndex + 1;
         console.log("draft current stage", draft.currentStage)
         console.log("stage index", stageIndex)
+        console.log("stage 1 score", draft.stages[0].metadata.stageScore)
         draft.stages[stageIndex + 1].metadata.blocked = false;
 
         break;
@@ -303,7 +305,9 @@ export default function gameStateReducer(
       
         const currentLevelMetadata = draft.stages[currentStage].levels[currentLevel].metadata;
         if (currentLevelMetadata.completed) {
-          draft.stages[currentStage].metadata.stageScore = 0;
+          console.log("Replaying completed stage, but old stage score is:", draft.stages[currentStage].metadata.stageScore)
+          console.log("currentStage", currentStage)
+          // draft.stages[currentStage].metadata.stageScore = 0;
           draft.stages[currentStage].metadata.completed = false;
           draft.stages[currentStage].metadata.currentLevel = 0;
       
