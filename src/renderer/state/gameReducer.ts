@@ -95,10 +95,10 @@ export default function gameStateReducer(
         const stageScore = calculateStageScore(draft.stages[stageIndex].levels);
         draft.stages[stageIndex].metadata.stageScore = stageScore;
 
-        // when a stage is comple
         draft.currentStage = stageIndex + 1;
-        console.log(draft.currentStage)
-        console.log(draft.stages[stageIndex].metadata.completed)
+        console.log("draft current stage", draft.currentStage)
+        console.log("stage index", stageIndex)
+        draft.stages[stageIndex + 1].metadata.blocked = false;
 
         break;
       }
@@ -283,16 +283,6 @@ export default function gameStateReducer(
         console.log("currentStage", currentStage)
         console.log("currentLevel", currentLevel)
 
-        // If the current level is completed, unblock the next stage.
-        if (currentLevelMetadata.completed && currentStage < stageLastIndex) {
-          console.log("gucci gang")
-          draft.stages[currentStage + 1].metadata.blocked = false;
-        } else {
-          for (let i = currentStage + 1; i <= stageLastIndex; i++) {
-            draft.stages[i].metadata.blocked = true; 
-          }
-        }
-      
         return;
       }
 

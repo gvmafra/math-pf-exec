@@ -66,7 +66,10 @@ const genStageOne = (): Stage => ({
       { challengeId: 'Square4c' },
     ])
   ),
-  metadata: initialStageMetadata(),
+  metadata: {
+    ...initialStageMetadata(),
+    blocked: false
+  },
 });
 
 export default genStageOne;

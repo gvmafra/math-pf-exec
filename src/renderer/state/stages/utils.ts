@@ -29,6 +29,7 @@ export const initialStageMetadata = (): StageMetadata => ({
   currentLevel: 0,
   completed: false,
   stageScore: 0,
+  blocked: true
 });
 
 // these functions are used to calculate the score of a level or stage

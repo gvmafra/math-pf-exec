@@ -17,7 +17,7 @@ function AdvanceStage({ state, dispatch }: AdvanceStageProps) {
 
   const handleClick = () => {
     dispatch({ type: 'CLEAR_JUST_ADVANCED_STAGE' });
-    dispatch({ type: 'STAGE_COMPLETED', payload: { stageIndex: state.currentStage }}); ;
+    dispatch({ type: 'STAGE_COMPLETED', payload: { stageIndex: state.currentStage - 1 }}); ;
     navigate('/AllStagesPage');
   };
 
