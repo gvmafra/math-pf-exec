@@ -56,15 +56,7 @@ const AllStagesPage: React.FC<GameProps> = ({ state, dispatch }) => {
     setInstructionsModalOpen(false);
   }
 
-  // Define your images and descriptions for the modal
-  const instructionImages = [
-    //import images from src/renderer/img/instructions
-    { src: require('renderer/img/instructions/Instr_1.png').default, description: 'Instrução 1' },
-    { src: require('renderer/img/instructions/Instr_2.png').default, description: 'Instrução 2' },
-    { src: require('renderer/img/instructions/Instr_3.png').default, description: 'Instrução 3' },
-    { src: require('renderer/img/instructions/Instr_4.png').default, description: 'Instrução 4' },
-    { src: require('renderer/img/instructions/Instr_5.png').default, description: 'Instrução 5' },
-  ];
+
 
   return (
     <div className="flex h-screen items-center">
@@ -120,7 +112,6 @@ const AllStagesPage: React.FC<GameProps> = ({ state, dispatch }) => {
       <InstructionsModal
         isOpen={isInstructionsModalOpen}
         onClose={closeInstructionsModal}
-        images={instructionImages}
       />
 
       {/* Button to reopen instructions */}
