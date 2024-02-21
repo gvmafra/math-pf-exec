@@ -118,7 +118,7 @@ const NamePage: React.FC = () => {
 
               <div className="flex items-center justify-between bg-white">
                 <div>Bolsista da Licenciatura em Matemática:</div>
-                <div className="text-right">Aritane Hashimoto</div>
+                <div className="text-right">Aritane Hashimoto e Luciana Harumi</div>
               </div>
             </div>
           </div>

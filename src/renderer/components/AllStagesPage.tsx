@@ -1,12 +1,14 @@
 //AllStatesPage.tsx
 import { GameState } from 'renderer/state/types';
 import genInitialState from '../state/gameSetup';
-import { Dispatch } from 'react';
+import { Dispatch, useState } from 'react';
 import { Action } from 'renderer/state/gameReducer';
 import { useNavigate } from 'react-router-dom';
 import FratixBackground from './FratixBackground';
 import ButtonFratix from './ButtonFratix';
 import Overlayed from './Overlayed';
+
+import InstructionsModal from './InstructionsModal';
 
 interface GameProps {
   state: GameState;
@@ -33,12 +35,36 @@ const AllStagesPage: React.FC<GameProps> = ({ state, dispatch }) => {
   const gameState: GameState = genInitialState();
   const navigate = useNavigate();
 
+  const [isInstructionsModalOpen, setInstructionsModalOpen] = useState(
+    state.stages[1]?.metadata.blocked
+  );
+
   function handleStageSelect(stageNumber: number) {
     dispatch({ type: 'SET_STAGE', payload: { stageIndex: stageNumber } });
     dispatch({ type: 'REPLAY_STAGE' });
     dispatch({ type: 'PREVIOUS_STAGE_CHECK' });
     navigate('/Game');
   }
+
+  // Function to open the instructions modal
+  function openInstructionsModal() {
+    setInstructionsModalOpen(true);
+  }
+
+  // Function to close the instructions modal
+  function closeInstructionsModal() {
+    setInstructionsModalOpen(false);
+  }
+
+  // Define your images and descriptions for the modal
+  const instructionImages = [
+    //import images from src/renderer/img/instructions
+    { src: require('renderer/img/instructions/Instr_1.png').default, description: 'Instrução 1' },
+    { src: require('renderer/img/instructions/Instr_2.png').default, description: 'Instrução 2' },
+    { src: require('renderer/img/instructions/Instr_3.png').default, description: 'Instrução 3' },
+    { src: require('renderer/img/instructions/Instr_4.png').default, description: 'Instrução 4' },
+    { src: require('renderer/img/instructions/Instr_5.png').default, description: 'Instrução 5' },
+  ];
 
   return (
     <div className="flex h-screen items-center">
@@ -89,6 +115,22 @@ const AllStagesPage: React.FC<GameProps> = ({ state, dispatch }) => {
           altText="settings icon"
         />
       </div>
+
+      {/* Render InstructionsModal */}
+      <InstructionsModal
+        isOpen={isInstructionsModalOpen}
+        onClose={closeInstructionsModal}
+        images={instructionImages}
+      />
+
+      {/* Button to reopen instructions */}
+      <button
+        onClick={openInstructionsModal}
+        className="fixed bottom-4 right-4 bg-white hover:bg-amber-100 rounded-full border border-[#fff] shadow-md hover:shadow-md hover:shadow-amber-300 hover:border-amber-200 text-[#6c5353] font-bold py-4 px-5"
+      >
+        Instruções
+      </button>
+
     </div>
   );
 };

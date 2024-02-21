@@ -124,7 +124,7 @@ const scoreData: StageData[] = [
       { clickMax: 5 },
       { clickMax: 3 },
       { clickMax: 4 },
-      { clickMax: 3 },
+      { clickMax: 6 }, // corrected to 6 clicks on Feb 2021
       { clickMax: 3 },
     ],
   },
