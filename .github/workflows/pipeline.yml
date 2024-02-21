@@ -4,6 +4,7 @@ on:
     push:
         branches:
             - main
+            - modal-component
 jobs:
     build:
         # build on windows
